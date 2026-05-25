@@ -2,1211 +2,1476 @@
 <html lang="zh-Hans">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F2ECD8">
 <title>SSAT Prep · Jasmine + Zoe · 备考手账</title>
 <meta name="description" content="A bilingual study-plan companion for Jasmine and Zoe's Upper Level SSAT in October 2027.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=Inter+Tight:wght@400..700&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Inter+Tight:wght@400..700&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --paper:        #F4EFE2;
-    --paper-warm:   #EDE6D2;
-    --paper-deep:   #E6DEC4;
-    --surface:      #FBF7EC;
-    --ink:          #15171F;
-    --ink-soft:     #2A2C36;
-    --slate:        #5B5E69;
-    --slate-soft:   #7E8089;
-    --rule:         #C9BFA3;
-    --rule-soft:    #D9D0B6;
-    --crimson:      #8C2A2F;
-    --crimson-soft: #B4555B;
-    --marigold:     #B97A24;
-    --marigold-soft:#D9A659;
-    --sage:         #5E7250;
-    --sage-soft:    #8FA37C;
-    --ivory:        #F8F2DC;
+/* ───────────── tokens ───────────── */
+:root {
+  --paper:         #F2ECD8;
+  --paper-warm:    #ECE4CB;
+  --paper-deep:    #E2D9BD;
+  --surface:       #FBF6E5;
+  --ink:           #14161B;
+  --ink-soft:      #232530;
+  --slate:         #4B4E58;
+  --slate-soft:    #76798A;
+  --rule:          #BCB196;
+  --rule-soft:     #D8CEAF;
+  --crimson:       #831F22;
+  --crimson-soft:  #A95357;
+  --marigold:      #A5751C;
+  --marigold-soft: #C9A158;
 
-    --serif-display: 'Fraunces', 'Source Han Serif SC', 'Songti SC', 'STSong', 'Noto Serif CJK SC', serif;
-    --serif-body:    'Newsreader', 'Source Han Serif SC', 'Songti SC', 'STSong', 'Noto Serif CJK SC', serif;
-    --sans:          'Inter Tight', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-    --mono:          'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  --serif:  'Fraunces', 'Source Han Serif SC', 'Songti SC', 'STSong', 'Noto Serif CJK SC', serif;
+  --sans:   'Inter Tight', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, sans-serif;
+  --mono:   'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-    --grid: 1180px;
-    --shadow-soft: 0 1px 0 var(--rule-soft), 0 24px 48px -36px rgba(21,23,31,.18);
-  }
+  --w-container: 1180px;
+  --pad-x:       clamp(20px, 4.5vw, 48px);
+  --pad-y:       clamp(72px, 9vw, 128px);
 
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    font-family: var(--serif-body);
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--ink);
-    background: var(--paper);
-    background-image:
-      radial-gradient(1200px 600px at 10% -10%, rgba(185, 122, 36, .07), transparent 70%),
-      radial-gradient(900px 600px at 95% 5%, rgba(140, 42, 47, .05), transparent 60%),
-      radial-gradient(800px 800px at 50% 110%, rgba(94, 114, 80, .05), transparent 65%);
-    background-attachment: fixed;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-  body::before {
-    content: "";
-    position: fixed; inset: 0;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    opacity: .55;
-    mix-blend-mode: multiply;
-    z-index: 0;
-  }
+  --r: 4px;
+  --t-fast: 200ms cubic-bezier(.2,.7,.2,1);
+  --t-med:  450ms cubic-bezier(.2,.7,.2,1);
+  --t-slow: 900ms cubic-bezier(.2,.7,.2,1);
+}
 
-  /* Language visibility */
-  html[lang="en"] .lang-zh { display: none; }
-  html[lang="zh-Hans"] .lang-en { display: none; }
+/* ───────────── reset / base ───────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  margin: 0;
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 14, "SOFT" 30;
+  font-size: 17px;
+  line-height: 1.62;
+  color: var(--ink);
+  background: var(--paper);
+  background-image:
+    radial-gradient(900px 600px at 0% -10%, rgba(165, 117, 28, .06), transparent 60%),
+    radial-gradient(800px 600px at 100% 0%, rgba(131, 31, 34, .04), transparent 55%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "ss02";
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  overflow-x: hidden;
+}
 
-  /* Layout primitives */
-  .wrap { max-width: var(--grid); margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
-  section { padding: 96px 0; border-top: 1px solid var(--rule-soft); position: relative; }
-  section:first-of-type { border-top: none; }
-  section::before {
-    content: "";
-    position: absolute; left: 0; right: 0; top: -1px; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--rule) 20%, var(--rule) 80%, transparent);
-  }
-  section:first-of-type::before { display: none; }
+/* paper grain */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.045 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode: multiply;
+  opacity: .8;
+  z-index: 0;
+}
 
-  /* Header */
-  .topbar {
-    position: sticky; top: 0; z-index: 50;
-    backdrop-filter: blur(6px) saturate(120%);
-    background: rgba(244, 239, 226, 0.82);
-    border-bottom: 1px solid var(--rule-soft);
-  }
-  .topbar-inner {
-    max-width: var(--grid); margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 32px;
-    font-family: var(--sans);
-    font-size: 12px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--slate);
-  }
-  .topbar a { color: inherit; text-decoration: none; }
-  .topbar .crest {
-    color: var(--ink);
-    font-weight: 600;
-    letter-spacing: .14em;
-  }
-  .topbar .crest .dot {
-    display: inline-block;
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--crimson);
-    margin: 0 8px;
-    vertical-align: middle;
-  }
-  .lang-switch {
-    display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; padding: 2px;
-    background: var(--surface);
-  }
-  .lang-switch button {
-    appearance: none; border: 0; background: transparent;
-    font: 600 11px/1 var(--sans);
-    letter-spacing: .12em;
-    padding: 6px 12px;
-    color: var(--slate);
-    cursor: pointer;
-    border-radius: 999px;
-    transition: background .2s, color .2s;
-  }
-  .lang-switch button.active {
-    background: var(--ink);
-    color: var(--paper);
-  }
-  .lang-switch button:hover:not(.active) { color: var(--ink); }
+html[lang="en"] .lang-zh { display: none; }
+html[lang="zh-Hans"] .lang-en { display: none; }
 
-  /* Chapter labels */
-  .chapter {
-    display: flex; align-items: baseline; gap: 16px;
-    font-family: var(--sans);
-    font-size: 12px;
-    letter-spacing: .22em;
-    text-transform: uppercase;
-    color: var(--crimson);
-    margin-bottom: 24px;
-  }
-  .chapter .roman {
-    font-family: var(--serif-display);
-    font-style: italic;
-    font-weight: 500;
-    font-size: 22px;
-    letter-spacing: 0;
-    color: var(--ink);
-    text-transform: none;
-  }
-  .chapter .rule {
-    flex: 1;
-    height: 1px;
-    background: var(--rule);
-    align-self: center;
-  }
+a { color: inherit; }
 
-  h1, h2, h3, h4 {
-    font-family: var(--serif-display);
-    font-weight: 400;
-    color: var(--ink);
-    margin: 0;
-    font-variation-settings: "opsz" 144, "SOFT" 30;
-  }
-  h2 {
-    font-size: clamp(36px, 4.6vw, 60px);
-    line-height: 1.04;
-    letter-spacing: -.02em;
-    margin-bottom: 12px;
-  }
-  h2 em {
-    font-style: italic;
-    color: var(--crimson);
-    font-weight: 500;
-  }
-  h3 {
-    font-size: 26px;
-    line-height: 1.2;
-    margin-bottom: 8px;
-    font-variation-settings: "opsz" 36, "SOFT" 30;
-  }
-  h4 {
-    font-size: 18px;
-    font-variation-settings: "opsz" 18, "SOFT" 30;
-    margin-bottom: 6px;
-  }
-  .subhead {
-    font-family: var(--serif-body);
-    font-style: italic;
-    color: var(--slate);
-    font-size: 19px;
-    line-height: 1.5;
-    max-width: 60ch;
-  }
-  p { margin: 0 0 1em; }
-  p:last-child { margin-bottom: 0; }
-  strong { font-weight: 600; color: var(--ink); }
-  em { font-style: italic; }
+/* ───────────── layout ───────────── */
+.wrap {
+  max-width: var(--w-container);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+  position: relative;
+  z-index: 1;
+}
+section {
+  padding: var(--pad-y) 0;
+  position: relative;
+  border-top: 1px solid var(--rule);
+}
+section:first-of-type { border-top: none; }
 
-  .smallcaps {
-    font-family: var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .16em;
-    font-size: 11px;
-    color: var(--slate);
-    font-weight: 600;
-  }
+/* ───────────── topbar ───────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  border-bottom: 1px solid var(--rule-soft);
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+.topbar-inner {
+  max-width: var(--w-container);
+  margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px var(--pad-x);
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--slate);
+  font-weight: 500;
+  min-height: 56px;
+}
+.topbar a { color: inherit; text-decoration: none; }
+.crest {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--ink);
+  font-weight: 600;
+}
+.crest .dot {
+  display: inline-block;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--crimson);
+}
+.crest .sep {
+  display: inline-block;
+  width: 1px; height: 12px;
+  background: var(--rule);
+  margin: 0 4px;
+}
+.crest .who {
+  font-weight: 400;
+  color: var(--slate);
+}
 
-  /* ============ COVER ============ */
-  .cover { padding-top: 80px; padding-bottom: 80px; }
+.lang-switch {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--surface);
+  padding: 3px;
+  height: 36px;
+}
+.lang-switch button {
+  appearance: none; border: 0; background: transparent;
+  font: 600 11px/1 var(--sans);
+  letter-spacing: .12em;
+  padding: 0 14px;
+  min-width: 44px;
+  height: 100%;
+  color: var(--slate);
+  cursor: pointer;
+  border-radius: 999px;
+  transition: background var(--t-fast), color var(--t-fast);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.lang-switch button.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+.lang-switch button:hover:not(.active) { color: var(--ink); }
+
+/* ───────────── typography ───────────── */
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -.015em;
+  font-optical-sizing: auto;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(48px, 10.5vw, 132px);
+  line-height: .92;
+  letter-spacing: -.035em;
+  font-variation-settings: "opsz" 144, "SOFT" 25, "wght" 360;
+}
+h1 em {
+  font-style: italic;
+  color: var(--crimson);
+  font-variation-settings: "opsz" 144, "SOFT" 55, "wght" 400;
+}
+h2 {
+  font-size: clamp(34px, 5.2vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -.022em;
+  font-variation-settings: "opsz" 96, "SOFT" 25, "wght" 380;
+  max-width: 18ch;
+  margin-bottom: 16px;
+}
+h2 em {
+  font-style: italic;
+  color: var(--crimson);
+  font-variation-settings: "opsz" 96, "SOFT" 60, "wght" 400;
+}
+h3 {
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.15;
+  margin-bottom: 10px;
+  font-variation-settings: "opsz" 36, "SOFT" 25, "wght" 440;
+}
+h4 {
+  font-size: clamp(17px, 1.6vw, 20px);
+  font-variation-settings: "opsz" 20, "SOFT" 25, "wght" 500;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.subhead {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--slate);
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.5;
+  max-width: 58ch;
+  margin: 0 0 8px;
+  font-variation-settings: "opsz" 24, "SOFT" 40, "wght" 380;
+}
+
+p { margin: 0 0 1em; }
+p:last-child { margin: 0; }
+strong { font-weight: 600; color: var(--ink); }
+em { font-style: italic; }
+
+.smallcaps {
+  font-family: var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-size: 11px;
+  color: var(--slate);
+  font-weight: 600;
+}
+
+/* ───────────── chapter masthead ───────────── */
+.chapter {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 24px;
+  color: var(--crimson);
+}
+.chapter .roman {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--ink);
+  font-variation-settings: "opsz" 24, "SOFT" 50, "wght" 480;
+  letter-spacing: 0;
+  flex-shrink: 0;
+}
+.chapter .label {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.chapter .rule {
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+/* margin chapter mark (decorative) */
+.margin-num {
+  position: absolute;
+  top: var(--pad-y);
+  right: var(--pad-x);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--rule);
+  font-variation-settings: "opsz" 24, "SOFT" 60, "wght" 400;
+  letter-spacing: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════ */
+/* I · COVER                            */
+/* ═══════════════════════════════════ */
+.cover { padding-top: clamp(56px, 6vw, 88px); }
+.cover-meta {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: clamp(40px, 5vw, 64px);
+  gap: 16px;
+}
+.cover-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 96px);
+  align-items: start;
+}
+.cover h1 { margin-bottom: clamp(28px, 3vw, 40px); }
+.cover h1 .br-mobile { display: none; }
+.cover-lead {
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.7vw, 20px);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 54ch;
+  font-variation-settings: "opsz" 20, "SOFT" 30, "wght" 420;
+}
+.cover-lead .pull {
+  color: var(--crimson);
+  font-style: italic;
+  font-variation-settings: "opsz" 24, "SOFT" 60, "wght" 440;
+}
+
+.cover-side {
+  border-left: 1px solid var(--rule);
+  padding-left: clamp(24px, 3vw, 40px);
+  padding-top: 6px;
+}
+.cover-side .smallcaps + * { margin-top: 12px; }
+.cover-side > * + .smallcaps { margin-top: 32px; }
+
+.students { display: flex; flex-direction: column; gap: 14px; }
+.student-tag {
+  display: flex; align-items: baseline; gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.student-tag:last-child { border-bottom: 0; padding-bottom: 0; }
+.student-tag .num {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--marigold);
+  font-size: 18px;
+  font-variation-settings: "opsz" 24, "SOFT" 60, "wght" 460;
+  flex-shrink: 0;
+  min-width: 18px;
+}
+.student-tag .name {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2vw, 24px);
+  line-height: 1.1;
+  font-variation-settings: "opsz" 36, "SOFT" 35, "wght" 480;
+}
+.student-tag .name .zh {
+  color: var(--slate);
+  font-size: .76em;
+  font-style: italic;
+  margin-left: 6px;
+  font-variation-settings: "opsz" 24, "SOFT" 50, "wght" 420;
+}
+.student-tag .role {
+  margin-left: auto;
+  font-family: var(--sans);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: .16em;
+  color: var(--slate-soft);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.coach-name {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2vw, 24px);
+  line-height: 1.15;
+  font-variation-settings: "opsz" 30, "SOFT" 45, "wght" 460;
+}
+.coach-tagline {
+  font-style: italic;
+  color: var(--slate);
+  font-size: 14.5px;
+  margin-top: 4px;
+  font-variation-settings: "opsz" 16, "SOFT" 50, "wght" 380;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: clamp(48px, 6vw, 80px);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.countdown .metric {
+  padding: clamp(18px, 2vw, 26px) clamp(14px, 1.8vw, 22px);
+  border-right: 1px solid var(--rule-soft);
+  position: relative;
+  min-height: 100px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.countdown .metric:last-child { border-right: 0; }
+.countdown .value {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1;
+  font-variation-settings: "opsz" 96, "SOFT" 20, "wght" 380;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.countdown .metric.accent .value { color: var(--crimson); }
+.countdown .value .unit {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--slate-soft);
+  margin-left: 3px;
+  vertical-align: .4em;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+.countdown .label {
+  display: block;
+  margin-top: 14px;
+  font: 600 10.5px/1.35 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--slate);
+}
+
+/* ═══════════════════════════════════ */
+/* II · WHERE WE STAND                  */
+/* ═══════════════════════════════════ */
+.stand-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 2.5vw, 32px);
+  margin-top: clamp(36px, 4vw, 56px);
+}
+.student-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  padding: clamp(24px, 3vw, 36px);
+  position: relative;
+  --accent: var(--ink);
+}
+.student-card.j { --accent: var(--crimson); }
+.student-card.z { --accent: var(--marigold); }
+.student-card::before {
+  content: "";
+  position: absolute;
+  top: -1px; left: -1px; width: 56px; height: 4px;
+  background: var(--accent);
+}
+
+.student-card .head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.student-card .name-block { display: flex; flex-direction: column; }
+.student-card .name {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.4vw, 38px);
+  line-height: 1;
+  font-variation-settings: "opsz" 48, "SOFT" 40, "wght" 440;
+  letter-spacing: -.02em;
+}
+.student-card .alt {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--slate);
+  font-size: 15px;
+  margin-top: 4px;
+  font-variation-settings: "opsz" 18, "SOFT" 55, "wght" 400;
+}
+.student-card .total { text-align: right; }
+.student-card .total .num {
+  font-family: var(--serif);
+  font-size: clamp(34px, 4vw, 46px);
+  line-height: 1;
+  font-variation-settings: "opsz" 96, "SOFT" 20, "wght" 380;
+  color: var(--accent);
+  letter-spacing: -.03em;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.student-card .total .scale {
+  display: block;
+  margin-top: 6px;
+  font: 600 10px/1.3 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--slate);
+}
+
+.score-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 56px 64px;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  font-family: var(--sans);
+}
+.score-row:last-of-type { border-bottom: 0; }
+.score-row .subj {
+  font: 600 11px/1 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--ink);
+}
+.score-row .bar {
+  height: 6px;
+  background: var(--paper-deep);
+  position: relative;
+  overflow: hidden;
+  border-radius: 1px;
+}
+.score-row .bar::before {
+  content: "";
+  position: absolute; inset: 0;
+  width: var(--pct, 0%);
+  background: var(--accent);
+  transition: width 1.4s cubic-bezier(.2,.7,.2,1);
+}
+.score-row .scaled {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  color: var(--ink);
+  font-weight: 500;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.score-row .raw {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--slate-soft);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.student-notes {
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule-soft);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 2vw, 24px);
+}
+.student-notes h5 {
+  font: 600 10px/1 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: var(--slate);
+  margin: 0 0 12px;
+}
+.student-notes ul {
+  margin: 0; padding: 0; list-style: none;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.student-notes li {
+  padding-left: 18px;
+  position: relative;
+  margin-bottom: 8px;
+}
+.student-notes li:last-child { margin-bottom: 0; }
+.student-notes .strong li::before {
+  content: "+";
+  position: absolute; left: 0; top: 0;
+  color: var(--ink);
+  font-weight: 700;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.student-notes .grow li::before {
+  content: "→";
+  position: absolute; left: 0; top: -1px;
+  color: var(--crimson);
+  font-family: var(--serif);
+}
+
+.teacher-quote {
+  margin: clamp(48px, 6vw, 72px) 0 0;
+  padding: clamp(28px, 3.5vw, 44px);
+  background: var(--paper-warm);
+  border-left: 3px solid var(--crimson);
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.8vw, 21px);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  font-style: italic;
+  position: relative;
+  font-variation-settings: "opsz" 24, "SOFT" 45, "wght" 420;
+  max-width: 68ch;
+}
+.teacher-quote::before {
+  content: "\201C";
+  position: absolute; top: -24px; left: 18px;
+  font-family: var(--serif);
+  font-size: 110px;
+  line-height: 1;
+  color: var(--crimson-soft);
+  font-style: normal;
+  font-variation-settings: "opsz" 144, "SOFT" 60, "wght" 380;
+}
+.teacher-quote cite {
+  display: block;
+  margin-top: 18px;
+  font-style: normal;
+  font: 600 11px/1 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--slate);
+}
+
+/* ═══════════════════════════════════ */
+/* III · TARGET                         */
+/* ═══════════════════════════════════ */
+.target-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: clamp(36px, 4vw, 56px);
+  border: 1px solid var(--rule);
+  background: var(--surface);
+}
+.target-col {
+  padding: clamp(24px, 3vw, 36px);
+  border-right: 1px solid var(--rule-soft);
+}
+.target-col:last-child { border-right: 0; }
+.target-col .smallcaps + h3 { margin-top: 8px; }
+.target-col .figure {
+  font-family: var(--serif);
+  font-size: clamp(52px, 6vw, 80px);
+  line-height: 1;
+  font-variation-settings: "opsz" 144, "SOFT" 25, "wght" 360;
+  color: var(--crimson);
+  letter-spacing: -.035em;
+  margin: 14px 0 10px;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.target-col .figure .small {
+  font-size: 26px;
+  color: var(--slate);
+}
+.target-col .caption {
+  font-size: 14px;
+  color: var(--slate);
+  font-style: italic;
+  line-height: 1.55;
+  font-variation-settings: "opsz" 16, "SOFT" 55, "wght" 400;
+}
+.target-col ul {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.target-col ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  display: flex; justify-content: space-between; gap: 12px;
+  font-size: 14.5px;
+}
+.target-col ul li:last-child { border-bottom: 0; }
+.target-col ul li > span:first-child { color: var(--ink-soft); }
+.target-col ul li > span:last-child {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--slate);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.target-disclaimer {
+  margin-top: clamp(20px, 2.5vw, 28px);
+  padding: clamp(16px, 2vw, 22px) clamp(18px, 2.4vw, 28px);
+  border: 1px solid var(--rule-soft);
+  background: var(--paper-warm);
+  font-family: var(--serif);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--slate);
+  font-variation-settings: "opsz" 16, "SOFT" 35, "wght" 400;
+}
+.target-disclaimer strong { color: var(--ink); }
+.target-disclaimer a { color: var(--crimson); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+/* ═══════════════════════════════════ */
+/* IV · PLAN PHASES                     */
+/* ═══════════════════════════════════ */
+.phases { margin-top: clamp(40px, 5vw, 64px); }
+.phase {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: clamp(28px, 4vw, 64px);
+  padding: clamp(32px, 4vw, 52px) 0;
+  border-top: 1px solid var(--rule-soft);
+}
+.phase:last-child { border-bottom: 1px solid var(--rule-soft); }
+.phase .marker { position: sticky; top: 80px; }
+.phase .roman-big {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(56px, 7vw, 88px);
+  line-height: .9;
+  color: var(--marigold);
+  font-variation-settings: "opsz" 144, "SOFT" 50, "wght" 360;
+  letter-spacing: -.04em;
+  display: block;
+}
+.phase .marker .label {
+  margin-top: 6px;
+  font: 600 11px/1.4 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: var(--crimson);
+}
+.phase .marker .dates {
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--slate);
+  font-variant-numeric: tabular-nums;
+}
+.phase h3 {
+  font-size: clamp(22px, 2.6vw, 30px);
+  margin-bottom: 14px;
+}
+.phase .copy {
+  max-width: 64ch;
+  color: var(--ink-soft);
+  font-size: clamp(16px, 1.55vw, 17px);
+  line-height: 1.62;
+}
+.phase .focus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(12px, 1.4vw, 18px);
+  margin-top: clamp(20px, 2.4vw, 28px);
+}
+.focus-card {
+  background: var(--paper-warm);
+  padding: 18px 20px 20px;
+  border-top: 2px solid var(--crimson);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.focus-card.alt  { border-top-color: var(--marigold); }
+.focus-card.alt2 { border-top-color: var(--ink); }
+.focus-card h5 {
+  font: 600 10px/1 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: var(--slate);
+  margin: 0 0 10px;
+}
+.focus-card .head-large {
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 8px;
+  line-height: 1.25;
+  font-variation-settings: "opsz" 20, "SOFT" 35, "wght" 460;
+}
+
+/* ═══════════════════════════════════ */
+/* V · WEEKLY RHYTHM                    */
+/* ═══════════════════════════════════ */
+.rhythm-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  gap: clamp(32px, 4vw, 56px);
+  margin-top: clamp(36px, 4vw, 56px);
+  align-items: start;
+}
+.week-table { border-top: 2px solid var(--ink); }
+.week-row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) 88px 64px;
+  gap: 14px;
+  align-items: baseline;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.week-row.head {
+  border-bottom: 1px solid var(--ink);
+  padding: 10px 0;
+}
+.week-row.head > * {
+  font: 600 10px/1 var(--sans) !important;
+  text-transform: uppercase !important;
+  letter-spacing: .14em !important;
+  color: var(--slate) !important;
+  font-style: normal !important;
+}
+.week-row .day {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--crimson);
+  font-variation-settings: "opsz" 24, "SOFT" 60, "wght" 460;
+}
+.week-row .activity {
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.week-row .activity .sub {
+  display: block;
+  font-size: 12.5px;
+  color: var(--slate);
+  font-style: italic;
+  margin-top: 3px;
+  font-variation-settings: "opsz" 14, "SOFT" 50, "wght" 400;
+}
+.week-row .duration,
+.week-row .who {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--slate);
+  font-variant-numeric: tabular-nums;
+}
+
+.rhythm-aside {
+  background: var(--paper-warm);
+  padding: clamp(24px, 3vw, 34px);
+}
+.rhythm-aside h4 { margin-bottom: 16px; }
+.rhythm-aside ul { margin: 0; padding: 0; list-style: none; }
+.rhythm-aside li {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 14px;
+  align-items: baseline;
+  font-size: 14px;
+}
+.rhythm-aside li:last-child { border-bottom: 0; padding-bottom: 0; }
+.rhythm-aside li .num {
+  font-family: var(--mono);
+  color: var(--crimson);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════ */
+/* VI · BY SUBJECT                      */
+/* ═══════════════════════════════════ */
+.subjects { margin-top: clamp(36px, 4vw, 56px); }
+.subject {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: clamp(28px, 4vw, 56px);
+  padding: clamp(36px, 4vw, 52px) 0;
+  border-top: 1px solid var(--rule-soft);
+}
+.subject:last-child { border-bottom: 1px solid var(--rule-soft); }
+.subject .label-block { position: sticky; top: 80px; }
+.subject .glyph {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(56px, 7vw, 84px);
+  line-height: .85;
+  color: var(--crimson);
+  font-variation-settings: "opsz" 144, "SOFT" 55, "wght" 360;
+  display: block;
+  margin-bottom: 10px;
+  letter-spacing: -.04em;
+}
+.subject.vocab .glyph   { color: var(--marigold); }
+.subject.math .glyph    { color: var(--ink); }
+.subject.writing .glyph { color: var(--slate); }
+.subject h3 small {
+  display: block;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-top: 8px;
+  font-weight: 600;
+  font-style: normal;
+}
+.subject-body {
+  max-width: 64ch;
+  color: var(--ink-soft);
+  font-size: clamp(15.5px, 1.55vw, 16.5px);
+  line-height: 1.62;
+}
+.subject-body ol {
+  padding: 0;
+  list-style: none;
+  counter-reset: ssat;
+  margin: 18px 0 0;
+}
+.subject-body ol li {
+  counter-increment: ssat;
+  padding: 14px 0 14px 44px;
+  border-bottom: 1px solid var(--rule-soft);
+  position: relative;
+}
+.subject-body ol li:last-child { border-bottom: 0; padding-bottom: 0; }
+.subject-body ol li::before {
+  content: counter(ssat, decimal-leading-zero);
+  position: absolute; left: 0; top: 14px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--crimson);
+  font-weight: 600;
+}
+.subject.vocab .subject-body ol li::before { color: var(--marigold); }
+.subject.math .subject-body ol li::before  { color: var(--ink); }
+.subject-body ol li strong {
+  display: block;
+  font-size: 16px;
+  color: var(--ink);
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.meta-row {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 18px;
+}
+.pill {
+  display: inline-flex; align-items: center;
+  padding: 5px 12px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font: 600 10.5px/1.3 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--slate);
+}
+.pill.crimson { color: var(--crimson); border-color: var(--crimson-soft); }
+.pill.gold    { color: var(--marigold); border-color: var(--marigold-soft); }
+.pill.dark    { color: var(--ink); border-color: var(--rule); }
+
+/* ═══════════════════════════════════ */
+/* VII · CALENDAR                       */
+/* ═══════════════════════════════════ */
+.calendar { margin-top: clamp(36px, 4vw, 56px); }
+.timeline {
+  position: relative;
+  padding-left: 28px;
+  border-left: 1px solid var(--ink);
+}
+.milestone {
+  position: relative;
+  padding: 0 0 clamp(28px, 3.5vw, 40px) clamp(8px, 1vw, 16px);
+}
+.milestone:last-child { padding-bottom: 0; }
+.milestone::before {
+  content: "";
+  position: absolute;
+  left: calc(-28px - 6px); top: 6px;
+  width: 11px; height: 11px;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  box-sizing: content-box;
+}
+.milestone.active::before {
+  background: var(--crimson);
+  border-color: var(--crimson);
+  box-shadow: 0 0 0 4px var(--paper), 0 0 0 6px var(--crimson-soft);
+}
+.milestone.target::before {
+  background: var(--marigold);
+  border-color: var(--marigold);
+}
+.milestone .date {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: .04em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.milestone .title {
+  font-family: var(--serif);
+  font-size: clamp(19px, 2vw, 24px);
+  color: var(--ink);
+  margin: 4px 0 8px;
+  font-variation-settings: "opsz" 28, "SOFT" 35, "wght" 460;
+  line-height: 1.2;
+}
+.milestone .desc {
+  color: var(--slate);
+  font-size: 14.5px;
+  line-height: 1.6;
+  max-width: 58ch;
+}
+.milestone .desc strong { color: var(--ink); font-weight: 600; }
+
+/* ═══════════════════════════════════ */
+/* VIII · ABOUT THE TEST                */
+/* ═══════════════════════════════════ */
+.test-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
+  gap: clamp(32px, 4vw, 56px);
+  margin-top: clamp(36px, 4vw, 56px);
+  align-items: start;
+}
+.test-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--sans);
+  font-size: 14px;
+}
+.test-table thead th {
+  text-align: left;
+  font: 600 10.5px/1 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--slate);
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--ink);
+}
+.test-table thead th:nth-child(3),
+.test-table thead th:nth-child(4),
+.test-table tbody td:nth-child(3),
+.test-table tbody td:nth-child(4) { text-align: right; }
+.test-table tbody td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: top;
+}
+.test-table tbody tr:last-child td { border-bottom: 0; }
+.test-table .section-name {
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--ink);
+  font-variation-settings: "opsz" 24, "SOFT" 30, "wght" 460;
+  line-height: 1.2;
+}
+.test-table .meta {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--slate);
+  font-style: italic;
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 14, "SOFT" 55, "wght" 400;
+}
+.test-table .num {
+  font-family: var(--mono);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.test-aside {
+  background: var(--paper-warm);
+  padding: clamp(24px, 3vw, 32px);
+  border-top: 2px solid var(--ink);
+}
+.test-aside h4 { margin-bottom: 12px; }
+.test-aside p {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+.test-aside dl {
+  margin: 18px 0 0;
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  row-gap: 12px;
+  column-gap: 16px;
+  font-size: 13.5px;
+}
+.test-aside dt {
+  font: 600 10.5px/1.5 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--slate);
+}
+.test-aside dd {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.test-aside dd .mono {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ═══════════════════════════════════ */
+/* IX · FORMATS                         */
+/* ═══════════════════════════════════ */
+.formats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-top: clamp(36px, 4vw, 56px);
+}
+.format {
+  background: var(--surface);
+  padding: clamp(22px, 2.5vw, 28px);
+  display: flex; flex-direction: column;
+}
+.format .name {
+  font-family: var(--serif);
+  font-size: clamp(19px, 2vw, 23px);
+  color: var(--ink);
+  font-variation-settings: "opsz" 28, "SOFT" 30, "wght" 460;
+  line-height: 1.15;
+}
+.format .tag {
+  font: 600 10px/1 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--crimson);
+  margin: 8px 0 18px;
+}
+.format .price {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  color: var(--ink);
+  padding: 12px 0;
+  border-top: 1px solid var(--rule-soft);
+  border-bottom: 1px solid var(--rule-soft);
+  margin-bottom: 16px;
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-variant-numeric: tabular-nums;
+}
+.format .price .label-mono {
+  color: var(--slate);
+  font-size: 10.5px;
+  letter-spacing: .04em;
+}
+.format .desc {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  flex: 1;
+}
+.format .limit {
+  margin-top: 14px;
+  font: 600 10px/1.3 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--slate);
+}
+
+/* ═══════════════════════════════════ */
+/* X · ROLES                            */
+/* ═══════════════════════════════════ */
+.roles-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 4vw, 56px);
+  margin-top: clamp(36px, 4vw, 56px);
+}
+.role-col h3 {
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 22px;
+  font-size: clamp(22px, 2.4vw, 28px);
+}
+.role-col.parents h3  { border-bottom-color: var(--crimson); }
+.role-col.students h3 { border-bottom-color: var(--marigold); }
+.role-col ul { margin: 0; padding: 0; list-style: none; }
+.role-col li {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 14px;
+  align-items: baseline;
+}
+.role-col li::before {
+  content: "";
+  width: 11px; height: 11px;
+  border: 1.5px solid var(--crimson);
+  display: block;
+  margin-top: 5px;
+  border-radius: 1px;
+}
+.role-col.students li::before { border-color: var(--marigold); }
+.role-col li strong {
+  display: block;
+  font-size: 15px;
+  color: var(--ink);
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.role-col li span.body {
+  font-size: 14px;
+  color: var(--slate);
+  line-height: 1.55;
+}
+
+/* ═══════════════════════════════════ */
+/* XI · RESOURCES                       */
+/* ═══════════════════════════════════ */
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 3vw, 40px);
+  margin-top: clamp(36px, 4vw, 56px);
+}
+.res-card {
+  border-top: 1px solid var(--ink);
+  padding-top: 18px;
+}
+.res-card h4 { font-size: 16px; margin-bottom: 12px; }
+.res-card ul { list-style: none; margin: 0; padding: 0; }
+.res-card li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.res-card li:last-child { border-bottom: 0; padding-bottom: 0; }
+.res-card a {
+  color: var(--ink);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  padding-bottom: 1px;
+  transition: color var(--t-fast), background-size var(--t-fast);
+}
+.res-card a:hover {
+  color: var(--crimson);
+}
+.res-card .note {
+  display: block;
+  font-size: 12.5px;
+  color: var(--slate);
+  font-style: italic;
+  margin-top: 2px;
+  font-variation-settings: "opsz" 14, "SOFT" 50, "wght" 400;
+}
+
+/* ═══════════════════════════════════ */
+/* FOOTER                               */
+/* ═══════════════════════════════════ */
+footer {
+  padding: clamp(48px, 6vw, 80px) 0 clamp(64px, 7vw, 88px);
+  border-top: 1px solid var(--rule);
+  padding-bottom: max(clamp(64px, 7vw, 88px), env(safe-area-inset-bottom));
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr) minmax(0, .7fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: end;
+}
+footer .motto {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.25;
+  color: var(--ink);
+  font-variation-settings: "opsz" 36, "SOFT" 50, "wght" 380;
+  max-width: 16ch;
+}
+footer .motto em {
+  font-style: italic;
+  color: var(--crimson);
+  font-variation-settings: "opsz" 36, "SOFT" 60, "wght" 420;
+}
+footer .colophon {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  line-height: 1.75;
+  color: var(--slate);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+}
+footer .seal {
+  text-align: right;
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--crimson);
+  font-size: 14px;
+  font-variation-settings: "opsz" 16, "SOFT" 60, "wght" 420;
+}
+footer .seal .ornament {
+  display: block;
+  color: var(--marigold);
+  font-size: 22px;
+  margin-bottom: 6px;
+  font-style: normal;
+}
+
+/* ═══════════════════════════════════ */
+/* RESPONSIVE — iPad portrait & below   */
+/* ═══════════════════════════════════ */
+@media (max-width: 1024px) {
   .cover-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 80px;
-    align-items: start;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 48px;
   }
-  .cover-meta {
-    display: flex; justify-content: space-between; align-items: baseline;
-    margin-bottom: 48px;
+  .target-grid { grid-template-columns: 1fr 1fr; }
+  .target-col:nth-child(2) { border-right: 0; }
+  .target-col:nth-child(1),
+  .target-col:nth-child(2) { border-bottom: 1px solid var(--rule-soft); }
+  .target-col:last-child {
+    grid-column: 1 / -1;
+    border-right: 0;
   }
-  .cover h1 {
-    font-size: clamp(56px, 7.8vw, 116px);
-    line-height: .92;
-    letter-spacing: -.035em;
-    font-variation-settings: "opsz" 144, "SOFT" 20, "wght" 360;
-    margin-bottom: 36px;
-  }
-  .cover h1 em {
-    font-style: italic;
-    color: var(--crimson);
-    font-variation-settings: "opsz" 144, "SOFT" 50, "wght" 380;
-  }
-  .cover h1 .ornament {
-    display: inline-block;
-    color: var(--marigold);
-    transform: translateY(-.15em);
-    font-style: normal;
-    font-size: .55em;
-    margin: 0 .06em;
-  }
-  .cover-lead {
-    font-size: 19px;
-    line-height: 1.55;
-    color: var(--ink-soft);
-    max-width: 56ch;
-  }
-  .cover-lead .pull {
-    color: var(--crimson);
-    font-style: italic;
-  }
+  .phase, .subject { grid-template-columns: 160px 1fr; gap: 32px; }
+  .phase .marker, .subject .label-block { position: static; }
+  .formats-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  html { scroll-padding-top: 64px; }
+  .topbar-inner { padding: 10px var(--pad-x); min-height: 52px; }
+  .crest { font-size: 11px; gap: 8px; }
+  .crest .who { display: none; }
+
+  h1 .br-mobile { display: inline; }
+  h1 br.br-desktop { display: none; }
+
+  .cover-grid { grid-template-columns: 1fr; gap: 40px; }
   .cover-side {
-    border-left: 1px solid var(--rule);
-    padding-left: 36px;
-    margin-top: 8px;
+    border-left: 0;
+    border-top: 1px solid var(--rule);
+    padding-left: 0;
+    padding-top: 32px;
   }
-  .students {
-    display: flex; flex-direction: column; gap: 18px;
-    margin-bottom: 40px;
-  }
-  .student-tag {
-    display: flex; align-items: baseline; gap: 14px;
-    padding-bottom: 14px;
-    border-bottom: 1px dotted var(--rule);
-  }
-  .student-tag:last-child { border-bottom: 0; }
-  .student-tag .num {
-    font-family: var(--serif-display);
-    font-style: italic;
-    color: var(--marigold);
-    font-size: 22px;
-  }
-  .student-tag .name {
-    font-family: var(--serif-display);
-    font-size: 26px;
-    line-height: 1.1;
-    font-variation-settings: "opsz" 36, "SOFT" 40;
-  }
-  .student-tag .name .zh {
-    color: var(--slate);
-    font-size: 18px;
-    font-style: italic;
-    margin-left: 6px;
-  }
-  .student-tag .role {
-    margin-left: auto;
-    font-family: var(--sans);
-    text-transform: uppercase;
-    font-size: 10px;
-    letter-spacing: .18em;
-    color: var(--slate);
-  }
+  .cover-meta { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .student-tag .role { font-size: 9px; }
 
   .countdown {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    border-top: 1px solid var(--ink);
-    border-bottom: 1px solid var(--ink);
-    margin-top: 56px;
-  }
-  .countdown .metric {
-    padding: 22px 18px 18px;
-    border-right: 1px solid var(--rule);
-    position: relative;
-  }
-  .countdown .metric:last-child { border-right: 0; }
-  .countdown .value {
-    display: block;
-    font-family: var(--serif-display);
-    font-size: 52px;
-    line-height: 1;
-    font-variation-settings: "opsz" 144, "SOFT" 0, "wght" 400;
-    letter-spacing: -.03em;
-    color: var(--ink);
-  }
-  .countdown .value .unit {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--slate);
-    margin-left: 4px;
-    vertical-align: 4px;
-    letter-spacing: 0;
-  }
-  .countdown .label {
-    display: block;
-    margin-top: 10px;
-    font: 600 10.5px/1.3 var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .16em;
-    color: var(--slate);
-  }
-  .countdown .metric.accent .value { color: var(--crimson); }
-
-  /* ============ STAND ============ */
-  .stand-grid {
-    display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    margin-top: 48px;
   }
-  .student-card {
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    padding: 36px 36px 32px;
-    position: relative;
-    box-shadow: var(--shadow-soft);
-  }
-  .student-card::before {
-    content: "";
-    position: absolute;
-    top: -1px; left: -1px; right: -1px; height: 5px;
-    background: repeating-linear-gradient(90deg, var(--ink) 0 14px, transparent 14px 22px);
-  }
-  .student-card.j::before { background: repeating-linear-gradient(90deg, var(--crimson) 0 14px, transparent 14px 22px); }
-  .student-card.z::before { background: repeating-linear-gradient(90deg, var(--marigold) 0 14px, transparent 14px 22px); }
-  .student-card .head {
-    display: flex; align-items: baseline; justify-content: space-between;
-    margin-bottom: 18px;
-    padding-bottom: 18px;
+  .countdown .metric { min-height: 92px; padding: 18px 16px; }
+  .countdown .metric:nth-child(1),
+  .countdown .metric:nth-child(2) {
     border-bottom: 1px solid var(--rule-soft);
   }
-  .student-card .head .name-block {
-    display: flex; flex-direction: column;
-  }
-  .student-card .head .name {
-    font-family: var(--serif-display);
-    font-size: 34px;
-    line-height: 1;
-    font-variation-settings: "opsz" 48, "SOFT" 50, "wght" 420;
-  }
-  .student-card .head .alt {
-    font-family: var(--serif-body);
-    font-style: italic;
-    color: var(--slate);
-    font-size: 17px;
-    margin-top: 2px;
-  }
-  .student-card .total {
-    text-align: right;
-  }
-  .student-card .total .num {
-    font-family: var(--serif-display);
-    font-size: 44px;
-    line-height: 1;
-    font-variation-settings: "opsz" 96, "wght" 400;
-    color: var(--ink);
-    letter-spacing: -.02em;
-  }
-  .student-card.j .total .num { color: var(--crimson); }
-  .student-card.z .total .num { color: var(--marigold); }
-  .student-card .total .scale {
-    display: block;
-    margin-top: 4px;
-    font: 600 10px/1.2 var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .14em;
-    color: var(--slate);
-  }
-  .score-row {
-    display: grid;
-    grid-template-columns: 60px 1fr auto auto;
-    gap: 12px;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px dotted var(--rule-soft);
-    font-family: var(--sans);
-  }
-  .score-row:last-of-type { border-bottom: 0; }
-  .score-row .subj {
-    font: 600 11px/1 var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .14em;
-    color: var(--ink);
-  }
-  .score-row .bar {
-    height: 8px;
-    background: var(--paper-deep);
-    position: relative;
-    overflow: hidden;
-  }
-  .score-row .bar::before {
-    content: "";
-    position: absolute; inset: 0;
-    width: var(--pct, 0%);
-    background: var(--ink);
-    transition: width 1.2s cubic-bezier(.2,.7,.2,1);
-  }
-  .student-card.j .score-row .bar::before { background: var(--crimson); }
-  .student-card.z .score-row .bar::before { background: var(--marigold); }
-  .score-row .scaled {
-    font-family: var(--mono);
-    font-size: 14px;
-    color: var(--ink);
-    font-weight: 500;
-    text-align: right;
-    min-width: 44px;
-  }
-  .score-row .raw {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--slate);
-    text-align: right;
-    min-width: 52px;
-  }
+  .countdown .metric:nth-child(2),
+  .countdown .metric:nth-child(4) { border-right: 0; }
 
-  .student-notes {
-    margin-top: 22px;
-    padding-top: 22px;
-    border-top: 1px solid var(--rule-soft);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .student-notes h5 {
-    font: 600 10px/1 var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .16em;
-    color: var(--slate);
-    margin: 0 0 10px;
-  }
-  .student-notes ul {
-    margin: 0; padding: 0; list-style: none;
-    font-size: 14.5px;
-    line-height: 1.5;
-    color: var(--ink-soft);
-  }
-  .student-notes li {
-    padding-left: 18px;
-    position: relative;
-    margin-bottom: 6px;
-  }
-  .student-notes .strong li::before {
-    content: "✓";
-    position: absolute; left: 0; top: -1px;
-    color: var(--sage);
-    font-weight: 700;
-  }
-  .student-notes .grow li::before {
-    content: "→";
-    position: absolute; left: 0; top: 0;
-    color: var(--crimson);
-    font-weight: 700;
-  }
-
-  .teacher-quote {
-    margin-top: 56px;
-    padding: 32px 40px;
-    background: var(--paper-warm);
-    border-left: 3px solid var(--crimson);
-    font-family: var(--serif-body);
-    font-size: 19px;
-    line-height: 1.55;
-    color: var(--ink-soft);
-    font-style: italic;
-    position: relative;
-  }
-  .teacher-quote::before {
-    content: "“";
-    position: absolute; top: -20px; left: 22px;
-    font-family: var(--serif-display);
-    font-size: 90px;
-    line-height: 1;
-    color: var(--crimson-soft);
-    font-style: normal;
-  }
-  .teacher-quote cite {
-    display: block;
-    margin-top: 16px;
-    font-style: normal;
-    font: 600 11px/1 var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .14em;
-    color: var(--slate);
-  }
-
-  /* ============ TARGET ============ */
-  .target-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0;
-    margin-top: 48px;
-    border: 1px solid var(--rule);
-    background: var(--surface);
-  }
+  .stand-grid, .roles-grid, .test-grid, .rhythm-grid { grid-template-columns: 1fr; gap: 24px; }
+  .target-grid { grid-template-columns: 1fr; }
   .target-col {
-    padding: 32px 32px 36px;
-    border-right: 1px solid var(--rule-soft);
-  }
-  .target-col:last-child { border-right: 0; }
-  .target-col h3 { margin-bottom: 14px; }
-  .target-col .figure {
-    font-family: var(--serif-display);
-    font-size: 64px;
-    line-height: 1;
-    font-variation-settings: "opsz" 144, "wght" 360;
-    color: var(--crimson);
-    letter-spacing: -.03em;
-    margin: 12px 0 8px;
-  }
-  .target-col .figure .small {
-    font-size: 22px;
-    color: var(--slate);
-    margin-left: 4px;
-  }
-  .target-col .caption {
-    font-size: 14px;
-    color: var(--slate);
-    font-style: italic;
-  }
-  .target-col ul {
-    margin: 18px 0 0; padding: 0; list-style: none;
-    font-size: 14.5px;
-  }
-  .target-col ul li {
-    padding: 8px 0;
-    border-bottom: 1px dotted var(--rule-soft);
-    display: flex; justify-content: space-between; gap: 12px;
-  }
-  .target-col ul li:last-child { border-bottom: 0; }
-  .target-col ul li span:last-child {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--slate);
-    white-space: nowrap;
-  }
-  .target-disclaimer {
-    margin-top: 24px;
-    padding: 16px 22px;
-    border: 1px dashed var(--rule);
-    font-family: var(--sans);
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--slate);
-  }
-
-  /* ============ PLAN PHASES ============ */
-  .phases { margin-top: 56px; }
-  .phase {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 48px;
-    padding: 36px 0;
-    border-top: 1px solid var(--rule-soft);
-  }
-  .phase:last-child { border-bottom: 1px solid var(--rule-soft); }
-  .phase .marker {
-    position: relative;
-  }
-  .phase .roman-big {
-    font-family: var(--serif-display);
-    font-style: italic;
-    font-size: 90px;
-    line-height: .9;
-    color: var(--marigold);
-    font-variation-settings: "opsz" 144, "SOFT" 60, "wght" 380;
-  }
-  .phase .marker .label {
-    margin-top: 8px;
-    font: 600 11px/1.4 var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .18em;
-    color: var(--crimson);
-  }
-  .phase .marker .dates {
-    margin-top: 6px;
-    font-family: var(--mono);
-    font-size: 12.5px;
-    color: var(--slate);
-  }
-  .phase h3 {
-    font-size: 32px;
-    margin-bottom: 14px;
-  }
-  .phase .copy { max-width: 64ch; color: var(--ink-soft); }
-  .phase .focus-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    margin-top: 24px;
-  }
-  .focus-card {
-    background: var(--paper-warm);
-    padding: 18px 20px;
-    border-top: 2px solid var(--crimson);
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--ink-soft);
-  }
-  .focus-card.alt { border-top-color: var(--marigold); }
-  .focus-card.alt2 { border-top-color: var(--sage); }
-  .focus-card h5 {
-    font: 600 10.5px/1 var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .16em;
-    color: var(--slate);
-    margin: 0 0 8px;
-  }
-  .focus-card .head-large {
-    font-family: var(--serif-display);
-    font-size: 19px;
-    color: var(--ink);
-    display: block;
-    margin-bottom: 6px;
-    line-height: 1.2;
-  }
-
-  /* ============ WEEKLY RHYTHM ============ */
-  .rhythm-grid {
-    display: grid;
-    grid-template-columns: 1.1fr .9fr;
-    gap: 56px;
-    margin-top: 48px;
-    align-items: start;
-  }
-  .week-table {
-    border-top: 2px solid var(--ink);
-  }
-  .week-row {
-    display: grid;
-    grid-template-columns: 70px 1fr 100px 80px;
-    gap: 16px;
-    align-items: baseline;
-    padding: 16px 0;
+    border-right: 0;
     border-bottom: 1px solid var(--rule-soft);
   }
-  .week-row.head {
-    border-bottom: 1px solid var(--ink);
-    padding: 8px 0;
-  }
-  .week-row.head > * {
-    font: 600 10.5px/1 var(--sans) !important;
-    text-transform: uppercase;
-    letter-spacing: .14em;
-    color: var(--slate);
-  }
-  .week-row .day {
-    font-family: var(--serif-display);
-    font-style: italic;
-    font-size: 19px;
-    color: var(--crimson);
-    font-variation-settings: "opsz" 24, "wght" 420;
-  }
-  .week-row .activity {
-    font-size: 15.5px;
-    color: var(--ink);
-    line-height: 1.4;
-  }
-  .week-row .activity .sub {
-    display: block;
-    font-size: 13px;
-    color: var(--slate);
-    font-style: italic;
-    margin-top: 2px;
-  }
-  .week-row .duration,
-  .week-row .who {
-    font-family: var(--mono);
-    font-size: 12.5px;
-    color: var(--slate);
-  }
+  .target-col:last-child { border-bottom: 0; grid-column: auto; }
+  .student-notes { grid-template-columns: 1fr; gap: 20px; }
+  .student-card .head { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .student-card .total { text-align: left; }
 
-  .rhythm-aside {
-    background: var(--paper-warm);
-    padding: 32px;
-    position: relative;
-  }
-  .rhythm-aside h4 { margin-bottom: 16px; }
-  .rhythm-aside ul { margin: 0; padding: 0; list-style: none; }
-  .rhythm-aside li {
-    padding: 12px 0;
-    border-bottom: 1px dotted var(--rule);
-    display: flex; align-items: baseline; gap: 14px;
-    font-size: 14.5px;
-  }
-  .rhythm-aside li:last-child { border-bottom: 0; }
-  .rhythm-aside li .num {
-    font-family: var(--mono);
-    color: var(--crimson);
-    font-weight: 600;
-    flex-shrink: 0;
-    min-width: 56px;
-  }
+  .phase, .subject { grid-template-columns: 1fr; gap: 20px; }
+  .phase .focus-grid { grid-template-columns: 1fr; }
 
-  /* ============ BY SUBJECT ============ */
-  .subjects { margin-top: 48px; }
-  .subject {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 56px;
-    padding: 40px 0;
-    border-top: 1px solid var(--rule-soft);
-  }
-  .subject:last-child { border-bottom: 1px solid var(--rule-soft); }
-  .subject .label-block {
-    position: sticky; top: 80px;
-  }
-  .subject .label-block .glyph {
-    font-family: var(--serif-display);
-    font-style: italic;
-    font-size: 84px;
-    line-height: .9;
-    color: var(--crimson);
-    font-variation-settings: "opsz" 144, "SOFT" 60, "wght" 380;
-    display: block;
-    margin-bottom: 8px;
-  }
-  .subject.vocab .label-block .glyph { color: var(--marigold); }
-  .subject.math .label-block .glyph { color: var(--sage); }
-  .subject.writing .label-block .glyph { color: var(--ink); }
-  .subject h3 { font-size: 28px; }
-  .subject h3 small {
-    display: block;
-    font-family: var(--sans);
-    font-size: 11px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--slate);
-    margin-top: 6px;
-    font-weight: 600;
-  }
-  .subject-body { max-width: 66ch; color: var(--ink-soft); font-size: 16px; line-height: 1.62; }
-  .subject-body ol, .subject-body ul {
-    padding-left: 0;
-    list-style: none;
-    counter-reset: ssat;
-    margin: 16px 0;
-  }
-  .subject-body ol li {
-    counter-increment: ssat;
-    padding: 12px 0 12px 44px;
-    border-bottom: 1px solid var(--rule-soft);
-    position: relative;
-  }
-  .subject-body ol li::before {
-    content: counter(ssat, decimal-leading-zero);
-    position: absolute; left: 0; top: 12px;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--crimson);
-    font-weight: 600;
-    letter-spacing: 0;
-  }
-  .subject.vocab .subject-body ol li::before { color: var(--marigold); }
-  .subject.math .subject-body ol li::before { color: var(--sage); }
-  .subject-body ol li strong {
-    display: block;
-    font-size: 16px;
-    color: var(--ink);
-    margin-bottom: 2px;
-  }
-  .subject-body .meta-row {
-    display: flex; flex-wrap: wrap; gap: 8px;
-    margin-bottom: 16px;
-  }
-  .pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 5px 12px;
-    background: var(--paper-warm);
-    border: 1px solid var(--rule-soft);
-    border-radius: 999px;
-    font: 600 11px/1 var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .12em;
-    color: var(--ink);
-  }
-  .pill.crimson { color: var(--crimson); border-color: var(--crimson-soft); }
-  .pill.gold    { color: var(--marigold); border-color: var(--marigold-soft); }
-  .pill.sage    { color: var(--sage); border-color: var(--sage-soft); }
+  .formats-grid { grid-template-columns: 1fr; }
 
-  /* ============ CALENDAR ============ */
-  .calendar {
-    margin-top: 48px;
-    position: relative;
-  }
-  .timeline {
-    position: relative;
-    padding-left: 24px;
-    border-left: 2px solid var(--ink);
-  }
-  .milestone {
-    position: relative;
-    padding: 0 0 28px 24px;
-  }
-  .milestone::before {
-    content: "";
-    position: absolute;
-    left: -32px; top: 8px;
-    width: 14px; height: 14px;
-    background: var(--paper);
-    border: 2px solid var(--ink);
-    border-radius: 50%;
-  }
-  .milestone.active::before {
-    background: var(--crimson);
-    border-color: var(--crimson);
-    box-shadow: 0 0 0 4px var(--paper), 0 0 0 6px var(--crimson-soft);
-  }
-  .milestone.target::before {
-    background: var(--marigold);
-    border-color: var(--marigold);
-  }
-  .milestone .date {
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: .04em;
-    color: var(--crimson);
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-  .milestone .title {
-    font-family: var(--serif-display);
-    font-size: 22px;
-    color: var(--ink);
-    margin: 4px 0 6px;
-    font-variation-settings: "opsz" 36, "SOFT" 30, "wght" 420;
-  }
-  .milestone .desc {
-    color: var(--slate);
-    font-size: 14.5px;
-    line-height: 1.55;
-    max-width: 58ch;
-  }
-  .milestone .desc strong { color: var(--ink); }
+  .resources-grid { grid-template-columns: 1fr; gap: 24px; }
 
-  /* ============ TEST FACTS ============ */
-  .test-grid {
-    display: grid;
-    grid-template-columns: 1.1fr .9fr;
-    gap: 56px;
-    margin-top: 48px;
-  }
-  .test-table {
-    border-collapse: collapse;
-    width: 100%;
-    font-family: var(--sans);
-    font-size: 14px;
-  }
-  .test-table thead th {
-    text-align: left;
-    font: 600 10.5px/1 var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .14em;
-    color: var(--slate);
-    padding: 14px 12px;
-    border-bottom: 1px solid var(--ink);
-  }
-  .test-table thead th:last-child,
-  .test-table tbody td:last-child { text-align: right; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  footer .seal { text-align: left; }
+
+  /* Test table → stacked rows on mobile */
+  .test-table thead { display: none; }
+  .test-table, .test-table tbody, .test-table tr, .test-table td { display: block; width: 100%; }
   .test-table tbody td {
-    padding: 14px 12px;
-    border-bottom: 1px solid var(--rule-soft);
-    vertical-align: top;
+    padding: 0;
+    border-bottom: 0;
   }
-  .test-table tbody tr:last-child td { border-bottom: 0; }
-  .test-table .section-name {
-    font-family: var(--serif-display);
-    font-size: 17px;
-    color: var(--ink);
-    font-variation-settings: "opsz" 24, "wght" 420;
-  }
-  .test-table .meta {
-    display: block;
-    margin-top: 2px;
-    font-size: 12px;
-    color: var(--slate);
-    font-style: italic;
-    font-family: var(--serif-body);
-  }
-  .test-table .num {
-    font-family: var(--mono);
-    color: var(--ink);
-  }
-
-  .test-aside {
-    background: var(--paper-warm);
-    padding: 32px;
-    border-top: 2px solid var(--ink);
-  }
-  .test-aside h4 { margin-bottom: 12px; }
-  .test-aside dl {
-    margin: 16px 0 0;
+  .test-table tr {
     display: grid;
-    grid-template-columns: 110px 1fr;
-    row-gap: 10px;
-    column-gap: 16px;
-    font-size: 14px;
-  }
-  .test-aside dt {
-    font: 600 10.5px/1.4 var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .14em;
-    color: var(--slate);
-    padding-top: 3px;
-  }
-  .test-aside dd {
-    margin: 0;
-    color: var(--ink-soft);
-    line-height: 1.5;
-  }
-  .test-aside dd .mono { font-family: var(--mono); font-size: 13px; }
-
-  /* ============ FORMATS ============ */
-  .formats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    margin-top: 48px;
-  }
-  .format {
-    background: var(--surface);
-    padding: 28px 24px 28px;
-    display: flex; flex-direction: column;
-  }
-  .format .name {
-    font-family: var(--serif-display);
-    font-size: 22px;
-    color: var(--ink);
-    font-variation-settings: "opsz" 30, "SOFT" 30, "wght" 440;
-    line-height: 1.1;
-  }
-  .format .tag {
-    font: 600 10px/1 var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .14em;
-    color: var(--crimson);
-    margin-top: 6px;
-    margin-bottom: 16px;
-  }
-  .format .price {
-    font-family: var(--mono);
-    font-size: 14px;
-    color: var(--ink);
-    padding: 10px 0;
-    border-top: 1px solid var(--rule-soft);
-    border-bottom: 1px solid var(--rule-soft);
-    margin-bottom: 14px;
-    display: flex; justify-content: space-between;
-  }
-  .format .price .label-mono { color: var(--slate); font-size: 11px; }
-  .format .desc {
-    font-size: 13.5px;
-    color: var(--ink-soft);
-    line-height: 1.5;
-    flex: 1;
-  }
-  .format .limit {
-    margin-top: 12px;
-    font: 600 10.5px/1.3 var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .12em;
-    color: var(--slate);
-  }
-
-  /* ============ ROLES ============ */
-  .roles-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 56px;
-    margin-top: 48px;
-  }
-  .role-col h3 {
-    padding-bottom: 14px;
-    border-bottom: 2px solid var(--ink);
-    margin-bottom: 22px;
-    font-size: 26px;
-  }
-  .role-col.parents h3 { border-bottom-color: var(--crimson); }
-  .role-col.students h3 { border-bottom-color: var(--marigold); }
-  .role-col ul {
-    margin: 0; padding: 0; list-style: none;
-  }
-  .role-col li {
-    padding: 16px 0;
-    border-bottom: 1px solid var(--rule-soft);
-    display: grid;
-    grid-template-columns: 24px 1fr;
-    gap: 14px;
+    grid-template-columns: 1fr auto auto;
+    gap: 12px;
     align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule-soft);
   }
-  .role-col li::before {
-    content: "□";
-    font-family: var(--mono);
-    color: var(--crimson);
-    font-size: 18px;
-    line-height: 1;
-  }
-  .role-col.students li::before { color: var(--marigold); }
-  .role-col li strong {
-    display: block;
-    font-size: 15px;
-    color: var(--ink);
-    margin-bottom: 2px;
-  }
-  .role-col li span.body {
-    font-size: 14px;
-    color: var(--slate);
-    line-height: 1.5;
-  }
+  .test-table tr:first-child { border-top: 1px solid var(--ink); }
+  .test-table tbody td:nth-child(1) { display: none; }
+  .test-table tbody td:nth-child(2) { grid-column: 1; }
+  .test-table tbody td:nth-child(3) { grid-column: 2; text-align: right; }
+  .test-table tbody td:nth-child(4) { grid-column: 3; text-align: right; }
 
-  /* ============ RESOURCES ============ */
-  .resources-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-    margin-top: 48px;
-  }
-  .res-card {
-    border-top: 1px solid var(--ink);
-    padding-top: 18px;
-  }
-  .res-card h4 { font-size: 17px; margin-bottom: 12px; }
-  .res-card ul { list-style: none; margin: 0; padding: 0; }
-  .res-card li {
-    padding: 8px 0;
-    border-bottom: 1px dotted var(--rule-soft);
-    font-size: 14px;
-  }
-  .res-card li:last-child { border-bottom: 0; }
-  .res-card a {
-    color: var(--ink);
-    text-decoration: none;
-    background-image: linear-gradient(var(--crimson), var(--crimson));
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    background-size: 0 1px;
-    transition: background-size .3s;
-    padding-bottom: 1px;
-  }
-  .res-card a:hover {
-    background-size: 100% 1px;
-    color: var(--crimson);
-  }
-  .res-card .note {
-    display: block;
-    font-size: 12px;
-    color: var(--slate);
-    font-style: italic;
-    margin-top: 2px;
-  }
+  /* Week table mobile */
+  .week-row { grid-template-columns: 50px 1fr 60px; gap: 10px; padding: 14px 0; }
+  .week-row .who { display: none; }
+  .week-row.head .who { display: none; }
 
-  /* ============ FOOTER ============ */
-  footer {
-    padding: 56px 0 72px;
-    border-top: 1px solid var(--rule);
-    margin-top: 24px;
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 48px;
-    align-items: end;
-  }
-  footer .motto {
-    font-family: var(--serif-display);
-    font-style: italic;
-    font-size: 28px;
-    line-height: 1.2;
-    color: var(--ink);
-    font-variation-settings: "opsz" 48, "SOFT" 50, "wght" 380;
-    max-width: 16ch;
-  }
-  footer .colophon {
-    font-family: var(--sans);
-    font-size: 11.5px;
-    line-height: 1.7;
-    color: var(--slate);
-    text-transform: uppercase;
-    letter-spacing: .14em;
-  }
-  footer .seal {
-    text-align: right;
-    font-family: var(--serif-display);
-    font-style: italic;
-    color: var(--crimson);
-    font-size: 14px;
-  }
-  footer .seal .ornament {
-    display: block;
-    color: var(--marigold);
-    font-size: 22px;
-    margin-bottom: 4px;
-  }
+  /* Tighter timeline on mobile */
+  .timeline { padding-left: 22px; }
+  .milestone::before { left: -28px; }
 
-  /* ============ ASIDE / RUNNING NUMBERS ============ */
-  .running-num {
-    position: absolute;
-    top: 96px; right: -8px;
-    font-family: var(--serif-display);
-    font-style: italic;
-    font-size: 180px;
-    line-height: 1;
-    color: var(--paper-deep);
-    z-index: 0;
-    pointer-events: none;
-    user-select: none;
-    font-variation-settings: "opsz" 144, "SOFT" 80, "wght" 320;
-  }
-  section .wrap > * { position: relative; z-index: 1; }
+  .margin-num { display: none; }
+}
 
-  /* ============ RESPONSIVE ============ */
-  @media (max-width: 920px) {
-    section { padding: 64px 0; }
-    .wrap { padding: 0 22px; }
-    .cover-grid { grid-template-columns: 1fr; gap: 48px; }
-    .cover-side { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 32px; }
-    .countdown { grid-template-columns: 1fr 1fr; }
-    .countdown .metric:nth-child(2) { border-right: 0; }
-    .countdown .metric:nth-child(1), .countdown .metric:nth-child(2) { border-bottom: 1px solid var(--rule); }
-    .stand-grid, .roles-grid { grid-template-columns: 1fr; gap: 24px; }
-    .target-grid { grid-template-columns: 1fr; }
-    .target-col { border-right: 0; border-bottom: 1px solid var(--rule-soft); }
-    .target-col:last-child { border-bottom: 0; }
-    .phase, .subject { grid-template-columns: 1fr; gap: 24px; }
-    .phase .focus-grid { grid-template-columns: 1fr; }
-    .rhythm-grid, .test-grid { grid-template-columns: 1fr; gap: 32px; }
-    .formats-grid { grid-template-columns: 1fr 1fr; }
-    .resources-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; gap: 24px; text-align: left; }
-    footer .seal { text-align: left; }
-    .student-card { padding: 26px 22px; }
-    .student-notes { grid-template-columns: 1fr; }
-    .running-num { font-size: 100px; top: 56px; }
-    .week-row { grid-template-columns: 60px 1fr 70px 60px; gap: 10px; }
-  }
-  @media (max-width: 560px) {
-    .formats-grid { grid-template-columns: 1fr; }
-    .countdown { grid-template-columns: 1fr 1fr; }
-    .countdown .value { font-size: 40px; }
-    h2 { font-size: 38px; }
-    .cover h1 { font-size: 52px; }
-    .phase .roman-big { font-size: 64px; }
-  }
+@media (max-width: 480px) {
+  .countdown .value { font-size: 36px; }
+  h1 { font-size: clamp(44px, 13.5vw, 64px); line-height: .95; }
+  h2 { font-size: clamp(32px, 8vw, 42px); }
+  .student-card .total .num { font-size: 32px; }
+  .target-col .figure { font-size: 56px; }
+  .score-row { grid-template-columns: 60px 1fr 48px 56px; gap: 10px; }
+  .week-row { grid-template-columns: 42px 1fr 52px; gap: 8px; }
+  .week-row .day { font-size: 15px; }
+  .week-row .activity { font-size: 14px; }
+  .rhythm-aside li { grid-template-columns: 60px 1fr; gap: 12px; }
+}
 
-  /* ============ MICRO ANIMATIONS ============ */
-  @keyframes reveal {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .cover h1, .cover-lead, .countdown, .students {
-    animation: reveal .9s cubic-bezier(.2,.7,.2,1) backwards;
-  }
-  .cover h1 { animation-delay: .1s; }
-  .students { animation-delay: .25s; }
-  .cover-lead { animation-delay: .35s; }
-  .countdown { animation-delay: .45s; }
+/* ═══════════════════════════════════ */
+/* MOTION                               */
+/* ═══════════════════════════════════ */
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.cover h1, .cover-lead, .cover-side, .countdown {
+  animation: reveal 1s cubic-bezier(.2,.7,.2,1) backwards;
+}
+.cover h1   { animation-delay: .05s; }
+.cover-side { animation-delay: .25s; }
+.cover-lead { animation-delay: .35s; }
+.countdown  { animation-delay: .45s; }
 
-  .reveal-on-scroll {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .9s cubic-bezier(.2,.7,.2,1),
+              transform .9s cubic-bezier(.2,.7,.2,1);
+}
+.reveal-on-scroll.in {
+  opacity: 1; transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
   }
-  .reveal-on-scroll.in {
-    opacity: 1; transform: translateY(0);
-  }
+  .score-row .bar::before { transition: none !important; }
+}
+
+/* ═══════════════════════════════════ */
+/* FOCUS                                */
+/* ═══════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid var(--crimson);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+button:focus-visible { outline-offset: 2px; }
 </style>
 </head>
 <body>
 
-<!-- ============ TOP BAR ============ -->
+<!-- ───── TOPBAR ───── -->
 <header class="topbar">
   <div class="topbar-inner">
-    <a href="#cover" class="crest">
-      <span>SSAT</span><span class="dot"></span>
-      <span class="lang-en">Jasmine + Zoe</span>
-      <span class="lang-zh">茉茉 + Zoe</span>
+    <a href="#cover" class="crest" aria-label="Top of page">
+      <span>SSAT</span><span class="dot" aria-hidden="true"></span>
+      <span class="sep" aria-hidden="true"></span>
+      <span class="who">
+        <span class="lang-en">Jasmine + Zoe</span>
+        <span class="lang-zh">茉茉 + Zoe</span>
+      </span>
     </a>
     <div class="lang-switch" role="group" aria-label="Language">
       <button data-lang-btn="zh" type="button">中文</button>
@@ -1215,12 +1480,12 @@
   </div>
 </header>
 
-<!-- ============ I · COVER ============ -->
+<!-- ───── I · COVER ───── -->
 <section class="cover" id="cover">
   <div class="wrap">
     <div class="cover-meta">
       <span class="smallcaps">
-        <span class="lang-en">Project brief · Established May 2026</span>
+        <span class="lang-en">Project Brief · Established May 2026</span>
         <span class="lang-zh">备考手账 · 启于 2026 年 5 月</span>
       </span>
       <span class="smallcaps">
@@ -1232,8 +1497,8 @@
     <div class="cover-grid">
       <div>
         <h1>
-          <span class="lang-en">Two students.<br>One target.<br><em>Seventeen months.</em></span>
-          <span class="lang-zh">两个学生。<br>一个目标。<br><em>十七个月。</em></span>
+          <span class="lang-en">Two students.<br class="br-desktop"><span class="br-mobile"> </span>One target.<br class="br-desktop"><span class="br-mobile"> </span><em>Seventeen months.</em></span>
+          <span class="lang-zh">两个学生。<br class="br-desktop"><span class="br-mobile"> </span>一个目标。<br class="br-desktop"><span class="br-mobile"> </span><em>十七个月。</em></span>
         </h1>
 
         <p class="cover-lead">
@@ -1241,13 +1506,13 @@
             Jasmine and Zoe are sixth graders today. By <strong>October 2027</strong> — at the latest by December — they will sit for the <strong>Upper Level SSAT</strong> and earn a score that opens doors. This page is the family ledger: <span class="pull">what's needed, where they stand, what the plan is, and how the months ahead are spent.</span>
           </span>
           <span class="lang-zh">
-            茉茉和 Zoe 现在是六年级学生。<strong>2027 年 10 月</strong>（最晚 12 月）她们将参加 <strong>SSAT Upper Level（高级）</strong>考试，争取一个能打开学校之门的分数。这个网页是这个家庭计划的"手账"：<span class="pull">需要做什么，目前在哪儿，规划如何展开，未来的十七个月怎么走。</span>
+            茉茉和 Zoe 现在是六年级学生。<strong>2027 年 10 月</strong>（最晚 12 月）她们将参加 <strong>SSAT Upper Level（高级）</strong>考试，争取一个能打开学校之门的分数。这一页是这个家庭的"备考手账"：<span class="pull">需要做什么、目前在哪儿、计划如何展开、未来十七个月怎么走。</span>
           </span>
         </p>
       </div>
 
       <aside class="cover-side">
-        <div class="smallcaps" style="margin-bottom:18px;">
+        <div class="smallcaps">
           <span class="lang-en">Candidates</span>
           <span class="lang-zh">考生</span>
         </div>
@@ -1256,28 +1521,29 @@
             <span class="num">i.</span>
             <span class="name">Jasmine Chen <span class="zh">茉茉</span></span>
             <span class="role">
-              <span class="lang-en">Grade 6 · Target: Upper Level</span>
-              <span class="lang-zh">六年级 · 目标 Upper Level</span>
+              <span class="lang-en">Grade 6 · Upper Level</span>
+              <span class="lang-zh">六年级 · Upper</span>
             </span>
           </div>
           <div class="student-tag">
             <span class="num">ii.</span>
             <span class="name">Zoe Tang</span>
             <span class="role">
-              <span class="lang-en">Grade 6 · Target: Upper Level</span>
-              <span class="lang-zh">六年级 · 目标 Upper Level</span>
+              <span class="lang-en">Grade 6 · Upper Level</span>
+              <span class="lang-zh">六年级 · Upper</span>
             </span>
           </div>
         </div>
-        <div class="smallcaps" style="margin-bottom:6px;">
+
+        <div class="smallcaps">
           <span class="lang-en">Coach</span>
           <span class="lang-zh">老师</span>
         </div>
-        <div style="font-family: var(--serif-display); font-size: 22px; line-height:1.2; font-variation-settings:'opsz' 30,'SOFT' 50,'wght' 420;">
+        <div class="coach-name">
           <span class="lang-en">Mr. Zhang</span>
           <span class="lang-zh">乐听张老师</span>
         </div>
-        <div style="font-style: italic; color: var(--slate); font-size:14.5px; margin-top:4px;">
+        <div class="coach-tagline">
           <span class="lang-en">Reading first · Vocab steady · Math in spring</span>
           <span class="lang-zh">先阅读 · 词汇稳推 · 春季加数学</span>
         </div>
@@ -1317,17 +1583,16 @@
   </div>
 </section>
 
-<!-- ============ II · WHERE WE STAND ============ -->
+<!-- ───── II · WHERE WE STAND ───── -->
 <section id="stand">
   <div class="wrap">
-    <span class="running-num">II</span>
     <div class="chapter">
       <span class="roman">II</span>
-      <span>
+      <span class="label">
         <span class="lang-en">Where we stand</span>
         <span class="lang-zh">现在在哪儿</span>
       </span>
-      <span class="rule"></span>
+      <span class="rule" aria-hidden="true"></span>
     </div>
     <h2>
       <span class="lang-en">First diagnostic, <em>taken May 2026.</em></span>
@@ -1335,11 +1600,10 @@
     </h2>
     <p class="subhead">
       <span class="lang-en">A Middle Level practice exam — the right yardstick for sixth graders today, even though the real exam will be Upper Level. The same skills carry forward; Upper Level just stretches the ceiling.</span>
-      <span class="lang-zh">这次用的是 Middle Level（中级）真题——六年级的孩子先用中级测水平合适，因为真正参加的 Upper Level（高级）涵盖中级的全部知识点，只是上限更高。</span>
+      <span class="lang-zh">这次用的是 Middle Level（中级）真题——六年级的孩子用中级测水平正合适，因为 Upper Level 涵盖中级的全部知识点，只是上限更高。</span>
     </p>
 
     <div class="stand-grid">
-      <!-- Jasmine -->
       <article class="student-card j">
         <div class="head">
           <div class="name-block">
@@ -1353,81 +1617,50 @@
             <span class="num">1891</span>
             <span class="scale">
               <span class="lang-en">Middle Level · 1320–2130</span>
-              <span class="lang-zh">中级满分 2130</span>
+              <span class="lang-zh">中级 · 满分 2130</span>
             </span>
           </div>
         </div>
 
         <div class="score-row">
-          <div class="subj">
-            <span class="lang-en">Math</span><span class="lang-zh">数学</span>
-          </div>
+          <div class="subj"><span class="lang-en">Math</span><span class="lang-zh">数学</span></div>
           <div class="bar" style="--pct: 81.5%"></div>
           <div class="scaled">660</div>
-          <div class="raw">43 / 50</div>
+          <div class="raw">43/50</div>
         </div>
         <div class="score-row">
-          <div class="subj">
-            <span class="lang-en">Verbal</span><span class="lang-zh">词汇</span>
-          </div>
+          <div class="subj"><span class="lang-en">Verbal</span><span class="lang-zh">词汇</span></div>
           <div class="bar" style="--pct: 72.2%"></div>
           <div class="scaled">635</div>
-          <div class="raw">38 / 60</div>
+          <div class="raw">38/60</div>
         </div>
         <div class="score-row">
-          <div class="subj">
-            <span class="lang-en">Reading</span><span class="lang-zh">阅读</span>
-          </div>
+          <div class="subj"><span class="lang-en">Reading</span><span class="lang-zh">阅读</span></div>
           <div class="bar" style="--pct: 57.8%"></div>
           <div class="scaled">596</div>
-          <div class="raw">25 / 40</div>
+          <div class="raw">25/40</div>
         </div>
 
         <div class="student-notes">
           <div>
-            <h5>
-              <span class="lang-en">Strengths</span>
-              <span class="lang-zh">优势</span>
-            </h5>
+            <h5><span class="lang-en">Strengths</span><span class="lang-zh">优势</span></h5>
             <ul class="strong">
-              <li>
-                <span class="lang-en">Strong math foundation — already at 660 on Middle Level.</span>
-                <span class="lang-zh">数学基础扎实，中级 660 分。</span>
-              </li>
-              <li>
-                <span class="lang-en">Best vocabulary baseline of the pair, by feel alone.</span>
-                <span class="lang-zh">词汇语感最好，全靠日常积累。</span>
-              </li>
-              <li>
-                <span class="lang-en">Reads with strong intuition for tone and meaning.</span>
-                <span class="lang-zh">阅读语感好，对文本情绪敏感。</span>
-              </li>
+              <li><span class="lang-en">Strong math foundation — already 660 on Middle Level.</span><span class="lang-zh">数学基础扎实，中级 660 分。</span></li>
+              <li><span class="lang-en">Best vocabulary baseline of the pair, by feel alone.</span><span class="lang-zh">词汇语感最好，全靠日常积累。</span></li>
+              <li><span class="lang-en">Reads with strong intuition for tone and meaning.</span><span class="lang-zh">阅读语感好，对文本情绪敏感。</span></li>
             </ul>
           </div>
           <div>
-            <h5>
-              <span class="lang-en">To grow</span>
-              <span class="lang-zh">待提升</span>
-            </h5>
+            <h5><span class="lang-en">To grow</span><span class="lang-zh">待提升</span></h5>
             <ul class="grow">
-              <li>
-                <span class="lang-en">Reading: terminology &amp; question types — too much "by ear" right now.</span>
-                <span class="lang-zh">阅读：术语和题型识别，目前过度依赖语感。</span>
-              </li>
-              <li>
-                <span class="lang-en">Vocab: begin formal memorization, build root/affix awareness.</span>
-                <span class="lang-zh">词汇：开始系统背诵，建立词根词缀意识。</span>
-              </li>
-              <li>
-                <span class="lang-en">Math: bridge to Upper Level (9th-grade topics) in spring 2027.</span>
-                <span class="lang-zh">数学：明年春季补九年级知识点，进入 Upper Level。</span>
-              </li>
+              <li><span class="lang-en">Reading: terminology &amp; question types — too "by ear" right now.</span><span class="lang-zh">阅读：术语和题型识别，目前过度依赖语感。</span></li>
+              <li><span class="lang-en">Vocab: begin formal memorization, root/affix awareness.</span><span class="lang-zh">词汇：开始系统背诵，建立词根词缀意识。</span></li>
+              <li><span class="lang-en">Math: bridge to Upper Level (9th-grade topics) in spring 2027.</span><span class="lang-zh">数学：明年春季补九年级知识点，进入 Upper Level。</span></li>
             </ul>
           </div>
         </div>
       </article>
 
-      <!-- Zoe -->
       <article class="student-card z">
         <div class="head">
           <div class="name-block">
@@ -1441,75 +1674,45 @@
             <span class="num">1715</span>
             <span class="scale">
               <span class="lang-en">Middle Level · 1320–2130</span>
-              <span class="lang-zh">中级满分 2130</span>
+              <span class="lang-zh">中级 · 满分 2130</span>
             </span>
           </div>
         </div>
 
         <div class="score-row">
-          <div class="subj">
-            <span class="lang-en">Math</span><span class="lang-zh">数学</span>
-          </div>
+          <div class="subj"><span class="lang-en">Math</span><span class="lang-zh">数学</span></div>
           <div class="bar" style="--pct: 58.1%"></div>
           <div class="scaled">597</div>
-          <div class="raw">33 / 50</div>
+          <div class="raw">33/50</div>
         </div>
         <div class="score-row">
-          <div class="subj">
-            <span class="lang-en">Verbal</span><span class="lang-zh">词汇</span>
-          </div>
+          <div class="subj"><span class="lang-en">Verbal</span><span class="lang-zh">词汇</span></div>
           <div class="bar" style="--pct: 37.0%"></div>
           <div class="scaled">540</div>
-          <div class="raw">22 / 60</div>
+          <div class="raw">22/60</div>
         </div>
         <div class="score-row">
-          <div class="subj">
-            <span class="lang-en">Reading</span><span class="lang-zh">阅读</span>
-          </div>
+          <div class="subj"><span class="lang-en">Reading</span><span class="lang-zh">阅读</span></div>
           <div class="bar" style="--pct: 51.1%"></div>
           <div class="scaled">578</div>
-          <div class="raw">23 / 40</div>
+          <div class="raw">23/40</div>
         </div>
 
         <div class="student-notes">
           <div>
-            <h5>
-              <span class="lang-en">Strengths</span>
-              <span class="lang-zh">优势</span>
-            </h5>
+            <h5><span class="lang-en">Strengths</span><span class="lang-zh">优势</span></h5>
             <ul class="strong">
-              <li>
-                <span class="lang-en">Reading sits close to Jasmine's — same trajectory, "one moment of doubt" apart.</span>
-                <span class="lang-zh">阅读水平和茉茉很接近——基础相当，差在临场的一念之差。</span>
-              </li>
-              <li>
-                <span class="lang-en">Confident writer — mock writing sample shows narrative voice and pacing.</span>
-                <span class="lang-zh">写作自信、有叙事节奏（已在模考写作中体现）。</span>
-              </li>
-              <li>
-                <span class="lang-en">Pairs well with Jasmine — same reading level lets them learn together.</span>
-                <span class="lang-zh">和茉茉阅读水平 match，非常适合一起上小班课。</span>
-              </li>
+              <li><span class="lang-en">Reading sits close to Jasmine's — same trajectory, "one moment of doubt" apart.</span><span class="lang-zh">阅读水平和茉茉接近——差在临场的一念之差。</span></li>
+              <li><span class="lang-en">Confident writer — mock essay shows narrative voice and pacing.</span><span class="lang-zh">写作自信、有叙事节奏（已在模考写作中体现）。</span></li>
+              <li><span class="lang-en">Pairs well with Jasmine — same reading level means they learn together.</span><span class="lang-zh">和茉茉阅读水平 match，非常适合一起上小班课。</span></li>
             </ul>
           </div>
           <div>
-            <h5>
-              <span class="lang-en">To grow</span>
-              <span class="lang-zh">待提升</span>
-            </h5>
+            <h5><span class="lang-en">To grow</span><span class="lang-zh">待提升</span></h5>
             <ul class="grow">
-              <li>
-                <span class="lang-en">Vocabulary from a low base — she has not memorized SSAT words yet.</span>
-                <span class="lang-zh">词汇基础较薄，几乎全靠猜，需从零建立背词习惯。</span>
-              </li>
-              <li>
-                <span class="lang-en">Math: missed ~17 questions — fundamentals need reinforcement sooner.</span>
-                <span class="lang-zh">数学错题较多（错 17 题），需更早接入数学补充。</span>
-              </li>
-              <li>
-                <span class="lang-en">Reading: same gaps as Jasmine — terms, genres, question types.</span>
-                <span class="lang-zh">阅读：和茉茉同样的三大空白——术语、题材、题型。</span>
-              </li>
+              <li><span class="lang-en">Vocabulary from a low base — has not memorized SSAT words yet.</span><span class="lang-zh">词汇基础较薄，几乎全靠猜，需从零建立背词习惯。</span></li>
+              <li><span class="lang-en">Math: ~17 wrong — fundamentals need reinforcement sooner.</span><span class="lang-zh">数学错题较多（错 17 题），需更早接入数学补充。</span></li>
+              <li><span class="lang-en">Reading: same gaps as Jasmine — terms, genres, question types.</span><span class="lang-zh">阅读：和茉茉同样的三大空白——术语、题材、题型。</span></li>
             </ul>
           </div>
         </div>
@@ -1517,8 +1720,8 @@
     </div>
 
     <blockquote class="teacher-quote">
-      <span class="lang-en">"From total score, Jasmine is a little stronger than Zoe — but in <strong>reading</strong> they're matched. That's exactly why a small-group reading class works for them. We'll start there. Vocabulary every two to three weeks. Math waits until spring 2027 — by then the school will have covered more material, and we can layer in Upper Level question patterns."</span>
-      <span class="lang-zh">"从总分看茉茉略好一些，但<strong>阅读</strong>两个孩子非常接近——所以一对二的阅读课很合适。<strong>阅读先行</strong>，<strong>词汇两到三周一次</strong>，<strong>数学等到明年春季</strong>再开课。那时她们在学校的数学也补足了，我们再带入 Upper Level 的题型。"</span>
+      <span class="lang-en">From total score, Jasmine is a little stronger than Zoe — but in <strong>reading</strong> they're matched. That's exactly why a small-group reading class works for them. We'll start there. Vocabulary every two to three weeks. Math waits until spring 2027 — by then the school will have covered more material, and we can layer in Upper Level question patterns.</span>
+      <span class="lang-zh">从总分看茉茉略好一些，但<strong>阅读</strong>两个孩子非常接近——所以一对二的阅读课很合适。<strong>阅读先行</strong>，<strong>词汇两到三周一次</strong>，<strong>数学等到明年春季</strong>再开课。那时她们在学校的数学也补足了，我们再带入 Upper Level 的题型。</span>
       <cite>
         <span class="lang-en">— Mr. Zhang · Coach, after Mock Exam I</span>
         <span class="lang-zh">— 张老师 · 第一次模考分析</span>
@@ -1527,17 +1730,16 @@
   </div>
 </section>
 
-<!-- ============ III · THE TARGET ============ -->
+<!-- ───── III · TARGET ───── -->
 <section id="target">
   <div class="wrap">
-    <span class="running-num">III</span>
     <div class="chapter">
       <span class="roman">III</span>
-      <span>
+      <span class="label">
         <span class="lang-en">The Target</span>
         <span class="lang-zh">目标</span>
       </span>
-      <span class="rule"></span>
+      <span class="rule" aria-hidden="true"></span>
     </div>
     <h2>
       <span class="lang-en">Upper Level SSAT, <em>October 2027.</em></span>
@@ -1620,17 +1822,16 @@
   </div>
 </section>
 
-<!-- ============ IV · THE PLAN ============ -->
+<!-- ───── IV · THE PLAN ───── -->
 <section id="plan">
   <div class="wrap">
-    <span class="running-num">IV</span>
     <div class="chapter">
       <span class="roman">IV</span>
-      <span>
+      <span class="label">
         <span class="lang-en">The Plan</span>
         <span class="lang-zh">三阶段规划</span>
       </span>
-      <span class="rule"></span>
+      <span class="rule" aria-hidden="true"></span>
     </div>
     <h2>
       <span class="lang-en">Foundation. Build. <em>Sprint.</em></span>
@@ -1642,13 +1843,12 @@
     </p>
 
     <div class="phases">
-      <!-- PHASE I -->
       <div class="phase">
         <div class="marker">
           <span class="roman-big">I</span>
           <div class="label">
             <span class="lang-en">Foundation</span>
-            <span class="lang-zh">打基础阶段</span>
+            <span class="lang-zh">打基础</span>
           </div>
           <div class="dates">May 2026 — Feb 2027</div>
         </div>
@@ -1659,7 +1859,7 @@
           </h3>
           <p class="copy">
             <span class="lang-en">Both girls already have strong reading instincts. This phase converts instinct into method — naming what they're doing, learning the SSAT's question vocabulary, expanding the range of genres they're fluent in. Vocabulary classes every two to three weeks to seed the habit. Math stays at school pace; Mr. Zhang sends practice sets to keep the muscle warm.</span>
-            <span class="lang-zh">两个孩子的阅读语感都不错。这一阶段的任务是把"语感"转化成"方法"——给所做的事情命名，学会 SSAT 的阅读术语，扩展熟悉的题材范围。词汇课每 2–3 周一次，先建立"背单词"这件事的习惯感。数学跟随学校进度，张老师会发针对性的练习题保持手感。</span>
+            <span class="lang-zh">两个孩子的阅读语感都不错。这一阶段把"语感"转化成"方法"——给所做的事情命名，学会 SSAT 的阅读术语，扩展熟悉的题材范围。词汇课每 2–3 周一次，建立"背单词"这件事的习惯感。数学跟随学校进度，张老师发针对性的练习题保持手感。</span>
           </p>
           <div class="focus-grid">
             <div class="focus-card">
@@ -1693,13 +1893,12 @@
         </div>
       </div>
 
-      <!-- PHASE II -->
       <div class="phase">
         <div class="marker">
           <span class="roman-big">II</span>
           <div class="label">
             <span class="lang-en">Build</span>
-            <span class="lang-zh">搭框架阶段</span>
+            <span class="lang-zh">搭框架</span>
           </div>
           <div class="dates">Mar 2027 — Jul 2027</div>
         </div>
@@ -1744,13 +1943,12 @@
         </div>
       </div>
 
-      <!-- PHASE III -->
       <div class="phase">
         <div class="marker">
           <span class="roman-big">III</span>
           <div class="label">
             <span class="lang-en">Sprint</span>
-            <span class="lang-zh">冲刺阶段</span>
+            <span class="lang-zh">冲刺</span>
           </div>
           <div class="dates">Aug 2027 — Oct 2027</div>
         </div>
@@ -1798,24 +1996,23 @@
   </div>
 </section>
 
-<!-- ============ V · WEEKLY RHYTHM ============ -->
+<!-- ───── V · WEEKLY RHYTHM ───── -->
 <section id="rhythm">
   <div class="wrap">
-    <span class="running-num">V</span>
     <div class="chapter">
       <span class="roman">V</span>
-      <span>
+      <span class="label">
         <span class="lang-en">Weekly Rhythm</span>
         <span class="lang-zh">每周节奏</span>
       </span>
-      <span class="rule"></span>
+      <span class="rule" aria-hidden="true"></span>
     </div>
     <h2>
       <span class="lang-en">A small <em>steady</em> week.</span>
       <span class="lang-zh">每周一份<em>稳定</em>的功课。</span>
     </h2>
     <p class="subhead">
-      <span class="lang-en">The plan during Phase I — the everyday version. Designed to fit alongside school and not crowd it out. Daily habits matter more than the weekend marathon.</span>
+      <span class="lang-en">The plan during Phase I — the everyday version. Designed to fit alongside school and not crowd it out. Daily habits matter more than weekend marathons.</span>
       <span class="lang-zh">第一阶段的日常版本，设计原则是和学校并行而不挤占。每天的小习惯比周末的"突击"更重要。</span>
     </p>
 
@@ -1824,8 +2021,8 @@
         <div class="week-row head">
           <div><span class="lang-en">Day</span><span class="lang-zh">日</span></div>
           <div><span class="lang-en">Activity</span><span class="lang-zh">内容</span></div>
-          <div><span class="lang-en">Duration</span><span class="lang-zh">时长</span></div>
-          <div><span class="lang-en">Where</span><span class="lang-zh">场景</span></div>
+          <div><span class="lang-en">Time</span><span class="lang-zh">时长</span></div>
+          <div class="who"><span class="lang-en">Where</span><span class="lang-zh">场景</span></div>
         </div>
         <div class="week-row">
           <div class="day"><span class="lang-en">Mon</span><span class="lang-zh">周一</span></div>
@@ -1864,8 +2061,8 @@
             <span class="lang-zh">和张老师上阅读课（一对二）</span>
             <span class="sub"><span class="lang-en">Terminology · genre · question-type focus.</span><span class="lang-zh">术语、文体、题型分类。</span></span>
           </div>
-          <div class="duration">90–120 min</div>
-          <div class="who"><span class="lang-en">live</span><span class="lang-zh">直播课</span></div>
+          <div class="duration">90–120m</div>
+          <div class="who"><span class="lang-en">live</span><span class="lang-zh">直播</span></div>
         </div>
         <div class="week-row">
           <div class="day"><span class="lang-en">Fri</span><span class="lang-zh">周五</span></div>
@@ -1946,17 +2143,16 @@
   </div>
 </section>
 
-<!-- ============ VI · BY SUBJECT ============ -->
+<!-- ───── VI · BY SUBJECT ───── -->
 <section id="subjects">
   <div class="wrap">
-    <span class="running-num">VI</span>
     <div class="chapter">
       <span class="roman">VI</span>
-      <span>
+      <span class="label">
         <span class="lang-en">By Subject</span>
         <span class="lang-zh">分科目</span>
       </span>
-      <span class="rule"></span>
+      <span class="rule" aria-hidden="true"></span>
     </div>
     <h2>
       <span class="lang-en">Four lanes, <em>one road.</em></span>
@@ -1969,7 +2165,6 @@
 
     <div class="subjects">
 
-      <!-- Reading -->
       <div class="subject reading">
         <div class="label-block">
           <span class="glyph">R</span>
@@ -2014,7 +2209,6 @@
         </div>
       </div>
 
-      <!-- Vocab -->
       <div class="subject vocab">
         <div class="label-block">
           <span class="glyph">V</span>
@@ -2059,7 +2253,6 @@
         </div>
       </div>
 
-      <!-- Math -->
       <div class="subject math">
         <div class="label-block">
           <span class="glyph">M</span>
@@ -2075,7 +2268,7 @@
           </h3>
           <div class="subject-body">
             <div class="meta-row">
-              <span class="pill sage"><span class="lang-en">Two sections of 25</span><span class="lang-zh">两段 · 各 25 题</span></span>
+              <span class="pill dark"><span class="lang-en">Two sections of 25</span><span class="lang-zh">两段 · 各 25 题</span></span>
               <span class="pill"><span class="lang-en">no calculator</span><span class="lang-zh">不允许计算器</span></span>
               <span class="pill"><span class="lang-en">arithmetic · algebra · geometry · data</span><span class="lang-zh">算术·代数·几何·数据</span></span>
             </div>
@@ -2104,7 +2297,6 @@
         </div>
       </div>
 
-      <!-- Writing -->
       <div class="subject writing">
         <div class="label-block">
           <span class="glyph">W</span>
@@ -2153,17 +2345,16 @@
   </div>
 </section>
 
-<!-- ============ VII · CALENDAR ============ -->
+<!-- ───── VII · CALENDAR ───── -->
 <section id="calendar">
   <div class="wrap">
-    <span class="running-num">VII</span>
     <div class="chapter">
       <span class="roman">VII</span>
-      <span>
+      <span class="label">
         <span class="lang-en">The Calendar</span>
         <span class="lang-zh">时间线</span>
       </span>
-      <span class="rule"></span>
+      <span class="rule" aria-hidden="true"></span>
     </div>
     <h2>
       <span class="lang-en">Seventeen months, <em>one milestone at a time.</em></span>
@@ -2199,13 +2390,13 @@
           <div class="date">Sep 2026 — Feb 2027</div>
           <div class="title"><span class="lang-en">Grade 7 begins · Phase I continues</span><span class="lang-zh">七年级开学 · 继续第一阶段</span></div>
           <div class="desc">
-            <span class="lang-en">Maintain weekly reading + biweekly vocab. Math kept warm with self-practice. <strong>Optional</strong> Middle Level mock exam in November to track progress.</span>
+            <span class="lang-en">Maintain weekly reading + biweekly vocab. Math kept warm with self-practice. <strong>Optional</strong> Middle Level mock in November to track progress.</span>
             <span class="lang-zh">阅读课、词汇课持续。数学保持自主刷题状态。<strong>可选</strong>11 月做一次中级模考，跟踪进展。</span>
           </div>
         </div>
 
         <div class="milestone">
-          <div class="date">Mar 2027 — Jul 2027</div>
+          <div class="date">Mar — Jul 2027</div>
           <div class="title"><span class="lang-en">Phase II · Math joins · first Upper Level mock</span><span class="lang-zh">第二阶段 · 数学加入 · 第一次 Upper Level 模考</span></div>
           <div class="desc">
             <span class="lang-en">Formal math class begins. Reading and vocab migrate to Upper Level material. Practice exam every 4–6 weeks. First full Upper Level mock by May 2027 to recalibrate the target.</span>
@@ -2254,21 +2445,20 @@
   </div>
 </section>
 
-<!-- ============ VIII · ABOUT THE TEST ============ -->
+<!-- ───── VIII · ABOUT THE TEST ───── -->
 <section id="test">
   <div class="wrap">
-    <span class="running-num">VIII</span>
     <div class="chapter">
       <span class="roman">VIII</span>
-      <span>
+      <span class="label">
         <span class="lang-en">About the Test</span>
         <span class="lang-zh">关于考试</span>
       </span>
-      <span class="rule"></span>
+      <span class="rule" aria-hidden="true"></span>
     </div>
     <h2>
-      <span class="lang-en">Eight parts · <em>167 questions.</em></span>
-      <span class="lang-zh">八个部分 · <em>167 道题。</em></span>
+      <span class="lang-en">Eight parts, <em>167 questions.</em></span>
+      <span class="lang-zh">八个部分，<em>167 道题。</em></span>
     </h2>
     <p class="subhead">
       <span class="lang-en">The Upper Level SSAT is identical in structure to the Middle Level, with harder content and a higher score ceiling. Six sections plus two breaks, roughly three hours start to finish.</span>
@@ -2280,7 +2470,7 @@
         <table class="test-table">
           <thead>
             <tr>
-              <th><span class="lang-en">Order</span><span class="lang-zh">顺序</span></th>
+              <th><span class="lang-en">№</span><span class="lang-zh">№</span></th>
               <th><span class="lang-en">Section</span><span class="lang-zh">部分</span></th>
               <th><span class="lang-en">Questions</span><span class="lang-zh">题数</span></th>
               <th><span class="lang-en">Time</span><span class="lang-zh">时长</span></th>
@@ -2350,7 +2540,7 @@
           <span class="lang-en">Scoring at a glance</span>
           <span class="lang-zh">计分要点</span>
         </h4>
-        <p style="font-size:14.5px; color:var(--ink-soft); line-height:1.55;">
+        <p>
           <span class="lang-en">Raw score = correct − 0.25 × wrong. Blanks score 0. Raw is converted to a scaled score equated across test forms, then to a percentile against the same-grade, same-gender norm group from the past three years.</span>
           <span class="lang-zh">原始分 = 答对数 − 0.25 × 答错数；空题不扣分。原始分通过题目难度调整成"标准分"，再换算为相对同年级、同性别考生（过去三年）的百分位。</span>
         </p>
@@ -2365,27 +2555,26 @@
           <dd><span class="mono">440–710</span> <span class="lang-en">per section · 1320–2130 total</span><span class="lang-zh">单科 · 总分 1320–2130</span></dd>
 
           <dt><span class="lang-en">Wrong penalty</span><span class="lang-zh">答错扣分</span></dt>
-          <dd><span class="mono">−0.25</span> <span class="lang-en">— so guess only when you can eliminate at least one option.</span><span class="lang-zh">——所以只在能排除至少一个选项时才猜。</span></dd>
+          <dd><span class="mono">−0.25</span> <span class="lang-en">— guess only when you can rule out one option.</span><span class="lang-zh">——只在能排除至少一个选项时才猜。</span></dd>
 
           <dt><span class="lang-en">Score release</span><span class="lang-zh">出分时间</span></dt>
-          <dd><span class="lang-en">~2 weeks after paper test; Wednesday after Prometric / at-home test.</span><span class="lang-zh">纸笔考约 2 周；机考与在家考为考试周的周三。</span></dd>
+          <dd><span class="lang-en">~2 weeks paper; Wed after Prometric / at-home.</span><span class="lang-zh">纸笔考约 2 周；机考与在家考为考试周的周三。</span></dd>
         </dl>
       </aside>
     </div>
   </div>
 </section>
 
-<!-- ============ IX · FORMATS ============ -->
+<!-- ───── IX · FORMATS ───── -->
 <section id="formats">
   <div class="wrap">
-    <span class="running-num">IX</span>
     <div class="chapter">
       <span class="roman">IX</span>
-      <span>
+      <span class="label">
         <span class="lang-en">Format Options</span>
         <span class="lang-zh">考试形式</span>
       </span>
-      <span class="rule"></span>
+      <span class="rule" aria-hidden="true"></span>
     </div>
     <h2>
       <span class="lang-en">Four ways to <em>take the same test.</em></span>
@@ -2442,24 +2631,23 @@
       </div>
     </div>
 
-    <div class="target-disclaimer" style="margin-top: 32px;">
-      <span class="lang-en"><strong>Registration logistics.</strong> Create a parent account at <a href="https://www.ssat.org" target="_blank" rel="noopener" style="color:var(--crimson); text-decoration: underline;">ssat.org</a>. Regular registration closes ~3 weeks before each test date; late fee $59, rush fee $100. Accommodations requests close 14 days prior. Score sending is free and unlimited. Bring: admission ticket, 3+ #2 pencils with erasers, water (clear bottle), snacks (clear bag), all labeled. <strong>Prohibited:</strong> watches (incl. smartwatches), calculators, scratch paper, phones (off-and-stored if present).</span>
-      <span class="lang-zh"><strong>报名流程。</strong>在 <a href="https://www.ssat.org" target="_blank" rel="noopener" style="color:var(--crimson); text-decoration: underline;">ssat.org</a> 创建家长账号。报名截止日通常为考试前约 3 周；逾期补报费 $59，加急费 $100。需要特殊安排的须提前 14 天申请。寄送成绩免费、不限学校数。带：准考证、3 支以上 2B 铅笔（带橡皮）、透明瓶装水、透明袋装零食，所有物品标注姓名。<strong>禁止：</strong>手表（含智能手表）、计算器、草稿纸、手机（如带须关机寄存）。</span>
+    <div class="target-disclaimer" style="margin-top: clamp(24px, 3vw, 32px);">
+      <span class="lang-en"><strong>Registration logistics.</strong> Create a parent account at <a href="https://www.ssat.org" target="_blank" rel="noopener">ssat.org</a>. Regular registration closes ~3 weeks before each test date; late fee $59, rush fee $100. Accommodations close 14 days prior. Score sending is free and unlimited. Bring: admission ticket, 3+ #2 pencils with erasers, water (clear bottle), snacks (clear bag), all labeled. <strong>Prohibited:</strong> watches (incl. smartwatches), calculators, scratch paper, phones (off and stored if present).</span>
+      <span class="lang-zh"><strong>报名流程。</strong>在 <a href="https://www.ssat.org" target="_blank" rel="noopener">ssat.org</a> 创建家长账号。报名截止日通常为考试前约 3 周；逾期补报费 $59，加急费 $100。需要特殊安排的须提前 14 天申请。寄送成绩免费、不限学校数。带：准考证、3 支以上 2B 铅笔（带橡皮）、透明瓶装水、透明袋装零食，所有物品标注姓名。<strong>禁止：</strong>手表（含智能手表）、计算器、草稿纸、手机（如带须关机寄存）。</span>
     </div>
   </div>
 </section>
 
-<!-- ============ X · ROLES ============ -->
+<!-- ───── X · ROLES ───── -->
 <section id="roles">
   <div class="wrap">
-    <span class="running-num">X</span>
     <div class="chapter">
       <span class="roman">X</span>
-      <span>
+      <span class="label">
         <span class="lang-en">Roles</span>
         <span class="lang-zh">分工</span>
       </span>
-      <span class="rule"></span>
+      <span class="rule" aria-hidden="true"></span>
     </div>
     <h2>
       <span class="lang-en">For the parents · <em>for the girls.</em></span>
@@ -2540,17 +2728,16 @@
   </div>
 </section>
 
-<!-- ============ XI · RESOURCES ============ -->
+<!-- ───── XI · RESOURCES ───── -->
 <section id="resources">
   <div class="wrap">
-    <span class="running-num">XI</span>
     <div class="chapter">
       <span class="roman">XI</span>
-      <span>
+      <span class="label">
         <span class="lang-en">Resources</span>
         <span class="lang-zh">资料 · 链接</span>
       </span>
-      <span class="rule"></span>
+      <span class="rule" aria-hidden="true"></span>
     </div>
     <h2>
       <span class="lang-en">Where to look <em>next.</em></span>
@@ -2562,7 +2749,7 @@
         <h4><span class="lang-en">Official (EMA)</span><span class="lang-zh">官方（EMA）</span></h4>
         <ul>
           <li><a href="https://www.ssat.org" target="_blank" rel="noopener">ssat.org</a> <span class="note"><span class="lang-en">Account, registration, test dates.</span><span class="lang-zh">账户、报名、考试日期。</span></span></li>
-          <li><a href="https://www.ssat.org/about/school-level/upper-level-ssat" target="_blank" rel="noopener">Upper Level SSAT</a> <span class="note"><span class="lang-en">Official structure & content overview.</span><span class="lang-zh">官方结构与内容介绍。</span></span></li>
+          <li><a href="https://www.ssat.org/about/school-level/upper-level-ssat" target="_blank" rel="noopener">Upper Level SSAT</a> <span class="note"><span class="lang-en">Official structure &amp; content overview.</span><span class="lang-zh">官方结构与内容介绍。</span></span></li>
           <li><a href="https://www.ssat.org/about/scoring/ssat-score-report" target="_blank" rel="noopener">SSAT Score Report</a> <span class="note"><span class="lang-en">How scores are read.</span><span class="lang-zh">如何看分数报告。</span></span></li>
           <li><a href="https://www.ssat.org/testing/ssat-options-pricing" target="_blank" rel="noopener">Options &amp; pricing</a> <span class="note"><span class="lang-en">All four test formats.</span><span class="lang-zh">四种考试形式与费用。</span></span></li>
           <li><a href="https://www.ssat.org/testing/paper/test-day-essentials" target="_blank" rel="noopener">Test-day essentials</a> <span class="note"><span class="lang-en">What to bring and what's banned.</span><span class="lang-zh">考试当天带什么、不能带什么。</span></span></li>
@@ -2585,24 +2772,24 @@
           <li><span class="lang-en">Mock Exam 1 — Zoe (Graded, 1715)</span><span class="lang-zh">第一次模考 — Zoe（已批，1715）</span></li>
           <li><span class="lang-en">Mock Exam 1 — answer key &amp; explanations (xlsx)</span><span class="lang-zh">第一次模考 — 答案与解析（xlsx）</span></li>
           <li><span class="lang-en">Mr. Zhang's strategy notes — May 2026</span><span class="lang-zh">张老师策略笔记 — 2026 年 5 月</span></li>
-          <li><span class="lang-en">Stored at: iCloud · 家庭生活 · 课外学习 · SSAT · 乐听张老师</span><span class="lang-zh">存放位置：iCloud · 家庭生活 · 课外学习 · SSAT · 乐听张老师</span></li>
+          <li><span class="lang-en">iCloud · 家庭生活 · 课外学习 · SSAT · 乐听张老师</span><span class="lang-zh">iCloud · 家庭生活 · 课外学习 · SSAT · 乐听张老师</span></li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
+<!-- ───── FOOTER ───── -->
 <footer>
   <div class="wrap">
     <div class="footer-grid">
       <div class="motto">
-        <span class="lang-en"><em>Read first. Word by word. Day by day.</em></span>
-        <span class="lang-zh"><em>先读书。一字一句。<br>一天一天。</em></span>
+        <span class="lang-en">Read first. <em>Word by word.</em><br>Day by day.</span>
+        <span class="lang-zh">先读书。<em>一字一句。</em><br>一天一天。</span>
       </div>
       <div class="colophon">
-        <span class="lang-en">Set in Fraunces &amp; Newsreader. Composed for the Chen + Tang families. Numbers verified against ssat.org &amp; the 2025–26 SSAT Candidate Handbook. Last revised May 24, 2026.</span>
-        <span class="lang-zh">字体 Fraunces 与 Newsreader。为 Chen 与 Tang 两家而作。数据核对自 ssat.org 与 2025–26 SSAT 考生手册。最近修订 2026 年 5 月 24 日。</span>
+        <span class="lang-en">Set in Fraunces &amp; Inter Tight. Composed for the Chen + Tang families. Numbers verified against ssat.org &amp; the 2025–26 SSAT Candidate Handbook. Last revised May 25, 2026.</span>
+        <span class="lang-zh">字体 Fraunces 与 Inter Tight。为 Chen 与 Tang 两家而作。数据核对自 ssat.org 与 2025–26 SSAT 考生手册。最近修订 2026 年 5 月 25 日。</span>
       </div>
       <div class="seal">
         <span class="ornament">⁂</span>
@@ -2614,7 +2801,7 @@
 </footer>
 
 <script>
-  // ----- Language toggle -----
+  // ───── language toggle ─────
   function applyLang(lang) {
     const code = lang === 'en' ? 'en' : 'zh-Hans';
     document.documentElement.lang = code;
@@ -2632,48 +2819,49 @@
     applyLang(saved || 'zh');
   })();
 
-  // ----- Countdown -----
-  // Target window: first Saturday window of October 2027 (tentative — official 2027–28 dates publish Aug 1, 2027)
+  // ───── countdown ─────
+  // Tentative target: 2nd Saturday of October 2027 (actual date publishes Aug 1, 2027)
   const TARGET = new Date('2027-10-09T00:00:00');
   function updateCountdown() {
     const now = new Date();
-    const diffMs = TARGET - now;
-    const days = Math.max(0, Math.ceil(diffMs / (1000 * 60 * 60 * 24)));
+    const days = Math.max(0, Math.ceil((TARGET - now) / 86400000));
     const weeks = Math.floor(days / 7);
     const dEl = document.getElementById('days-to-target');
     const wEl = document.getElementById('weeks-to-target');
-    if (dEl) dEl.textContent = days.toLocaleString();
-    if (wEl) wEl.textContent = weeks.toLocaleString();
+    if (dEl) dEl.textContent = days.toLocaleString('en');
+    if (wEl) wEl.textContent = weeks.toLocaleString('en');
   }
   updateCountdown();
-  setInterval(updateCountdown, 60 * 1000);
+  setInterval(updateCountdown, 60_000);
 
-  // ----- Reveal on scroll -----
-  const revealEls = document.querySelectorAll('section h2, .stand-grid, .target-grid, .phases, .week-table, .rhythm-aside, .subjects, .calendar, .test-grid, .formats-grid, .roles-grid, .resources-grid, .teacher-quote');
+  // ───── reveal on scroll ─────
+  const revealEls = document.querySelectorAll(
+    'section h2, .stand-grid, .target-grid, .phases, .week-table, .rhythm-aside, .subjects, .calendar, .test-grid, .formats-grid, .roles-grid, .resources-grid, .teacher-quote, .target-disclaimer'
+  );
   revealEls.forEach(el => el.classList.add('reveal-on-scroll'));
-  const io = new IntersectionObserver(entries => {
+  const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('in');
         io.unobserve(entry.target);
       }
     });
-  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.04 });
   revealEls.forEach(el => io.observe(el));
 
-  // ----- Bar widths animate after reveal -----
+  // ───── score bars animate when card scrolls in ─────
   document.querySelectorAll('.score-row .bar').forEach(bar => {
     const target = bar.style.getPropertyValue('--pct');
     bar.style.setProperty('--pct', '0%');
-    const cardObserver = new IntersectionObserver((entries) => {
+    const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
           requestAnimationFrame(() => bar.style.setProperty('--pct', target));
-          cardObserver.unobserve(bar);
+          obs.unobserve(bar);
         }
       });
-    }, { threshold: 0.3 });
-    cardObserver.observe(bar);
+    }, { threshold: 0.25 });
+    obs.observe(bar);
   });
 </script>
 
