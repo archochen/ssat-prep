@@ -182,8 +182,8 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-  font-size: clamp(48px, 10.5vw, 132px);
-  line-height: .92;
+  font-size: clamp(46px, 8.4vw, 112px);
+  line-height: .94;
   letter-spacing: -.035em;
   font-variation-settings: "opsz" 144, "SOFT" 25, "wght" 360;
 }
@@ -294,24 +294,30 @@ em { font-style: italic; }
 .cover { padding-top: clamp(56px, 6vw, 88px); }
 .cover-meta {
   display: flex; justify-content: space-between; align-items: baseline;
-  margin-bottom: clamp(40px, 5vw, 64px);
+  margin-bottom: clamp(36px, 4.5vw, 56px);
   gap: 16px;
 }
 .cover-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-  gap: clamp(40px, 6vw, 96px);
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  column-gap: clamp(40px, 6vw, 88px);
+  row-gap: clamp(32px, 4vw, 56px);
   align-items: start;
 }
-.cover h1 { margin-bottom: clamp(28px, 3vw, 40px); }
+.cover h1 {
+  grid-column: 1 / -1;
+  margin: 0;
+  max-width: 18ch;
+}
 .cover h1 .br-mobile { display: none; }
 .cover-lead {
   font-family: var(--serif);
   font-size: clamp(17px, 1.7vw, 20px);
-  line-height: 1.55;
+  line-height: 1.58;
   color: var(--ink-soft);
   max-width: 54ch;
   font-variation-settings: "opsz" 20, "SOFT" 30, "wght" 420;
+  padding-top: clamp(0px, .4vw, 6px);
 }
 .cover-lead .pull {
   color: var(--crimson);
@@ -322,7 +328,7 @@ em { font-style: italic; }
 .cover-side {
   border-left: 1px solid var(--rule);
   padding-left: clamp(24px, 3vw, 40px);
-  padding-top: 6px;
+  padding-top: 4px;
 }
 .cover-side .smallcaps + * { margin-top: 12px; }
 .cover-side > * + .smallcaps { margin-top: 32px; }
@@ -1446,8 +1452,9 @@ footer .seal .ornament {
 /* ═══════════════════════════════════ */
 @media (max-width: 1024px) {
   .cover-grid {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    gap: 48px;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    column-gap: 48px;
+    row-gap: 36px;
   }
   .target-grid { grid-template-columns: 1fr 1fr; }
   .target-col:nth-child(2) { border-right: 0; }
@@ -1471,12 +1478,17 @@ footer .seal .ornament {
   h1 .br-mobile { display: inline; }
   h1 br.br-desktop { display: none; }
 
-  .cover-grid { grid-template-columns: 1fr; gap: 40px; }
+  .cover-grid {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 36px;
+  }
+  .cover h1 { max-width: none; }
   .cover-side {
     border-left: 0;
     border-top: 1px solid var(--rule);
     padding-left: 0;
-    padding-top: 32px;
+    padding-top: 28px;
   }
   .cover-meta { flex-direction: column; align-items: flex-start; gap: 6px; }
   .student-tag .role { font-size: 9px; }
@@ -1657,21 +1669,19 @@ button:focus-visible { outline-offset: 2px; }
     </div>
 
     <div class="cover-grid">
-      <div>
-        <h1>
-          <span class="lang-en">Two students.<br class="br-desktop"><span class="br-mobile"> </span>One target.<br class="br-desktop"><span class="br-mobile"> </span><em>Seventeen months.</em></span>
-          <span class="lang-zh">两个学生。<br class="br-desktop"><span class="br-mobile"> </span>一个目标。<br class="br-desktop"><span class="br-mobile"> </span><em>十七个月。</em></span>
-        </h1>
+      <h1>
+        <span class="lang-en">Two students.<br class="br-desktop"><span class="br-mobile"> </span>One target.<br class="br-desktop"><span class="br-mobile"> </span><em>Seventeen months.</em></span>
+        <span class="lang-zh">两个学生。<br class="br-desktop"><span class="br-mobile"> </span>一个目标。<br class="br-desktop"><span class="br-mobile"> </span><em>十七个月。</em></span>
+      </h1>
 
-        <p class="cover-lead">
-          <span class="lang-en">
-            Jasmine and Zoe are sixth graders today. By <strong>October 2027</strong> — at the latest by December — they will sit for the <strong>Upper Level SSAT</strong> and earn a score that opens doors. This page is the family ledger: <span class="pull">what's needed, where they stand, what the plan is, and how the months ahead are spent.</span>
-          </span>
-          <span class="lang-zh">
-            茉茉和 Zoe 现在是六年级学生。<strong>2027 年 10 月</strong>（最晚 12 月）她们将参加 <strong>SSAT Upper Level（高级）</strong>考试，争取一个能打开学校之门的分数。这一页是这个家庭的"备考手账"：<span class="pull">需要做什么、目前在哪儿、计划如何展开、未来十七个月怎么走。</span>
-          </span>
-        </p>
-      </div>
+      <p class="cover-lead">
+        <span class="lang-en">
+          Jasmine and Zoe are sixth graders today. By <strong>October 2027</strong> — at the latest by December — they will sit for the <strong>Upper Level SSAT</strong> and earn a score that opens doors. This page is the family ledger: <span class="pull">what's needed, where they stand, what the plan is, and how the months ahead are spent.</span>
+        </span>
+        <span class="lang-zh">
+          茉茉和 Zoe 现在是六年级学生。<strong>2027 年 10 月</strong>（最晚 12 月）她们将参加 <strong>SSAT Upper Level（高级）</strong>考试，争取一个能打开学校之门的分数。这一页是这个家庭的"备考手账"：<span class="pull">需要做什么、目前在哪儿、计划如何展开、未来十七个月怎么走。</span>
+        </span>
+      </p>
 
       <aside class="cover-side">
         <div class="smallcaps">
