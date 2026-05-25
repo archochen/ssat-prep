@@ -1,0 +1,2681 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSAT Prep · Jasmine + Zoe · 备考手账</title>
+<meta name="description" content="A bilingual study-plan companion for Jasmine and Zoe's Upper Level SSAT in October 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=Inter+Tight:wght@400..700&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:        #F4EFE2;
+    --paper-warm:   #EDE6D2;
+    --paper-deep:   #E6DEC4;
+    --surface:      #FBF7EC;
+    --ink:          #15171F;
+    --ink-soft:     #2A2C36;
+    --slate:        #5B5E69;
+    --slate-soft:   #7E8089;
+    --rule:         #C9BFA3;
+    --rule-soft:    #D9D0B6;
+    --crimson:      #8C2A2F;
+    --crimson-soft: #B4555B;
+    --marigold:     #B97A24;
+    --marigold-soft:#D9A659;
+    --sage:         #5E7250;
+    --sage-soft:    #8FA37C;
+    --ivory:        #F8F2DC;
+
+    --serif-display: 'Fraunces', 'Source Han Serif SC', 'Songti SC', 'STSong', 'Noto Serif CJK SC', serif;
+    --serif-body:    'Newsreader', 'Source Han Serif SC', 'Songti SC', 'STSong', 'Noto Serif CJK SC', serif;
+    --sans:          'Inter Tight', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    --mono:          'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+    --grid: 1180px;
+    --shadow-soft: 0 1px 0 var(--rule-soft), 0 24px 48px -36px rgba(21,23,31,.18);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--serif-body);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--paper);
+    background-image:
+      radial-gradient(1200px 600px at 10% -10%, rgba(185, 122, 36, .07), transparent 70%),
+      radial-gradient(900px 600px at 95% 5%, rgba(140, 42, 47, .05), transparent 60%),
+      radial-gradient(800px 800px at 50% 110%, rgba(94, 114, 80, .05), transparent 65%);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: .55;
+    mix-blend-mode: multiply;
+    z-index: 0;
+  }
+
+  /* Language visibility */
+  html[lang="en"] .lang-zh { display: none; }
+  html[lang="zh-Hans"] .lang-en { display: none; }
+
+  /* Layout primitives */
+  .wrap { max-width: var(--grid); margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+  section { padding: 96px 0; border-top: 1px solid var(--rule-soft); position: relative; }
+  section:first-of-type { border-top: none; }
+  section::before {
+    content: "";
+    position: absolute; left: 0; right: 0; top: -1px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--rule) 20%, var(--rule) 80%, transparent);
+  }
+  section:first-of-type::before { display: none; }
+
+  /* Header */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(6px) saturate(120%);
+    background: rgba(244, 239, 226, 0.82);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topbar-inner {
+    max-width: var(--grid); margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 32px;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  .topbar a { color: inherit; text-decoration: none; }
+  .topbar .crest {
+    color: var(--ink);
+    font-weight: 600;
+    letter-spacing: .14em;
+  }
+  .topbar .crest .dot {
+    display: inline-block;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--crimson);
+    margin: 0 8px;
+    vertical-align: middle;
+  }
+  .lang-switch {
+    display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; padding: 2px;
+    background: var(--surface);
+  }
+  .lang-switch button {
+    appearance: none; border: 0; background: transparent;
+    font: 600 11px/1 var(--sans);
+    letter-spacing: .12em;
+    padding: 6px 12px;
+    color: var(--slate);
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background .2s, color .2s;
+  }
+  .lang-switch button.active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .lang-switch button:hover:not(.active) { color: var(--ink); }
+
+  /* Chapter labels */
+  .chapter {
+    display: flex; align-items: baseline; gap: 16px;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    margin-bottom: 24px;
+  }
+  .chapter .roman {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: 0;
+    color: var(--ink);
+    text-transform: none;
+  }
+  .chapter .rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+    align-self: center;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--serif-display);
+    font-weight: 400;
+    color: var(--ink);
+    margin: 0;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+  }
+  h2 {
+    font-size: clamp(36px, 4.6vw, 60px);
+    line-height: 1.04;
+    letter-spacing: -.02em;
+    margin-bottom: 12px;
+  }
+  h2 em {
+    font-style: italic;
+    color: var(--crimson);
+    font-weight: 500;
+  }
+  h3 {
+    font-size: 26px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    font-variation-settings: "opsz" 36, "SOFT" 30;
+  }
+  h4 {
+    font-size: 18px;
+    font-variation-settings: "opsz" 18, "SOFT" 30;
+    margin-bottom: 6px;
+  }
+  .subhead {
+    font-family: var(--serif-body);
+    font-style: italic;
+    color: var(--slate);
+    font-size: 19px;
+    line-height: 1.5;
+    max-width: 60ch;
+  }
+  p { margin: 0 0 1em; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 600; color: var(--ink); }
+  em { font-style: italic; }
+
+  .smallcaps {
+    font-family: var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    font-size: 11px;
+    color: var(--slate);
+    font-weight: 600;
+  }
+
+  /* ============ COVER ============ */
+  .cover { padding-top: 80px; padding-bottom: 80px; }
+  .cover-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .cover-meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 48px;
+  }
+  .cover h1 {
+    font-size: clamp(56px, 7.8vw, 116px);
+    line-height: .92;
+    letter-spacing: -.035em;
+    font-variation-settings: "opsz" 144, "SOFT" 20, "wght" 360;
+    margin-bottom: 36px;
+  }
+  .cover h1 em {
+    font-style: italic;
+    color: var(--crimson);
+    font-variation-settings: "opsz" 144, "SOFT" 50, "wght" 380;
+  }
+  .cover h1 .ornament {
+    display: inline-block;
+    color: var(--marigold);
+    transform: translateY(-.15em);
+    font-style: normal;
+    font-size: .55em;
+    margin: 0 .06em;
+  }
+  .cover-lead {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 56ch;
+  }
+  .cover-lead .pull {
+    color: var(--crimson);
+    font-style: italic;
+  }
+  .cover-side {
+    border-left: 1px solid var(--rule);
+    padding-left: 36px;
+    margin-top: 8px;
+  }
+  .students {
+    display: flex; flex-direction: column; gap: 18px;
+    margin-bottom: 40px;
+  }
+  .student-tag {
+    display: flex; align-items: baseline; gap: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .student-tag:last-child { border-bottom: 0; }
+  .student-tag .num {
+    font-family: var(--serif-display);
+    font-style: italic;
+    color: var(--marigold);
+    font-size: 22px;
+  }
+  .student-tag .name {
+    font-family: var(--serif-display);
+    font-size: 26px;
+    line-height: 1.1;
+    font-variation-settings: "opsz" 36, "SOFT" 40;
+  }
+  .student-tag .name .zh {
+    color: var(--slate);
+    font-size: 18px;
+    font-style: italic;
+    margin-left: 6px;
+  }
+  .student-tag .role {
+    margin-left: auto;
+    font-family: var(--sans);
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: .18em;
+    color: var(--slate);
+  }
+
+  .countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    margin-top: 56px;
+  }
+  .countdown .metric {
+    padding: 22px 18px 18px;
+    border-right: 1px solid var(--rule);
+    position: relative;
+  }
+  .countdown .metric:last-child { border-right: 0; }
+  .countdown .value {
+    display: block;
+    font-family: var(--serif-display);
+    font-size: 52px;
+    line-height: 1;
+    font-variation-settings: "opsz" 144, "SOFT" 0, "wght" 400;
+    letter-spacing: -.03em;
+    color: var(--ink);
+  }
+  .countdown .value .unit {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--slate);
+    margin-left: 4px;
+    vertical-align: 4px;
+    letter-spacing: 0;
+  }
+  .countdown .label {
+    display: block;
+    margin-top: 10px;
+    font: 600 10.5px/1.3 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    color: var(--slate);
+  }
+  .countdown .metric.accent .value { color: var(--crimson); }
+
+  /* ============ STAND ============ */
+  .stand-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 48px;
+  }
+  .student-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 36px 36px 32px;
+    position: relative;
+    box-shadow: var(--shadow-soft);
+  }
+  .student-card::before {
+    content: "";
+    position: absolute;
+    top: -1px; left: -1px; right: -1px; height: 5px;
+    background: repeating-linear-gradient(90deg, var(--ink) 0 14px, transparent 14px 22px);
+  }
+  .student-card.j::before { background: repeating-linear-gradient(90deg, var(--crimson) 0 14px, transparent 14px 22px); }
+  .student-card.z::before { background: repeating-linear-gradient(90deg, var(--marigold) 0 14px, transparent 14px 22px); }
+  .student-card .head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .student-card .head .name-block {
+    display: flex; flex-direction: column;
+  }
+  .student-card .head .name {
+    font-family: var(--serif-display);
+    font-size: 34px;
+    line-height: 1;
+    font-variation-settings: "opsz" 48, "SOFT" 50, "wght" 420;
+  }
+  .student-card .head .alt {
+    font-family: var(--serif-body);
+    font-style: italic;
+    color: var(--slate);
+    font-size: 17px;
+    margin-top: 2px;
+  }
+  .student-card .total {
+    text-align: right;
+  }
+  .student-card .total .num {
+    font-family: var(--serif-display);
+    font-size: 44px;
+    line-height: 1;
+    font-variation-settings: "opsz" 96, "wght" 400;
+    color: var(--ink);
+    letter-spacing: -.02em;
+  }
+  .student-card.j .total .num { color: var(--crimson); }
+  .student-card.z .total .num { color: var(--marigold); }
+  .student-card .total .scale {
+    display: block;
+    margin-top: 4px;
+    font: 600 10px/1.2 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: var(--slate);
+  }
+  .score-row {
+    display: grid;
+    grid-template-columns: 60px 1fr auto auto;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dotted var(--rule-soft);
+    font-family: var(--sans);
+  }
+  .score-row:last-of-type { border-bottom: 0; }
+  .score-row .subj {
+    font: 600 11px/1 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: var(--ink);
+  }
+  .score-row .bar {
+    height: 8px;
+    background: var(--paper-deep);
+    position: relative;
+    overflow: hidden;
+  }
+  .score-row .bar::before {
+    content: "";
+    position: absolute; inset: 0;
+    width: var(--pct, 0%);
+    background: var(--ink);
+    transition: width 1.2s cubic-bezier(.2,.7,.2,1);
+  }
+  .student-card.j .score-row .bar::before { background: var(--crimson); }
+  .student-card.z .score-row .bar::before { background: var(--marigold); }
+  .score-row .scaled {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--ink);
+    font-weight: 500;
+    text-align: right;
+    min-width: 44px;
+  }
+  .score-row .raw {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--slate);
+    text-align: right;
+    min-width: 52px;
+  }
+
+  .student-notes {
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule-soft);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .student-notes h5 {
+    font: 600 10px/1 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    color: var(--slate);
+    margin: 0 0 10px;
+  }
+  .student-notes ul {
+    margin: 0; padding: 0; list-style: none;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .student-notes li {
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 6px;
+  }
+  .student-notes .strong li::before {
+    content: "✓";
+    position: absolute; left: 0; top: -1px;
+    color: var(--sage);
+    font-weight: 700;
+  }
+  .student-notes .grow li::before {
+    content: "→";
+    position: absolute; left: 0; top: 0;
+    color: var(--crimson);
+    font-weight: 700;
+  }
+
+  .teacher-quote {
+    margin-top: 56px;
+    padding: 32px 40px;
+    background: var(--paper-warm);
+    border-left: 3px solid var(--crimson);
+    font-family: var(--serif-body);
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    font-style: italic;
+    position: relative;
+  }
+  .teacher-quote::before {
+    content: "“";
+    position: absolute; top: -20px; left: 22px;
+    font-family: var(--serif-display);
+    font-size: 90px;
+    line-height: 1;
+    color: var(--crimson-soft);
+    font-style: normal;
+  }
+  .teacher-quote cite {
+    display: block;
+    margin-top: 16px;
+    font-style: normal;
+    font: 600 11px/1 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: var(--slate);
+  }
+
+  /* ============ TARGET ============ */
+  .target-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    margin-top: 48px;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+  }
+  .target-col {
+    padding: 32px 32px 36px;
+    border-right: 1px solid var(--rule-soft);
+  }
+  .target-col:last-child { border-right: 0; }
+  .target-col h3 { margin-bottom: 14px; }
+  .target-col .figure {
+    font-family: var(--serif-display);
+    font-size: 64px;
+    line-height: 1;
+    font-variation-settings: "opsz" 144, "wght" 360;
+    color: var(--crimson);
+    letter-spacing: -.03em;
+    margin: 12px 0 8px;
+  }
+  .target-col .figure .small {
+    font-size: 22px;
+    color: var(--slate);
+    margin-left: 4px;
+  }
+  .target-col .caption {
+    font-size: 14px;
+    color: var(--slate);
+    font-style: italic;
+  }
+  .target-col ul {
+    margin: 18px 0 0; padding: 0; list-style: none;
+    font-size: 14.5px;
+  }
+  .target-col ul li {
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--rule-soft);
+    display: flex; justify-content: space-between; gap: 12px;
+  }
+  .target-col ul li:last-child { border-bottom: 0; }
+  .target-col ul li span:last-child {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--slate);
+    white-space: nowrap;
+  }
+  .target-disclaimer {
+    margin-top: 24px;
+    padding: 16px 22px;
+    border: 1px dashed var(--rule);
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--slate);
+  }
+
+  /* ============ PLAN PHASES ============ */
+  .phases { margin-top: 56px; }
+  .phase {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 48px;
+    padding: 36px 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .phase:last-child { border-bottom: 1px solid var(--rule-soft); }
+  .phase .marker {
+    position: relative;
+  }
+  .phase .roman-big {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 90px;
+    line-height: .9;
+    color: var(--marigold);
+    font-variation-settings: "opsz" 144, "SOFT" 60, "wght" 380;
+  }
+  .phase .marker .label {
+    margin-top: 8px;
+    font: 600 11px/1.4 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    color: var(--crimson);
+  }
+  .phase .marker .dates {
+    margin-top: 6px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--slate);
+  }
+  .phase h3 {
+    font-size: 32px;
+    margin-bottom: 14px;
+  }
+  .phase .copy { max-width: 64ch; color: var(--ink-soft); }
+  .phase .focus-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 24px;
+  }
+  .focus-card {
+    background: var(--paper-warm);
+    padding: 18px 20px;
+    border-top: 2px solid var(--crimson);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .focus-card.alt { border-top-color: var(--marigold); }
+  .focus-card.alt2 { border-top-color: var(--sage); }
+  .focus-card h5 {
+    font: 600 10.5px/1 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    color: var(--slate);
+    margin: 0 0 8px;
+  }
+  .focus-card .head-large {
+    font-family: var(--serif-display);
+    font-size: 19px;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  /* ============ WEEKLY RHYTHM ============ */
+  .rhythm-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 56px;
+    margin-top: 48px;
+    align-items: start;
+  }
+  .week-table {
+    border-top: 2px solid var(--ink);
+  }
+  .week-row {
+    display: grid;
+    grid-template-columns: 70px 1fr 100px 80px;
+    gap: 16px;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .week-row.head {
+    border-bottom: 1px solid var(--ink);
+    padding: 8px 0;
+  }
+  .week-row.head > * {
+    font: 600 10.5px/1 var(--sans) !important;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: var(--slate);
+  }
+  .week-row .day {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 19px;
+    color: var(--crimson);
+    font-variation-settings: "opsz" 24, "wght" 420;
+  }
+  .week-row .activity {
+    font-size: 15.5px;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  .week-row .activity .sub {
+    display: block;
+    font-size: 13px;
+    color: var(--slate);
+    font-style: italic;
+    margin-top: 2px;
+  }
+  .week-row .duration,
+  .week-row .who {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--slate);
+  }
+
+  .rhythm-aside {
+    background: var(--paper-warm);
+    padding: 32px;
+    position: relative;
+  }
+  .rhythm-aside h4 { margin-bottom: 16px; }
+  .rhythm-aside ul { margin: 0; padding: 0; list-style: none; }
+  .rhythm-aside li {
+    padding: 12px 0;
+    border-bottom: 1px dotted var(--rule);
+    display: flex; align-items: baseline; gap: 14px;
+    font-size: 14.5px;
+  }
+  .rhythm-aside li:last-child { border-bottom: 0; }
+  .rhythm-aside li .num {
+    font-family: var(--mono);
+    color: var(--crimson);
+    font-weight: 600;
+    flex-shrink: 0;
+    min-width: 56px;
+  }
+
+  /* ============ BY SUBJECT ============ */
+  .subjects { margin-top: 48px; }
+  .subject {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 56px;
+    padding: 40px 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .subject:last-child { border-bottom: 1px solid var(--rule-soft); }
+  .subject .label-block {
+    position: sticky; top: 80px;
+  }
+  .subject .label-block .glyph {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 84px;
+    line-height: .9;
+    color: var(--crimson);
+    font-variation-settings: "opsz" 144, "SOFT" 60, "wght" 380;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .subject.vocab .label-block .glyph { color: var(--marigold); }
+  .subject.math .label-block .glyph { color: var(--sage); }
+  .subject.writing .label-block .glyph { color: var(--ink); }
+  .subject h3 { font-size: 28px; }
+  .subject h3 small {
+    display: block;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-top: 6px;
+    font-weight: 600;
+  }
+  .subject-body { max-width: 66ch; color: var(--ink-soft); font-size: 16px; line-height: 1.62; }
+  .subject-body ol, .subject-body ul {
+    padding-left: 0;
+    list-style: none;
+    counter-reset: ssat;
+    margin: 16px 0;
+  }
+  .subject-body ol li {
+    counter-increment: ssat;
+    padding: 12px 0 12px 44px;
+    border-bottom: 1px solid var(--rule-soft);
+    position: relative;
+  }
+  .subject-body ol li::before {
+    content: counter(ssat, decimal-leading-zero);
+    position: absolute; left: 0; top: 12px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--crimson);
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+  .subject.vocab .subject-body ol li::before { color: var(--marigold); }
+  .subject.math .subject-body ol li::before { color: var(--sage); }
+  .subject-body ol li strong {
+    display: block;
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .subject-body .meta-row {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 16px;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: var(--paper-warm);
+    border: 1px solid var(--rule-soft);
+    border-radius: 999px;
+    font: 600 11px/1 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--ink);
+  }
+  .pill.crimson { color: var(--crimson); border-color: var(--crimson-soft); }
+  .pill.gold    { color: var(--marigold); border-color: var(--marigold-soft); }
+  .pill.sage    { color: var(--sage); border-color: var(--sage-soft); }
+
+  /* ============ CALENDAR ============ */
+  .calendar {
+    margin-top: 48px;
+    position: relative;
+  }
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+    border-left: 2px solid var(--ink);
+  }
+  .milestone {
+    position: relative;
+    padding: 0 0 28px 24px;
+  }
+  .milestone::before {
+    content: "";
+    position: absolute;
+    left: -32px; top: 8px;
+    width: 14px; height: 14px;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+  }
+  .milestone.active::before {
+    background: var(--crimson);
+    border-color: var(--crimson);
+    box-shadow: 0 0 0 4px var(--paper), 0 0 0 6px var(--crimson-soft);
+  }
+  .milestone.target::before {
+    background: var(--marigold);
+    border-color: var(--marigold);
+  }
+  .milestone .date {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .04em;
+    color: var(--crimson);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .milestone .title {
+    font-family: var(--serif-display);
+    font-size: 22px;
+    color: var(--ink);
+    margin: 4px 0 6px;
+    font-variation-settings: "opsz" 36, "SOFT" 30, "wght" 420;
+  }
+  .milestone .desc {
+    color: var(--slate);
+    font-size: 14.5px;
+    line-height: 1.55;
+    max-width: 58ch;
+  }
+  .milestone .desc strong { color: var(--ink); }
+
+  /* ============ TEST FACTS ============ */
+  .test-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 56px;
+    margin-top: 48px;
+  }
+  .test-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: var(--sans);
+    font-size: 14px;
+  }
+  .test-table thead th {
+    text-align: left;
+    font: 600 10.5px/1 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: var(--slate);
+    padding: 14px 12px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .test-table thead th:last-child,
+  .test-table tbody td:last-child { text-align: right; }
+  .test-table tbody td {
+    padding: 14px 12px;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: top;
+  }
+  .test-table tbody tr:last-child td { border-bottom: 0; }
+  .test-table .section-name {
+    font-family: var(--serif-display);
+    font-size: 17px;
+    color: var(--ink);
+    font-variation-settings: "opsz" 24, "wght" 420;
+  }
+  .test-table .meta {
+    display: block;
+    margin-top: 2px;
+    font-size: 12px;
+    color: var(--slate);
+    font-style: italic;
+    font-family: var(--serif-body);
+  }
+  .test-table .num {
+    font-family: var(--mono);
+    color: var(--ink);
+  }
+
+  .test-aside {
+    background: var(--paper-warm);
+    padding: 32px;
+    border-top: 2px solid var(--ink);
+  }
+  .test-aside h4 { margin-bottom: 12px; }
+  .test-aside dl {
+    margin: 16px 0 0;
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    row-gap: 10px;
+    column-gap: 16px;
+    font-size: 14px;
+  }
+  .test-aside dt {
+    font: 600 10.5px/1.4 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: var(--slate);
+    padding-top: 3px;
+  }
+  .test-aside dd {
+    margin: 0;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .test-aside dd .mono { font-family: var(--mono); font-size: 13px; }
+
+  /* ============ FORMATS ============ */
+  .formats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 48px;
+  }
+  .format {
+    background: var(--surface);
+    padding: 28px 24px 28px;
+    display: flex; flex-direction: column;
+  }
+  .format .name {
+    font-family: var(--serif-display);
+    font-size: 22px;
+    color: var(--ink);
+    font-variation-settings: "opsz" 30, "SOFT" 30, "wght" 440;
+    line-height: 1.1;
+  }
+  .format .tag {
+    font: 600 10px/1 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: var(--crimson);
+    margin-top: 6px;
+    margin-bottom: 16px;
+  }
+  .format .price {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--ink);
+    padding: 10px 0;
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    margin-bottom: 14px;
+    display: flex; justify-content: space-between;
+  }
+  .format .price .label-mono { color: var(--slate); font-size: 11px; }
+  .format .desc {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    flex: 1;
+  }
+  .format .limit {
+    margin-top: 12px;
+    font: 600 10.5px/1.3 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--slate);
+  }
+
+  /* ============ ROLES ============ */
+  .roles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    margin-top: 48px;
+  }
+  .role-col h3 {
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 22px;
+    font-size: 26px;
+  }
+  .role-col.parents h3 { border-bottom-color: var(--crimson); }
+  .role-col.students h3 { border-bottom-color: var(--marigold); }
+  .role-col ul {
+    margin: 0; padding: 0; list-style: none;
+  }
+  .role-col li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 14px;
+    align-items: baseline;
+  }
+  .role-col li::before {
+    content: "□";
+    font-family: var(--mono);
+    color: var(--crimson);
+    font-size: 18px;
+    line-height: 1;
+  }
+  .role-col.students li::before { color: var(--marigold); }
+  .role-col li strong {
+    display: block;
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .role-col li span.body {
+    font-size: 14px;
+    color: var(--slate);
+    line-height: 1.5;
+  }
+
+  /* ============ RESOURCES ============ */
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 48px;
+  }
+  .res-card {
+    border-top: 1px solid var(--ink);
+    padding-top: 18px;
+  }
+  .res-card h4 { font-size: 17px; margin-bottom: 12px; }
+  .res-card ul { list-style: none; margin: 0; padding: 0; }
+  .res-card li {
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--rule-soft);
+    font-size: 14px;
+  }
+  .res-card li:last-child { border-bottom: 0; }
+  .res-card a {
+    color: var(--ink);
+    text-decoration: none;
+    background-image: linear-gradient(var(--crimson), var(--crimson));
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    transition: background-size .3s;
+    padding-bottom: 1px;
+  }
+  .res-card a:hover {
+    background-size: 100% 1px;
+    color: var(--crimson);
+  }
+  .res-card .note {
+    display: block;
+    font-size: 12px;
+    color: var(--slate);
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    padding: 56px 0 72px;
+    border-top: 1px solid var(--rule);
+    margin-top: 24px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+  footer .motto {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.2;
+    color: var(--ink);
+    font-variation-settings: "opsz" 48, "SOFT" 50, "wght" 380;
+    max-width: 16ch;
+  }
+  footer .colophon {
+    font-family: var(--sans);
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: var(--slate);
+    text-transform: uppercase;
+    letter-spacing: .14em;
+  }
+  footer .seal {
+    text-align: right;
+    font-family: var(--serif-display);
+    font-style: italic;
+    color: var(--crimson);
+    font-size: 14px;
+  }
+  footer .seal .ornament {
+    display: block;
+    color: var(--marigold);
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+
+  /* ============ ASIDE / RUNNING NUMBERS ============ */
+  .running-num {
+    position: absolute;
+    top: 96px; right: -8px;
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 180px;
+    line-height: 1;
+    color: var(--paper-deep);
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+    font-variation-settings: "opsz" 144, "SOFT" 80, "wght" 320;
+  }
+  section .wrap > * { position: relative; z-index: 1; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 920px) {
+    section { padding: 64px 0; }
+    .wrap { padding: 0 22px; }
+    .cover-grid { grid-template-columns: 1fr; gap: 48px; }
+    .cover-side { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 32px; }
+    .countdown { grid-template-columns: 1fr 1fr; }
+    .countdown .metric:nth-child(2) { border-right: 0; }
+    .countdown .metric:nth-child(1), .countdown .metric:nth-child(2) { border-bottom: 1px solid var(--rule); }
+    .stand-grid, .roles-grid { grid-template-columns: 1fr; gap: 24px; }
+    .target-grid { grid-template-columns: 1fr; }
+    .target-col { border-right: 0; border-bottom: 1px solid var(--rule-soft); }
+    .target-col:last-child { border-bottom: 0; }
+    .phase, .subject { grid-template-columns: 1fr; gap: 24px; }
+    .phase .focus-grid { grid-template-columns: 1fr; }
+    .rhythm-grid, .test-grid { grid-template-columns: 1fr; gap: 32px; }
+    .formats-grid { grid-template-columns: 1fr 1fr; }
+    .resources-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 24px; text-align: left; }
+    footer .seal { text-align: left; }
+    .student-card { padding: 26px 22px; }
+    .student-notes { grid-template-columns: 1fr; }
+    .running-num { font-size: 100px; top: 56px; }
+    .week-row { grid-template-columns: 60px 1fr 70px 60px; gap: 10px; }
+  }
+  @media (max-width: 560px) {
+    .formats-grid { grid-template-columns: 1fr; }
+    .countdown { grid-template-columns: 1fr 1fr; }
+    .countdown .value { font-size: 40px; }
+    h2 { font-size: 38px; }
+    .cover h1 { font-size: 52px; }
+    .phase .roman-big { font-size: 64px; }
+  }
+
+  /* ============ MICRO ANIMATIONS ============ */
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .cover h1, .cover-lead, .countdown, .students {
+    animation: reveal .9s cubic-bezier(.2,.7,.2,1) backwards;
+  }
+  .cover h1 { animation-delay: .1s; }
+  .students { animation-delay: .25s; }
+  .cover-lead { animation-delay: .35s; }
+  .countdown { animation-delay: .45s; }
+
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+  .reveal-on-scroll.in {
+    opacity: 1; transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#cover" class="crest">
+      <span>SSAT</span><span class="dot"></span>
+      <span class="lang-en">Jasmine + Zoe</span>
+      <span class="lang-zh">茉茉 + Zoe</span>
+    </a>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button data-lang-btn="zh" type="button">中文</button>
+      <button data-lang-btn="en" type="button">EN</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ I · COVER ============ -->
+<section class="cover" id="cover">
+  <div class="wrap">
+    <div class="cover-meta">
+      <span class="smallcaps">
+        <span class="lang-en">Project brief · Established May 2026</span>
+        <span class="lang-zh">备考手账 · 启于 2026 年 5 月</span>
+      </span>
+      <span class="smallcaps">
+        <span class="lang-en">No. I</span>
+        <span class="lang-zh">第一章</span>
+      </span>
+    </div>
+
+    <div class="cover-grid">
+      <div>
+        <h1>
+          <span class="lang-en">Two students.<br>One target.<br><em>Seventeen months.</em></span>
+          <span class="lang-zh">两个学生。<br>一个目标。<br><em>十七个月。</em></span>
+        </h1>
+
+        <p class="cover-lead">
+          <span class="lang-en">
+            Jasmine and Zoe are sixth graders today. By <strong>October 2027</strong> — at the latest by December — they will sit for the <strong>Upper Level SSAT</strong> and earn a score that opens doors. This page is the family ledger: <span class="pull">what's needed, where they stand, what the plan is, and how the months ahead are spent.</span>
+          </span>
+          <span class="lang-zh">
+            茉茉和 Zoe 现在是六年级学生。<strong>2027 年 10 月</strong>（最晚 12 月）她们将参加 <strong>SSAT Upper Level（高级）</strong>考试，争取一个能打开学校之门的分数。这个网页是这个家庭计划的"手账"：<span class="pull">需要做什么，目前在哪儿，规划如何展开，未来的十七个月怎么走。</span>
+          </span>
+        </p>
+      </div>
+
+      <aside class="cover-side">
+        <div class="smallcaps" style="margin-bottom:18px;">
+          <span class="lang-en">Candidates</span>
+          <span class="lang-zh">考生</span>
+        </div>
+        <div class="students">
+          <div class="student-tag">
+            <span class="num">i.</span>
+            <span class="name">Jasmine Chen <span class="zh">茉茉</span></span>
+            <span class="role">
+              <span class="lang-en">Grade 6 · Target: Upper Level</span>
+              <span class="lang-zh">六年级 · 目标 Upper Level</span>
+            </span>
+          </div>
+          <div class="student-tag">
+            <span class="num">ii.</span>
+            <span class="name">Zoe Tang</span>
+            <span class="role">
+              <span class="lang-en">Grade 6 · Target: Upper Level</span>
+              <span class="lang-zh">六年级 · 目标 Upper Level</span>
+            </span>
+          </div>
+        </div>
+        <div class="smallcaps" style="margin-bottom:6px;">
+          <span class="lang-en">Coach</span>
+          <span class="lang-zh">老师</span>
+        </div>
+        <div style="font-family: var(--serif-display); font-size: 22px; line-height:1.2; font-variation-settings:'opsz' 30,'SOFT' 50,'wght' 420;">
+          <span class="lang-en">Mr. Zhang</span>
+          <span class="lang-zh">乐听张老师</span>
+        </div>
+        <div style="font-style: italic; color: var(--slate); font-size:14.5px; margin-top:4px;">
+          <span class="lang-en">Reading first · Vocab steady · Math in spring</span>
+          <span class="lang-zh">先阅读 · 词汇稳推 · 春季加数学</span>
+        </div>
+      </aside>
+    </div>
+
+    <div class="countdown" aria-label="Countdown to target exam">
+      <div class="metric accent">
+        <span class="value"><span id="days-to-target">—</span><span class="unit">d</span></span>
+        <span class="label">
+          <span class="lang-en">to target window · Oct 2027</span>
+          <span class="lang-zh">距目标考试 · 2027 年 10 月</span>
+        </span>
+      </div>
+      <div class="metric">
+        <span class="value"><span id="weeks-to-target">—</span><span class="unit">w</span></span>
+        <span class="label">
+          <span class="lang-en">weeks of preparation</span>
+          <span class="lang-zh">备考周数</span>
+        </span>
+      </div>
+      <div class="metric">
+        <span class="value">3<span class="unit">×</span></span>
+        <span class="label">
+          <span class="lang-en">scored sections to master</span>
+          <span class="lang-zh">三大计分科目</span>
+        </span>
+      </div>
+      <div class="metric">
+        <span class="value">2400</span>
+        <span class="label">
+          <span class="lang-en">upper-level max score</span>
+          <span class="lang-zh">Upper Level 满分</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ II · WHERE WE STAND ============ -->
+<section id="stand">
+  <div class="wrap">
+    <span class="running-num">II</span>
+    <div class="chapter">
+      <span class="roman">II</span>
+      <span>
+        <span class="lang-en">Where we stand</span>
+        <span class="lang-zh">现在在哪儿</span>
+      </span>
+      <span class="rule"></span>
+    </div>
+    <h2>
+      <span class="lang-en">First diagnostic, <em>taken May 2026.</em></span>
+      <span class="lang-zh">第一次模考，<em>2026 年 5 月。</em></span>
+    </h2>
+    <p class="subhead">
+      <span class="lang-en">A Middle Level practice exam — the right yardstick for sixth graders today, even though the real exam will be Upper Level. The same skills carry forward; Upper Level just stretches the ceiling.</span>
+      <span class="lang-zh">这次用的是 Middle Level（中级）真题——六年级的孩子先用中级测水平合适，因为真正参加的 Upper Level（高级）涵盖中级的全部知识点，只是上限更高。</span>
+    </p>
+
+    <div class="stand-grid">
+      <!-- Jasmine -->
+      <article class="student-card j">
+        <div class="head">
+          <div class="name-block">
+            <span class="name">Jasmine</span>
+            <span class="alt">
+              <span class="lang-en">Chen · 茉茉</span>
+              <span class="lang-zh">茉茉</span>
+            </span>
+          </div>
+          <div class="total">
+            <span class="num">1891</span>
+            <span class="scale">
+              <span class="lang-en">Middle Level · 1320–2130</span>
+              <span class="lang-zh">中级满分 2130</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="score-row">
+          <div class="subj">
+            <span class="lang-en">Math</span><span class="lang-zh">数学</span>
+          </div>
+          <div class="bar" style="--pct: 81.5%"></div>
+          <div class="scaled">660</div>
+          <div class="raw">43 / 50</div>
+        </div>
+        <div class="score-row">
+          <div class="subj">
+            <span class="lang-en">Verbal</span><span class="lang-zh">词汇</span>
+          </div>
+          <div class="bar" style="--pct: 72.2%"></div>
+          <div class="scaled">635</div>
+          <div class="raw">38 / 60</div>
+        </div>
+        <div class="score-row">
+          <div class="subj">
+            <span class="lang-en">Reading</span><span class="lang-zh">阅读</span>
+          </div>
+          <div class="bar" style="--pct: 57.8%"></div>
+          <div class="scaled">596</div>
+          <div class="raw">25 / 40</div>
+        </div>
+
+        <div class="student-notes">
+          <div>
+            <h5>
+              <span class="lang-en">Strengths</span>
+              <span class="lang-zh">优势</span>
+            </h5>
+            <ul class="strong">
+              <li>
+                <span class="lang-en">Strong math foundation — already at 660 on Middle Level.</span>
+                <span class="lang-zh">数学基础扎实，中级 660 分。</span>
+              </li>
+              <li>
+                <span class="lang-en">Best vocabulary baseline of the pair, by feel alone.</span>
+                <span class="lang-zh">词汇语感最好，全靠日常积累。</span>
+              </li>
+              <li>
+                <span class="lang-en">Reads with strong intuition for tone and meaning.</span>
+                <span class="lang-zh">阅读语感好，对文本情绪敏感。</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h5>
+              <span class="lang-en">To grow</span>
+              <span class="lang-zh">待提升</span>
+            </h5>
+            <ul class="grow">
+              <li>
+                <span class="lang-en">Reading: terminology &amp; question types — too much "by ear" right now.</span>
+                <span class="lang-zh">阅读：术语和题型识别，目前过度依赖语感。</span>
+              </li>
+              <li>
+                <span class="lang-en">Vocab: begin formal memorization, build root/affix awareness.</span>
+                <span class="lang-zh">词汇：开始系统背诵，建立词根词缀意识。</span>
+              </li>
+              <li>
+                <span class="lang-en">Math: bridge to Upper Level (9th-grade topics) in spring 2027.</span>
+                <span class="lang-zh">数学：明年春季补九年级知识点，进入 Upper Level。</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Zoe -->
+      <article class="student-card z">
+        <div class="head">
+          <div class="name-block">
+            <span class="name">Zoe</span>
+            <span class="alt">
+              <span class="lang-en">Tang</span>
+              <span class="lang-zh">Tang</span>
+            </span>
+          </div>
+          <div class="total">
+            <span class="num">1715</span>
+            <span class="scale">
+              <span class="lang-en">Middle Level · 1320–2130</span>
+              <span class="lang-zh">中级满分 2130</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="score-row">
+          <div class="subj">
+            <span class="lang-en">Math</span><span class="lang-zh">数学</span>
+          </div>
+          <div class="bar" style="--pct: 58.1%"></div>
+          <div class="scaled">597</div>
+          <div class="raw">33 / 50</div>
+        </div>
+        <div class="score-row">
+          <div class="subj">
+            <span class="lang-en">Verbal</span><span class="lang-zh">词汇</span>
+          </div>
+          <div class="bar" style="--pct: 37.0%"></div>
+          <div class="scaled">540</div>
+          <div class="raw">22 / 60</div>
+        </div>
+        <div class="score-row">
+          <div class="subj">
+            <span class="lang-en">Reading</span><span class="lang-zh">阅读</span>
+          </div>
+          <div class="bar" style="--pct: 51.1%"></div>
+          <div class="scaled">578</div>
+          <div class="raw">23 / 40</div>
+        </div>
+
+        <div class="student-notes">
+          <div>
+            <h5>
+              <span class="lang-en">Strengths</span>
+              <span class="lang-zh">优势</span>
+            </h5>
+            <ul class="strong">
+              <li>
+                <span class="lang-en">Reading sits close to Jasmine's — same trajectory, "one moment of doubt" apart.</span>
+                <span class="lang-zh">阅读水平和茉茉很接近——基础相当，差在临场的一念之差。</span>
+              </li>
+              <li>
+                <span class="lang-en">Confident writer — mock writing sample shows narrative voice and pacing.</span>
+                <span class="lang-zh">写作自信、有叙事节奏（已在模考写作中体现）。</span>
+              </li>
+              <li>
+                <span class="lang-en">Pairs well with Jasmine — same reading level lets them learn together.</span>
+                <span class="lang-zh">和茉茉阅读水平 match，非常适合一起上小班课。</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h5>
+              <span class="lang-en">To grow</span>
+              <span class="lang-zh">待提升</span>
+            </h5>
+            <ul class="grow">
+              <li>
+                <span class="lang-en">Vocabulary from a low base — she has not memorized SSAT words yet.</span>
+                <span class="lang-zh">词汇基础较薄，几乎全靠猜，需从零建立背词习惯。</span>
+              </li>
+              <li>
+                <span class="lang-en">Math: missed ~17 questions — fundamentals need reinforcement sooner.</span>
+                <span class="lang-zh">数学错题较多（错 17 题），需更早接入数学补充。</span>
+              </li>
+              <li>
+                <span class="lang-en">Reading: same gaps as Jasmine — terms, genres, question types.</span>
+                <span class="lang-zh">阅读：和茉茉同样的三大空白——术语、题材、题型。</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <blockquote class="teacher-quote">
+      <span class="lang-en">"From total score, Jasmine is a little stronger than Zoe — but in <strong>reading</strong> they're matched. That's exactly why a small-group reading class works for them. We'll start there. Vocabulary every two to three weeks. Math waits until spring 2027 — by then the school will have covered more material, and we can layer in Upper Level question patterns."</span>
+      <span class="lang-zh">"从总分看茉茉略好一些，但<strong>阅读</strong>两个孩子非常接近——所以一对二的阅读课很合适。<strong>阅读先行</strong>，<strong>词汇两到三周一次</strong>，<strong>数学等到明年春季</strong>再开课。那时她们在学校的数学也补足了，我们再带入 Upper Level 的题型。"</span>
+      <cite>
+        <span class="lang-en">— Mr. Zhang · Coach, after Mock Exam I</span>
+        <span class="lang-zh">— 张老师 · 第一次模考分析</span>
+      </cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============ III · THE TARGET ============ -->
+<section id="target">
+  <div class="wrap">
+    <span class="running-num">III</span>
+    <div class="chapter">
+      <span class="roman">III</span>
+      <span>
+        <span class="lang-en">The Target</span>
+        <span class="lang-zh">目标</span>
+      </span>
+      <span class="rule"></span>
+    </div>
+    <h2>
+      <span class="lang-en">Upper Level SSAT, <em>October 2027.</em></span>
+      <span class="lang-zh">Upper Level SSAT，<em>2027 年 10 月。</em></span>
+    </h2>
+    <p class="subhead">
+      <span class="lang-en">The Upper Level test serves grades 8–11. Same structure as Middle Level, harder content, a larger score scale, and a percentile pool measured against the most competitive applicants in North America.</span>
+      <span class="lang-zh">Upper Level（高级）面向 8–11 年级学生。题目结构与中级一致，但内容更难、量程更大；百分位是和北美最有竞争力的私校申请群体进行比较。</span>
+    </p>
+
+    <div class="target-grid">
+      <div class="target-col">
+        <div class="smallcaps">
+          <span class="lang-en">The Exam</span>
+          <span class="lang-zh">考试</span>
+        </div>
+        <h3>
+          <span class="lang-en">3 hours, 167 questions</span>
+          <span class="lang-zh">3 小时 · 167 题</span>
+        </h3>
+        <ul>
+          <li><span><span class="lang-en">Writing Sample</span><span class="lang-zh">写作样本</span></span><span>25 min · 1</span></li>
+          <li><span><span class="lang-en">Quantitative I</span><span class="lang-zh">数学 I</span></span><span>30 min · 25</span></li>
+          <li><span><span class="lang-en">Reading</span><span class="lang-zh">阅读</span></span><span>40 min · 40</span></li>
+          <li><span><span class="lang-en">Verbal</span><span class="lang-zh">词汇</span></span><span>30 min · 60</span></li>
+          <li><span><span class="lang-en">Quantitative II</span><span class="lang-zh">数学 II</span></span><span>30 min · 25</span></li>
+          <li><span><span class="lang-en">Experimental</span><span class="lang-zh">实验题</span></span><span>15 min · 16</span></li>
+        </ul>
+        <p class="caption" style="margin-top:14px;">
+          <span class="lang-en">+1 correct, −0.25 wrong, 0 blank.</span>
+          <span class="lang-zh">答对 +1，答错 −0.25，空题 0。</span>
+        </p>
+      </div>
+
+      <div class="target-col">
+        <div class="smallcaps">
+          <span class="lang-en">The Score</span>
+          <span class="lang-zh">分数目标</span>
+        </div>
+        <div class="figure">2200<span class="small">+</span></div>
+        <p class="caption">
+          <span class="lang-en">A working target — roughly the 85th–90th percentile for our grade and gender norm group.</span>
+          <span class="lang-zh">工作目标分——大致对应同年级同性别 85–90 百分位区间。</span>
+        </p>
+        <ul>
+          <li><span><span class="lang-en">Section range</span><span class="lang-zh">单科量程</span></span><span>500–800</span></li>
+          <li><span><span class="lang-en">Total range</span><span class="lang-zh">总分量程</span></span><span>1500–2400</span></li>
+          <li><span><span class="lang-en">Norm group</span><span class="lang-zh">百分位参照</span></span><span>3-yr rolling</span></li>
+          <li><span><span class="lang-en">Per-section target</span><span class="lang-zh">单科目标</span></span><span>~720+</span></li>
+        </ul>
+      </div>
+
+      <div class="target-col">
+        <div class="smallcaps">
+          <span class="lang-en">The Schools</span>
+          <span class="lang-zh">目标学校层级</span>
+        </div>
+        <h3>
+          <span class="lang-en">85th percentile and up</span>
+          <span class="lang-zh">85 百分位以上</span>
+        </h3>
+        <ul>
+          <li><span>Phillips Exeter</span><span>~85+</span></li>
+          <li><span>Andover</span><span>~90–95</span></li>
+          <li><span>Choate Rosemary Hall</span><span>~90+</span></li>
+          <li><span>Lawrenceville</span><span>~95+</span></li>
+          <li><span>Deerfield · Hotchkiss · Groton</span><span>~85+</span></li>
+        </ul>
+        <p class="caption" style="margin-top:14px;">
+          <span class="lang-en">Commonly cited ranges, not official cutoffs. The SSAT is one factor — grades, recommendations, interviews, and essays carry weight.</span>
+          <span class="lang-zh">以上为第三方常引用的区间，并非学校公开的录取分数线。SSAT 只是申请要素之一，成绩单、推荐信、面试、文书同等重要。</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="target-disclaimer">
+      <span class="lang-en"><strong>A note on percentiles.</strong> SSAT percentiles compare each test-taker against same-grade, same-gender peers over a rolling three-year norm group. That group is already an elite, self-selected pool — so the 50th percentile is already a strong absolute score, and 90th+ is genuinely competitive.</span>
+      <span class="lang-zh"><strong>关于百分位。</strong>SSAT 的百分位是和过去三年同年级同性别的考生群体进行比较。这本身就是一个高水平、自筛过的群体，所以 50 百分位的实际水平已经不弱；90 百分位以上才算真正具备竞争力。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IV · THE PLAN ============ -->
+<section id="plan">
+  <div class="wrap">
+    <span class="running-num">IV</span>
+    <div class="chapter">
+      <span class="roman">IV</span>
+      <span>
+        <span class="lang-en">The Plan</span>
+        <span class="lang-zh">三阶段规划</span>
+      </span>
+      <span class="rule"></span>
+    </div>
+    <h2>
+      <span class="lang-en">Foundation. Build. <em>Sprint.</em></span>
+      <span class="lang-zh">打基础。搭框架。<em>冲刺。</em></span>
+    </h2>
+    <p class="subhead">
+      <span class="lang-en">Mr. Zhang's strategy — reading first, vocabulary patient and steady, math layered in once the school curriculum has caught up. Seventeen months. Three phases.</span>
+      <span class="lang-zh">张老师的总体路线——阅读先行，词汇细水长流，等学校数学课进度跟上后再加入针对性的数学课。十七个月，分三阶段。</span>
+    </p>
+
+    <div class="phases">
+      <!-- PHASE I -->
+      <div class="phase">
+        <div class="marker">
+          <span class="roman-big">I</span>
+          <div class="label">
+            <span class="lang-en">Foundation</span>
+            <span class="lang-zh">打基础阶段</span>
+          </div>
+          <div class="dates">May 2026 — Feb 2027</div>
+        </div>
+        <div>
+          <h3>
+            <span class="lang-en">Read first. Build the vocab habit. Math by self-practice.</span>
+            <span class="lang-zh">先建阅读底子。培养背单词习惯。数学先自己刷题。</span>
+          </h3>
+          <p class="copy">
+            <span class="lang-en">Both girls already have strong reading instincts. This phase converts instinct into method — naming what they're doing, learning the SSAT's question vocabulary, expanding the range of genres they're fluent in. Vocabulary classes every two to three weeks to seed the habit. Math stays at school pace; Mr. Zhang sends practice sets to keep the muscle warm.</span>
+            <span class="lang-zh">两个孩子的阅读语感都不错。这一阶段的任务是把"语感"转化成"方法"——给所做的事情命名，学会 SSAT 的阅读术语，扩展熟悉的题材范围。词汇课每 2–3 周一次，先建立"背单词"这件事的习惯感。数学跟随学校进度，张老师会发针对性的练习题保持手感。</span>
+          </p>
+          <div class="focus-grid">
+            <div class="focus-card">
+              <h5><span class="lang-en">Reading</span><span class="lang-zh">阅读</span></h5>
+              <span class="head-large">
+                <span class="lang-en">1× / week · 1.5–2 hrs</span>
+                <span class="lang-zh">每周 1 次 · 1.5–2 小时</span>
+              </span>
+              <span class="lang-en">Small-group (1-on-2) with Mr. Zhang. Cover terminology, genres, and the SSAT question type taxonomy.</span>
+              <span class="lang-zh">小班课（一对二）。覆盖阅读术语、文体差异、SSAT 题型分类。</span>
+            </div>
+            <div class="focus-card alt">
+              <h5><span class="lang-en">Vocabulary</span><span class="lang-zh">词汇</span></h5>
+              <span class="head-large">
+                <span class="lang-en">Every 2–3 weeks</span>
+                <span class="lang-zh">每 2–3 周一次</span>
+              </span>
+              <span class="lang-en">Middle Level word lists, root/affix patterns, abstract analogy logic.</span>
+              <span class="lang-zh">中级词表 + 词根词缀 + 抽象类比关系训练。</span>
+            </div>
+            <div class="focus-card alt2">
+              <h5><span class="lang-en">Math</span><span class="lang-zh">数学</span></h5>
+              <span class="head-large">
+                <span class="lang-en">Self-practice</span>
+                <span class="lang-zh">自主刷题</span>
+              </span>
+              <span class="lang-en">Practice sets from Mr. Zhang. Zoe may add a separate math tutor.</span>
+              <span class="lang-zh">张老师布置专项练习。Zoe 如有需要可单独加一位数学老师。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE II -->
+      <div class="phase">
+        <div class="marker">
+          <span class="roman-big">II</span>
+          <div class="label">
+            <span class="lang-en">Build</span>
+            <span class="lang-zh">搭框架阶段</span>
+          </div>
+          <div class="dates">Mar 2027 — Jul 2027</div>
+        </div>
+        <div>
+          <h3>
+            <span class="lang-en">Math joins the lineup. Practice tests begin.</span>
+            <span class="lang-zh">加入数学课。开始系统模考。</span>
+          </h3>
+          <p class="copy">
+            <span class="lang-en">Spring is when math becomes a formal subject — Upper Level reaches into 9th-grade content, so a structured class fills in topic gaps and introduces SSAT-specific problem framing. Reading and vocabulary continue, now applied directly to Upper Level material. A practice exam every 4–6 weeks to learn pacing and pressure.</span>
+            <span class="lang-zh">春季正式开数学课——Upper Level 会考到九年级知识点，需要有针对性地补齐知识空白，并训练 SSAT 特有的题目描述方式。阅读和词汇继续，开始转向 Upper Level 材料。每 4–6 周做一次完整模考，训练节奏感和抗压能力。</span>
+          </p>
+          <div class="focus-grid">
+            <div class="focus-card">
+              <h5><span class="lang-en">Reading</span><span class="lang-zh">阅读</span></h5>
+              <span class="head-large">
+                <span class="lang-en">Upper Level passages</span>
+                <span class="lang-zh">Upper Level 选段</span>
+              </span>
+              <span class="lang-en">Same weekly cadence, harder material, drilling weak question types.</span>
+              <span class="lang-zh">每周节奏不变，材料升级，重点训练薄弱题型。</span>
+            </div>
+            <div class="focus-card alt">
+              <h5><span class="lang-en">Vocabulary</span><span class="lang-zh">词汇</span></h5>
+              <span class="head-large">
+                <span class="lang-en">Upper Level word lists</span>
+                <span class="lang-zh">Upper Level 词表</span>
+              </span>
+              <span class="lang-en">Daily review built into routine. Analogy logic drills weekly.</span>
+              <span class="lang-zh">每日复习成为习惯，类比题每周专项训练。</span>
+            </div>
+            <div class="focus-card alt2">
+              <h5><span class="lang-en">Math</span><span class="lang-zh">数学</span></h5>
+              <span class="head-large">
+                <span class="lang-en">New formal class</span>
+                <span class="lang-zh">正式开课</span>
+              </span>
+              <span class="lang-en">9th-grade gap-filling, SSAT-style word problems, mock-exam debriefs.</span>
+              <span class="lang-zh">九年级知识点补齐，SSAT 风格应用题，模考讲评。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE III -->
+      <div class="phase">
+        <div class="marker">
+          <span class="roman-big">III</span>
+          <div class="label">
+            <span class="lang-en">Sprint</span>
+            <span class="lang-zh">冲刺阶段</span>
+          </div>
+          <div class="dates">Aug 2027 — Oct 2027</div>
+        </div>
+        <div>
+          <h3>
+            <span class="lang-en">Full-length mocks. Refinement. Test-day readiness.</span>
+            <span class="lang-zh">全真模考密集。查漏补缺。临场调整。</span>
+          </h3>
+          <p class="copy">
+            <span class="lang-en">The final ten weeks shift to test-condition practice: full-length mocks under timing and silence, targeted review of error patterns, vocabulary at sustained pressure, and the rhythms of the testing day. Register the moment the 2027–28 SSAT calendar opens on August 1, 2027.</span>
+            <span class="lang-zh">最后十周转入"实战训练"：定时全真模考、错题专项复盘、词汇压力测试、考试当天作息节奏。<strong>务必在 2027 年 8 月 1 日 SSAT 公布新一年考试日期时立即报名。</strong></span>
+          </p>
+          <div class="focus-grid">
+            <div class="focus-card">
+              <h5><span class="lang-en">Cadence</span><span class="lang-zh">节奏</span></h5>
+              <span class="head-large">
+                <span class="lang-en">Mock every 1–2 weeks</span>
+                <span class="lang-zh">每 1–2 周一次模考</span>
+              </span>
+              <span class="lang-en">Real timing. Real silence. Same room, same hour, same pencils.</span>
+              <span class="lang-zh">真实时长，真实安静，固定房间、固定时间、固定铅笔。</span>
+            </div>
+            <div class="focus-card alt">
+              <h5><span class="lang-en">Debrief</span><span class="lang-zh">复盘</span></h5>
+              <span class="head-large">
+                <span class="lang-en">Error log discipline</span>
+                <span class="lang-zh">错题本</span>
+              </span>
+              <span class="lang-en">Every wrong answer categorized: knowledge gap, careless, time, or trap.</span>
+              <span class="lang-zh">每道错题归类：知识漏洞 / 粗心 / 时间不够 / 出题陷阱。</span>
+            </div>
+            <div class="focus-card alt2">
+              <h5><span class="lang-en">Rest</span><span class="lang-zh">休整</span></h5>
+              <span class="head-large">
+                <span class="lang-en">Taper week before</span>
+                <span class="lang-zh">考前一周减量</span>
+              </span>
+              <span class="lang-en">Light review only. Sleep regular. Confidence over volume.</span>
+              <span class="lang-zh">只做轻量复习，作息规律，状态优先于刷题量。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ V · WEEKLY RHYTHM ============ -->
+<section id="rhythm">
+  <div class="wrap">
+    <span class="running-num">V</span>
+    <div class="chapter">
+      <span class="roman">V</span>
+      <span>
+        <span class="lang-en">Weekly Rhythm</span>
+        <span class="lang-zh">每周节奏</span>
+      </span>
+      <span class="rule"></span>
+    </div>
+    <h2>
+      <span class="lang-en">A small <em>steady</em> week.</span>
+      <span class="lang-zh">每周一份<em>稳定</em>的功课。</span>
+    </h2>
+    <p class="subhead">
+      <span class="lang-en">The plan during Phase I — the everyday version. Designed to fit alongside school and not crowd it out. Daily habits matter more than the weekend marathon.</span>
+      <span class="lang-zh">第一阶段的日常版本，设计原则是和学校并行而不挤占。每天的小习惯比周末的"突击"更重要。</span>
+    </p>
+
+    <div class="rhythm-grid">
+      <div class="week-table">
+        <div class="week-row head">
+          <div><span class="lang-en">Day</span><span class="lang-zh">日</span></div>
+          <div><span class="lang-en">Activity</span><span class="lang-zh">内容</span></div>
+          <div><span class="lang-en">Duration</span><span class="lang-zh">时长</span></div>
+          <div><span class="lang-en">Where</span><span class="lang-zh">场景</span></div>
+        </div>
+        <div class="week-row">
+          <div class="day"><span class="lang-en">Mon</span><span class="lang-zh">周一</span></div>
+          <div class="activity">
+            <span class="lang-en">Vocabulary review (15 new + 30 cumulative)</span>
+            <span class="lang-zh">词汇复习（15 新 + 30 累计）</span>
+            <span class="sub"><span class="lang-en">Cards, spaced; speak aloud.</span><span class="lang-zh">用卡片做间隔复习，朗读出声。</span></span>
+          </div>
+          <div class="duration">20 min</div>
+          <div class="who"><span class="lang-en">home</span><span class="lang-zh">家</span></div>
+        </div>
+        <div class="week-row">
+          <div class="day"><span class="lang-en">Tue</span><span class="lang-zh">周二</span></div>
+          <div class="activity">
+            <span class="lang-en">Reading: one short passage + question set</span>
+            <span class="lang-zh">阅读：一篇短文 + 题目</span>
+            <span class="sub"><span class="lang-en">Mark uncertain answers; don't grade yet.</span><span class="lang-zh">不确定的题做标记，先不对答案。</span></span>
+          </div>
+          <div class="duration">30 min</div>
+          <div class="who"><span class="lang-en">home</span><span class="lang-zh">家</span></div>
+        </div>
+        <div class="week-row">
+          <div class="day"><span class="lang-en">Wed</span><span class="lang-zh">周三</span></div>
+          <div class="activity">
+            <span class="lang-en">Math: 10 practice problems from Mr. Zhang's set</span>
+            <span class="lang-zh">数学：完成张老师练习中 10 题</span>
+            <span class="sub"><span class="lang-en">Show work; review errors immediately.</span><span class="lang-zh">写明过程，错题立即订正。</span></span>
+          </div>
+          <div class="duration">25 min</div>
+          <div class="who"><span class="lang-en">home</span><span class="lang-zh">家</span></div>
+        </div>
+        <div class="week-row">
+          <div class="day"><span class="lang-en">Thu</span><span class="lang-zh">周四</span></div>
+          <div class="activity">
+            <span class="lang-en">Reading session with Mr. Zhang (1-on-2)</span>
+            <span class="lang-zh">和张老师上阅读课（一对二）</span>
+            <span class="sub"><span class="lang-en">Terminology · genre · question-type focus.</span><span class="lang-zh">术语、文体、题型分类。</span></span>
+          </div>
+          <div class="duration">90–120 min</div>
+          <div class="who"><span class="lang-en">live</span><span class="lang-zh">直播课</span></div>
+        </div>
+        <div class="week-row">
+          <div class="day"><span class="lang-en">Fri</span><span class="lang-zh">周五</span></div>
+          <div class="activity">
+            <span class="lang-en">Vocabulary review (cumulative only)</span>
+            <span class="lang-zh">词汇复习（仅复盘）</span>
+            <span class="sub"><span class="lang-en">Light day — re-read class notes.</span><span class="lang-zh">轻松一天，回看上课笔记。</span></span>
+          </div>
+          <div class="duration">15 min</div>
+          <div class="who"><span class="lang-en">home</span><span class="lang-zh">家</span></div>
+        </div>
+        <div class="week-row">
+          <div class="day"><span class="lang-en">Sat</span><span class="lang-zh">周六</span></div>
+          <div class="activity">
+            <span class="lang-en">Reading + Math practice (longer block)</span>
+            <span class="lang-zh">阅读 + 数学（较长时段）</span>
+            <span class="sub"><span class="lang-en">2 passages and ~15 math problems.</span><span class="lang-zh">2 篇阅读 + 约 15 道数学题。</span></span>
+          </div>
+          <div class="duration">75 min</div>
+          <div class="who"><span class="lang-en">home</span><span class="lang-zh">家</span></div>
+        </div>
+        <div class="week-row">
+          <div class="day"><span class="lang-en">Sun</span><span class="lang-zh">周日</span></div>
+          <div class="activity">
+            <span class="lang-en">Rest — light reading for pleasure</span>
+            <span class="lang-zh">休息——读自己喜欢的书</span>
+            <span class="sub"><span class="lang-en">Anything that's not a test prep book.</span><span class="lang-zh">什么书都行，只要不是备考书。</span></span>
+          </div>
+          <div class="duration">free</div>
+          <div class="who"><span class="lang-en">life</span><span class="lang-zh">生活</span></div>
+        </div>
+      </div>
+
+      <aside class="rhythm-aside">
+        <h4>
+          <span class="lang-en">Recurring beats</span>
+          <span class="lang-zh">每周关键节奏</span>
+        </h4>
+        <ul>
+          <li>
+            <span class="num">1× wk</span>
+            <span>
+              <span class="lang-en">Reading class with Mr. Zhang — small-group, 1.5–2 hours.</span>
+              <span class="lang-zh">每周一次张老师阅读课，1.5–2 小时。</span>
+            </span>
+          </li>
+          <li>
+            <span class="num">~ 3 wk</span>
+            <span>
+              <span class="lang-en">Vocabulary class — root/affix, analogies, abstract relationships.</span>
+              <span class="lang-zh">每 2–3 周一次词汇课，词根词缀、类比、抽象关系。</span>
+            </span>
+          </li>
+          <li>
+            <span class="num">daily</span>
+            <span>
+              <span class="lang-en">15–30 minute habit — vocab cards, short passage, or math drill.</span>
+              <span class="lang-zh">每日 15–30 分钟习惯——卡片、短文、或数学题。</span>
+            </span>
+          </li>
+          <li>
+            <span class="num">monthly</span>
+            <span>
+              <span class="lang-en">Family check-in — read this page together, look at the calendar.</span>
+              <span class="lang-zh">每月一次家庭对账——一起翻开这一页，看看时间线。</span>
+            </span>
+          </li>
+          <li>
+            <span class="num">Sun</span>
+            <span>
+              <span class="lang-en">A full day off prep. Sleep, friends, life.</span>
+              <span class="lang-zh">完整休息一天，睡好觉，约朋友，过生活。</span>
+            </span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VI · BY SUBJECT ============ -->
+<section id="subjects">
+  <div class="wrap">
+    <span class="running-num">VI</span>
+    <div class="chapter">
+      <span class="roman">VI</span>
+      <span>
+        <span class="lang-en">By Subject</span>
+        <span class="lang-zh">分科目</span>
+      </span>
+      <span class="rule"></span>
+    </div>
+    <h2>
+      <span class="lang-en">Four lanes, <em>one road.</em></span>
+      <span class="lang-zh">四条赛道，<em>同一条路。</em></span>
+    </h2>
+    <p class="subhead">
+      <span class="lang-en">Each section of the SSAT trains a different skill. The plan below shows how each is approached over the next seventeen months — what to learn, in what order, and how progress is measured.</span>
+      <span class="lang-zh">SSAT 的每一个科目训练一种不同的能力。下面按科目展开未来十七个月的安排——学什么、按什么顺序、用什么衡量进度。</span>
+    </p>
+
+    <div class="subjects">
+
+      <!-- Reading -->
+      <div class="subject reading">
+        <div class="label-block">
+          <span class="glyph">R</span>
+          <div class="smallcaps">
+            <span class="lang-en">Reading · 40 q in 40 min</span>
+            <span class="lang-zh">阅读 · 40 题 / 40 分钟</span>
+          </div>
+        </div>
+        <div>
+          <h3>
+            <span class="lang-en">Reading <small>The lead subject. Where the plan begins.</small></span>
+            <span class="lang-zh">阅读 <small>头号科目。整个规划从这里开始。</small></span>
+          </h3>
+          <div class="subject-body">
+            <div class="meta-row">
+              <span class="pill crimson"><span class="lang-en">Phase I lead</span><span class="lang-zh">第一阶段主科</span></span>
+              <span class="pill"><span class="lang-en">7 passages</span><span class="lang-zh">7 篇文章</span></span>
+              <span class="pill"><span class="lang-en">fiction · poetry · science · argument</span><span class="lang-zh">小说·诗歌·科普·论说</span></span>
+            </div>
+            <p>
+              <span class="lang-en">Both girls read well by ear today — but the test rewards method. Mr. Zhang structures Phase I around three gaps to fill, in this order:</span>
+              <span class="lang-zh">两个孩子目前主要靠语感读，但考试更奖励"方法"。张老师把第一阶段的阅读训练分成三个递进任务：</span>
+            </p>
+            <ol>
+              <li>
+                <strong><span class="lang-en">Terminology</span><span class="lang-zh">术语补齐</span></strong>
+                <span class="lang-en">Simile, metaphor, personification, irony, tone, theme, inference — name the device, name the move.</span>
+                <span class="lang-zh">比喻、隐喻、拟人、反讽、语气、主旨、推断——给修辞和阅读动作"命名"。</span>
+              </li>
+              <li>
+                <strong><span class="lang-en">Genre awareness</span><span class="lang-zh">题材熟悉度</span></strong>
+                <span class="lang-en">Recognize each passage type's conventions: how to crack a fiction excerpt, what a persuasive essay is asking for, how a science passage signals its main claim.</span>
+                <span class="lang-zh">熟悉每类文体的规律：如何快速拆解一段小说选段，论说文在问什么，科普类如何标记主旨。</span>
+              </li>
+              <li>
+                <strong><span class="lang-en">Question types</span><span class="lang-zh">题型识别</span></strong>
+                <span class="lang-en">Detail · main idea · inference · vocabulary-in-context · tone · purpose · structure. Each has its own attack.</span>
+                <span class="lang-zh">细节题、主旨题、推断题、语境词义题、语气题、目的题、结构题——每种题型都有专属解法。</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vocab -->
+      <div class="subject vocab">
+        <div class="label-block">
+          <span class="glyph">V</span>
+          <div class="smallcaps">
+            <span class="lang-en">Verbal · 60 q in 30 min</span>
+            <span class="lang-zh">词汇 · 60 题 / 30 分钟</span>
+          </div>
+        </div>
+        <div>
+          <h3>
+            <span class="lang-en">Vocabulary <small>The slow burn. Trust the cumulative effect.</small></span>
+            <span class="lang-zh">词汇 <small>慢工出细活。靠累积效应。</small></span>
+          </h3>
+          <div class="subject-body">
+            <div class="meta-row">
+              <span class="pill gold"><span class="lang-en">30 synonyms + 30 analogies</span><span class="lang-zh">30 同义词 + 30 类比</span></span>
+              <span class="pill"><span class="lang-en">~500–1000 high-frequency words</span><span class="lang-zh">~500–1000 高频词</span></span>
+              <span class="pill"><span class="lang-en">SAT-adjacent difficulty</span><span class="lang-zh">接近 SAT 难度</span></span>
+            </div>
+            <p>
+              <span class="lang-en">Neither girl has formally memorized SSAT vocabulary yet — Zoe especially is starting from feel only. The danger is overwhelm. The strategy is patience.</span>
+              <span class="lang-zh">两个孩子都还没系统背过 SSAT 单词，Zoe 尤其是从语感出发。最大的风险是"压力过大、想放弃"，所以策略是——慢下来。</span>
+            </p>
+            <ol>
+              <li>
+                <strong><span class="lang-en">Build the habit before the volume</span><span class="lang-zh">先建立背词习惯</span></strong>
+                <span class="lang-en">Start with Middle Level lists; they nest inside Upper Level, so nothing is wasted. 15 new + 30 cumulative, daily.</span>
+                <span class="lang-zh">从中级词表入手——中级词在高级词中是子集，不会白背。每日 15 新词 + 30 累计复习。</span>
+              </li>
+              <li>
+                <strong><span class="lang-en">Roots and affixes</span><span class="lang-zh">词根词缀</span></strong>
+                <span class="lang-en">A small set of high-yield Latin and Greek roots unlocks dozens of words each. <em>nov-</em> means new; <em>somn-</em> means sleep; <em>chrono-</em> means time.</span>
+                <span class="lang-zh">少量高产词根能解锁大量单词。<em>nov-</em> 表 "new"，<em>somn-</em> 表 "sleep"，<em>chrono-</em> 表 "time"，等等。</span>
+              </li>
+              <li>
+                <strong><span class="lang-en">Analogy logic</span><span class="lang-zh">类比逻辑</span></strong>
+                <span class="lang-en">The trickiest verbal genre. Train the abstract relationships: degree, opposition, function, part-to-whole, cause-and-effect.</span>
+                <span class="lang-zh">最难拿分的题型。系统训练抽象关系：程度、相反、功能、部分整体、因果。</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Math -->
+      <div class="subject math">
+        <div class="label-block">
+          <span class="glyph">M</span>
+          <div class="smallcaps">
+            <span class="lang-en">Quantitative · 50 q in 60 min</span>
+            <span class="lang-zh">数学 · 50 题 / 60 分钟</span>
+          </div>
+        </div>
+        <div>
+          <h3>
+            <span class="lang-en">Math <small>Important but not urgent — yet. Formal start: spring 2027.</small></span>
+            <span class="lang-zh">数学 <small>重要但不紧急——明年春季正式开课。</small></span>
+          </h3>
+          <div class="subject-body">
+            <div class="meta-row">
+              <span class="pill sage"><span class="lang-en">Two sections of 25</span><span class="lang-zh">两段 · 各 25 题</span></span>
+              <span class="pill"><span class="lang-en">no calculator</span><span class="lang-zh">不允许计算器</span></span>
+              <span class="pill"><span class="lang-en">arithmetic · algebra · geometry · data</span><span class="lang-zh">算术·代数·几何·数据</span></span>
+            </div>
+            <p>
+              <span class="lang-en">Upper Level math reaches into 9th-grade topics — content the girls' school will keep covering through 7th and into 8th grade. Mr. Zhang's recommendation is to let school carry the curriculum, supplement with practice now, and bring in a structured class when the gap with 9th-grade content shows up.</span>
+              <span class="lang-zh">Upper Level 数学会涉及九年级知识点——这些内容学校在 7 年级和 8 年级会陆续覆盖。张老师的建议是：现阶段让学校承担基础进度，自己刷张老师布置的题保持手感；明年春季当 9 年级内容的差距浮现时，再开正式数学课。</span>
+            </p>
+            <ol>
+              <li>
+                <strong><span class="lang-en">Now → Feb 2027</span><span class="lang-zh">现在 → 2027 年 2 月</span></strong>
+                <span class="lang-en">Self-practice from Mr. Zhang's Middle Level sets. ~10 problems, 3× / week. Maintain accuracy; build speed slowly.</span>
+                <span class="lang-zh">用张老师发的中级题刷题。每周 3 次，每次约 10 题。先保证正确率，再慢慢提速。</span>
+              </li>
+              <li>
+                <strong><span class="lang-en">Mar — Jul 2027</span><span class="lang-zh">2027 年 3 月 — 7 月</span></strong>
+                <span class="lang-en">Structured math class begins. Fill 9th-grade gaps. Translate SSAT question phrasing into clean equations.</span>
+                <span class="lang-zh">数学课正式开始。补齐九年级知识空白，训练把 SSAT 的题目描述转化为干净的方程。</span>
+              </li>
+              <li>
+                <strong><span class="lang-en">Zoe note</span><span class="lang-zh">Zoe 个性化建议</span></strong>
+                <span class="lang-en">If math feels heavy before spring, add a dedicated math tutor earlier — current diagnostic suggests faster reinforcement helps.</span>
+                <span class="lang-zh">如果春季前数学吃力，可以提前加一位专门的数学老师——目前的诊断显示她比茉茉更需要提前补充。</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Writing -->
+      <div class="subject writing">
+        <div class="label-block">
+          <span class="glyph">W</span>
+          <div class="smallcaps">
+            <span class="lang-en">Writing · 1 essay in 25 min</span>
+            <span class="lang-zh">写作 · 1 篇 / 25 分钟</span>
+          </div>
+        </div>
+        <div>
+          <h3>
+            <span class="lang-en">Writing <small>Not scored. Still sent. Still matters.</small></span>
+            <span class="lang-zh">写作 <small>不计分，但会寄给学校。仍然重要。</small></span>
+          </h3>
+          <div class="subject-body">
+            <div class="meta-row">
+              <span class="pill"><span class="lang-en">25 minutes</span><span class="lang-zh">25 分钟</span></span>
+              <span class="pill"><span class="lang-en">narrative or persuasive prompt</span><span class="lang-zh">叙事题 或 论说题</span></span>
+              <span class="pill"><span class="lang-en">sent to every receiving school</span><span class="lang-zh">寄给所有申请学校</span></span>
+            </div>
+            <p>
+              <span class="lang-en">Zoe's mock writing sample already shows pacing, character, and a real ending. That's the baseline. Practice mainly serves two purposes: comfort with the timer, and a clean opening sentence that doesn't waste the first three minutes.</span>
+              <span class="lang-zh">Zoe 的模考写作已经展现出节奏感、人物刻画和完整结尾，水平不弱。后续主要练两件事：习惯 25 分钟的紧迫感，以及第一句话不浪费时间——干净利落地切入主题。</span>
+            </p>
+            <ol>
+              <li>
+                <strong><span class="lang-en">Once a month — a timed writing</span><span class="lang-zh">每月一次定时写作</span></strong>
+                <span class="lang-en">25 minutes, real prompt, no calculator clock — just write.</span>
+                <span class="lang-zh">25 分钟整，真实考题，不偷看时间，纯写。</span>
+              </li>
+              <li>
+                <strong><span class="lang-en">Read it aloud the next day</span><span class="lang-zh">第二天大声朗读</span></strong>
+                <span class="lang-en">Sentences that trip the tongue read poorly in admissions readers' heads too.</span>
+                <span class="lang-zh">读起来卡的句子，招生老师读起来也卡。</span>
+              </li>
+              <li>
+                <strong><span class="lang-en">Keep a "first-line bank"</span><span class="lang-zh">建立"开场句库"</span></strong>
+                <span class="lang-en">A handful of opening moves you trust — concrete image, surprising statement, dialogue mid-action.</span>
+                <span class="lang-zh">积累几个有把握的开场方式——具体画面、出人意料的陈述、动作中的对话。</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ VII · CALENDAR ============ -->
+<section id="calendar">
+  <div class="wrap">
+    <span class="running-num">VII</span>
+    <div class="chapter">
+      <span class="roman">VII</span>
+      <span>
+        <span class="lang-en">The Calendar</span>
+        <span class="lang-zh">时间线</span>
+      </span>
+      <span class="rule"></span>
+    </div>
+    <h2>
+      <span class="lang-en">Seventeen months, <em>one milestone at a time.</em></span>
+      <span class="lang-zh">十七个月，<em>一里程碑一脚印。</em></span>
+    </h2>
+    <p class="subhead">
+      <span class="lang-en">A working timeline from the first diagnostic to the target exam. Two key dates depend on EMA's annual schedule release on August 1 — adjust as the official 2027–28 calendar is published.</span>
+      <span class="lang-zh">从第一次模考到正式考试的工作时间线。其中两个关键日期取决于 EMA 每年 8 月 1 日发布的考试日程——2027–28 年度日历公布后再做调整。</span>
+    </p>
+
+    <div class="calendar">
+      <div class="timeline">
+
+        <div class="milestone active">
+          <div class="date">May 2026 · now</div>
+          <div class="title"><span class="lang-en">First diagnostic complete</span><span class="lang-zh">第一次模考完成</span></div>
+          <div class="desc">
+            <span class="lang-en">Jasmine <strong>1891</strong> · Zoe <strong>1715</strong> on Middle Level. Reading strengths identified, vocab and math priorities set.</span>
+            <span class="lang-zh">茉茉 <strong>1891</strong>，Zoe <strong>1715</strong>（中级）。已识别阅读优势，明确词汇与数学优先级。</span>
+          </div>
+        </div>
+
+        <div class="milestone">
+          <div class="date">Jun — Aug 2026</div>
+          <div class="title"><span class="lang-en">Summer — establish the rhythm</span><span class="lang-zh">夏季——建立节奏</span></div>
+          <div class="desc">
+            <span class="lang-en">Reading class kicks off (weekly). Vocabulary class biweekly. School breaks freed up — ideal time to make daily habits stick. <strong>Watch for the 2026–27 SSAT calendar release on August 1, 2026.</strong></span>
+            <span class="lang-zh">阅读课每周开课，词汇课双周开课。学校放假，最适合把"日常习惯"建立起来。<strong>关注 8 月 1 日发布的 2026–27 考试日程。</strong></span>
+          </div>
+        </div>
+
+        <div class="milestone">
+          <div class="date">Sep 2026 — Feb 2027</div>
+          <div class="title"><span class="lang-en">Grade 7 begins · Phase I continues</span><span class="lang-zh">七年级开学 · 继续第一阶段</span></div>
+          <div class="desc">
+            <span class="lang-en">Maintain weekly reading + biweekly vocab. Math kept warm with self-practice. <strong>Optional</strong> Middle Level mock exam in November to track progress.</span>
+            <span class="lang-zh">阅读课、词汇课持续。数学保持自主刷题状态。<strong>可选</strong>11 月做一次中级模考，跟踪进展。</span>
+          </div>
+        </div>
+
+        <div class="milestone">
+          <div class="date">Mar 2027 — Jul 2027</div>
+          <div class="title"><span class="lang-en">Phase II · Math joins · first Upper Level mock</span><span class="lang-zh">第二阶段 · 数学加入 · 第一次 Upper Level 模考</span></div>
+          <div class="desc">
+            <span class="lang-en">Formal math class begins. Reading and vocab migrate to Upper Level material. Practice exam every 4–6 weeks. First full Upper Level mock by May 2027 to recalibrate the target.</span>
+            <span class="lang-zh">数学课正式开始。阅读和词汇切换到 Upper Level 材料。每 4–6 周做一次模考，5 月前完成第一次全套 Upper Level 模考，重新校准目标分。</span>
+          </div>
+        </div>
+
+        <div class="milestone">
+          <div class="date">Aug 1, 2027</div>
+          <div class="title"><span class="lang-en">SSAT 2027–28 calendar publishes</span><span class="lang-zh">2027–28 年度考试日程发布</span></div>
+          <div class="desc">
+            <span class="lang-en"><strong>Register immediately.</strong> Standard paper test seats fill, particularly for popular East-Coast centers. Reserve both the October and December dates as primary and backup.</span>
+            <span class="lang-zh"><strong>立即报名。</strong>纸笔考的考点（尤其东岸热门考点）会很快报满。建议同时锁定 10 月和 12 月两场，作为主考和备考。</span>
+          </div>
+        </div>
+
+        <div class="milestone">
+          <div class="date">Aug — Sep 2027</div>
+          <div class="title"><span class="lang-en">Phase III · sprint mocks</span><span class="lang-zh">第三阶段 · 冲刺模考</span></div>
+          <div class="desc">
+            <span class="lang-en">Full-length mocks every 1–2 weeks under real timing. Error-log discipline. Light taper the week before test day. School begins (grade 8) but prep stays primary through October.</span>
+            <span class="lang-zh">每 1–2 周一次定时全真模考，错题本严格管理。考前一周减量。八年级开学，但备考权重维持到 10 月底。</span>
+          </div>
+        </div>
+
+        <div class="milestone target">
+          <div class="date">Oct 2027 · target window</div>
+          <div class="title"><span class="lang-en">Target exam · Upper Level SSAT</span><span class="lang-zh">目标考试 · Upper Level SSAT</span></div>
+          <div class="desc">
+            <span class="lang-en">Primary test date. October Saturday national administration; date confirmed in August. Score released within ~2 weeks.</span>
+            <span class="lang-zh">主考日期，10 月某个周六的全国统考；具体日期 8 月公布。考后约 2 周出分。</span>
+          </div>
+        </div>
+
+        <div class="milestone">
+          <div class="date">Dec 2027 · backup</div>
+          <div class="title"><span class="lang-en">Backup date · final retake window</span><span class="lang-zh">备考日期 · 最后一次机会</span></div>
+          <div class="desc">
+            <span class="lang-en">If October leaves room to improve, the December Standard date is the latest acceptable. After that, applications for fall 2028 admission are due.</span>
+            <span class="lang-zh">如果 10 月考完仍有提升空间，12 月再考一次是最后窗口。之后申请 2028 年秋季入学的材料就要陆续提交了。</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIII · ABOUT THE TEST ============ -->
+<section id="test">
+  <div class="wrap">
+    <span class="running-num">VIII</span>
+    <div class="chapter">
+      <span class="roman">VIII</span>
+      <span>
+        <span class="lang-en">About the Test</span>
+        <span class="lang-zh">关于考试</span>
+      </span>
+      <span class="rule"></span>
+    </div>
+    <h2>
+      <span class="lang-en">Eight parts · <em>167 questions.</em></span>
+      <span class="lang-zh">八个部分 · <em>167 道题。</em></span>
+    </h2>
+    <p class="subhead">
+      <span class="lang-en">The Upper Level SSAT is identical in structure to the Middle Level, with harder content and a higher score ceiling. Six sections plus two breaks, roughly three hours start to finish.</span>
+      <span class="lang-zh">Upper Level（高级）与 Middle Level（中级）结构完全一致，区别在于内容难度和量程上限。共六段加两次休息，全长约 3 小时。</span>
+    </p>
+
+    <div class="test-grid">
+      <div>
+        <table class="test-table">
+          <thead>
+            <tr>
+              <th><span class="lang-en">Order</span><span class="lang-zh">顺序</span></th>
+              <th><span class="lang-en">Section</span><span class="lang-zh">部分</span></th>
+              <th><span class="lang-en">Questions</span><span class="lang-zh">题数</span></th>
+              <th><span class="lang-en">Time</span><span class="lang-zh">时长</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="num">1</td>
+              <td><span class="section-name"><span class="lang-en">Writing Sample</span><span class="lang-zh">写作样本</span></span>
+                  <span class="meta"><span class="lang-en">not scored · sent to schools</span><span class="lang-zh">不计分 · 寄送学校</span></span></td>
+              <td class="num">1</td>
+              <td class="num">25 min</td>
+            </tr>
+            <tr>
+              <td class="num">—</td>
+              <td><span class="section-name"><span class="lang-en">Break</span><span class="lang-zh">休息</span></span></td>
+              <td class="num">—</td>
+              <td class="num">10 min</td>
+            </tr>
+            <tr>
+              <td class="num">2</td>
+              <td><span class="section-name"><span class="lang-en">Quantitative I</span><span class="lang-zh">数学 I</span></span>
+                  <span class="meta"><span class="lang-en">arithmetic · algebra · geometry · data</span><span class="lang-zh">算术·代数·几何·数据</span></span></td>
+              <td class="num">25</td>
+              <td class="num">30 min</td>
+            </tr>
+            <tr>
+              <td class="num">3</td>
+              <td><span class="section-name"><span class="lang-en">Reading</span><span class="lang-zh">阅读</span></span>
+                  <span class="meta"><span class="lang-en">~7 short passages · fiction, science, humanities</span><span class="lang-zh">约 7 篇短文 · 小说、科普、人文</span></span></td>
+              <td class="num">40</td>
+              <td class="num">40 min</td>
+            </tr>
+            <tr>
+              <td class="num">—</td>
+              <td><span class="section-name"><span class="lang-en">Break</span><span class="lang-zh">休息</span></span></td>
+              <td class="num">—</td>
+              <td class="num">10 min</td>
+            </tr>
+            <tr>
+              <td class="num">4</td>
+              <td><span class="section-name"><span class="lang-en">Verbal</span><span class="lang-zh">词汇</span></span>
+                  <span class="meta"><span class="lang-en">30 synonyms + 30 analogies</span><span class="lang-zh">30 同义词 + 30 类比</span></span></td>
+              <td class="num">60</td>
+              <td class="num">30 min</td>
+            </tr>
+            <tr>
+              <td class="num">5</td>
+              <td><span class="section-name"><span class="lang-en">Quantitative II</span><span class="lang-zh">数学 II</span></span>
+                  <span class="meta"><span class="lang-en">no calculator allowed</span><span class="lang-zh">不允许使用计算器</span></span></td>
+              <td class="num">25</td>
+              <td class="num">30 min</td>
+            </tr>
+            <tr>
+              <td class="num">6</td>
+              <td><span class="section-name"><span class="lang-en">Experimental</span><span class="lang-zh">实验题</span></span>
+                  <span class="meta"><span class="lang-en">not scored · pretest items</span><span class="lang-zh">不计分 · 试题预测</span></span></td>
+              <td class="num">16</td>
+              <td class="num">15 min</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <aside class="test-aside">
+        <h4>
+          <span class="lang-en">Scoring at a glance</span>
+          <span class="lang-zh">计分要点</span>
+        </h4>
+        <p style="font-size:14.5px; color:var(--ink-soft); line-height:1.55;">
+          <span class="lang-en">Raw score = correct − 0.25 × wrong. Blanks score 0. Raw is converted to a scaled score equated across test forms, then to a percentile against the same-grade, same-gender norm group from the past three years.</span>
+          <span class="lang-zh">原始分 = 答对数 − 0.25 × 答错数；空题不扣分。原始分通过题目难度调整成"标准分"，再换算为相对同年级、同性别考生（过去三年）的百分位。</span>
+        </p>
+        <dl>
+          <dt><span class="lang-en">Section range</span><span class="lang-zh">单科量程</span></dt>
+          <dd><span class="mono">500–800</span> <span class="lang-en">(Upper)</span><span class="lang-zh">（Upper）</span></dd>
+
+          <dt><span class="lang-en">Total range</span><span class="lang-zh">总分量程</span></dt>
+          <dd><span class="mono">1500–2400</span> <span class="lang-en">(Upper)</span><span class="lang-zh">（Upper）</span></dd>
+
+          <dt><span class="lang-en">Middle ref</span><span class="lang-zh">中级参考</span></dt>
+          <dd><span class="mono">440–710</span> <span class="lang-en">per section · 1320–2130 total</span><span class="lang-zh">单科 · 总分 1320–2130</span></dd>
+
+          <dt><span class="lang-en">Wrong penalty</span><span class="lang-zh">答错扣分</span></dt>
+          <dd><span class="mono">−0.25</span> <span class="lang-en">— so guess only when you can eliminate at least one option.</span><span class="lang-zh">——所以只在能排除至少一个选项时才猜。</span></dd>
+
+          <dt><span class="lang-en">Score release</span><span class="lang-zh">出分时间</span></dt>
+          <dd><span class="lang-en">~2 weeks after paper test; Wednesday after Prometric / at-home test.</span><span class="lang-zh">纸笔考约 2 周；机考与在家考为考试周的周三。</span></dd>
+        </dl>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IX · FORMATS ============ -->
+<section id="formats">
+  <div class="wrap">
+    <span class="running-num">IX</span>
+    <div class="chapter">
+      <span class="roman">IX</span>
+      <span>
+        <span class="lang-en">Format Options</span>
+        <span class="lang-zh">考试形式</span>
+      </span>
+      <span class="rule"></span>
+    </div>
+    <h2>
+      <span class="lang-en">Four ways to <em>take the same test.</em></span>
+      <span class="lang-zh">四种方式，<em>同一份考试。</em></span>
+    </h2>
+    <p class="subhead">
+      <span class="lang-en">Content, timing, and scoring are identical across all four formats. The choice is logistical: location, scheduling, and how comfortable each girl is with a screen versus a #2 pencil.</span>
+      <span class="lang-zh">四种形式题目、时长、计分完全一致。选择主要看后勤：考点位置、时间灵活度、孩子对屏幕 vs 铅笔的偏好。</span>
+    </p>
+
+    <div class="formats-grid">
+      <div class="format">
+        <div class="name"><span class="lang-en">Standard Paper</span><span class="lang-zh">标准纸笔考</span></div>
+        <div class="tag"><span class="lang-en">Recommended primary</span><span class="lang-zh">推荐主考形式</span></div>
+        <div class="price"><span class="label-mono"><span class="lang-en">US/Canada</span><span class="lang-zh">美/加</span></span><span>$172</span></div>
+        <div class="desc">
+          <span class="lang-en">Saturday national administration at approved school test centers. ~8 dates per year, October through June. The full test-day experience: paper, bubbles, proctor, time card.</span>
+          <span class="lang-zh">周六在指定学校考点统考。每年约 8 个考试日（10 月至次年 6 月）。完整的"考试日"体验——纸卷、答题卡、监考、计时。</span>
+        </div>
+        <div class="limit"><span class="lang-en">Up to 6 / year</span><span class="lang-zh">每年最多 6 次</span></div>
+      </div>
+
+      <div class="format">
+        <div class="name"><span class="lang-en">SSAT at Prometric</span><span class="lang-zh">Prometric 机考</span></div>
+        <div class="tag"><span class="lang-en">Computer-based</span><span class="lang-zh">电脑作答</span></div>
+        <div class="price"><span class="label-mono"><span class="lang-en">US/Canada</span><span class="lang-zh">美/加</span></span><span>$242</span></div>
+        <div class="desc">
+          <span class="lang-en">At Prometric centers worldwide. More flexible scheduling than Saturday-only. Same content; the screen replaces the bubble sheet.</span>
+          <span class="lang-zh">在 Prometric 考点全球开放。时间比周六统考更灵活，内容完全一致——屏幕代替答题卡。</span>
+        </div>
+        <div class="limit"><span class="lang-en">Up to 2 / year</span><span class="lang-zh">每年最多 2 次</span></div>
+      </div>
+
+      <div class="format">
+        <div class="name"><span class="lang-en">SSAT at Home</span><span class="lang-zh">在家考</span></div>
+        <div class="tag"><span class="lang-en">Online proctored</span><span class="lang-zh">在线监考</span></div>
+        <div class="price"><span class="label-mono"><span class="lang-en">US/Canada</span><span class="lang-zh">美/加</span></span><span>$258</span></div>
+        <div class="desc">
+          <span class="lang-en">Online with live proctor. Strict environment rules (clear desk, single monitor, no devices). Useful if travel to a center isn't realistic.</span>
+          <span class="lang-zh">线上监考。环境要求严格（桌面整洁、单显示器、无其他设备）。当无法去考点时是好选择。</span>
+        </div>
+        <div class="limit"><span class="lang-en">Up to 1 / year</span><span class="lang-zh">每年最多 1 次</span></div>
+      </div>
+
+      <div class="format">
+        <div class="name"><span class="lang-en">Flex Test</span><span class="lang-zh">Flex 灵活考</span></div>
+        <div class="tag"><span class="lang-en">Approved venue</span><span class="lang-zh">授权机构</span></div>
+        <div class="price"><span class="label-mono"><span class="lang-en">School / consultant</span><span class="lang-zh">学校 / 顾问</span></span><span>$172 / $272</span></div>
+        <div class="desc">
+          <span class="lang-en">Administered by an approved school or educational consultant on a date that works for them. Same paper test, more scheduling flexibility.</span>
+          <span class="lang-zh">由授权学校或教育顾问安排考试日期。题目同纸笔考，时间更灵活。</span>
+        </div>
+        <div class="limit"><span class="lang-en">Up to 1 / year</span><span class="lang-zh">每年最多 1 次</span></div>
+      </div>
+    </div>
+
+    <div class="target-disclaimer" style="margin-top: 32px;">
+      <span class="lang-en"><strong>Registration logistics.</strong> Create a parent account at <a href="https://www.ssat.org" target="_blank" rel="noopener" style="color:var(--crimson); text-decoration: underline;">ssat.org</a>. Regular registration closes ~3 weeks before each test date; late fee $59, rush fee $100. Accommodations requests close 14 days prior. Score sending is free and unlimited. Bring: admission ticket, 3+ #2 pencils with erasers, water (clear bottle), snacks (clear bag), all labeled. <strong>Prohibited:</strong> watches (incl. smartwatches), calculators, scratch paper, phones (off-and-stored if present).</span>
+      <span class="lang-zh"><strong>报名流程。</strong>在 <a href="https://www.ssat.org" target="_blank" rel="noopener" style="color:var(--crimson); text-decoration: underline;">ssat.org</a> 创建家长账号。报名截止日通常为考试前约 3 周；逾期补报费 $59，加急费 $100。需要特殊安排的须提前 14 天申请。寄送成绩免费、不限学校数。带：准考证、3 支以上 2B 铅笔（带橡皮）、透明瓶装水、透明袋装零食，所有物品标注姓名。<strong>禁止：</strong>手表（含智能手表）、计算器、草稿纸、手机（如带须关机寄存）。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ X · ROLES ============ -->
+<section id="roles">
+  <div class="wrap">
+    <span class="running-num">X</span>
+    <div class="chapter">
+      <span class="roman">X</span>
+      <span>
+        <span class="lang-en">Roles</span>
+        <span class="lang-zh">分工</span>
+      </span>
+      <span class="rule"></span>
+    </div>
+    <h2>
+      <span class="lang-en">For the parents · <em>for the girls.</em></span>
+      <span class="lang-zh">父母这边 · <em>孩子那边。</em></span>
+    </h2>
+    <p class="subhead">
+      <span class="lang-en">Long-arc test prep isn't a thing one person does. It's a household routine, and the routine works when each role is clear. Two short checklists below — one for parents, one for the students themselves.</span>
+      <span class="lang-zh">长线备考从来不是一个人的事——是一个家庭的节奏。这套节奏能否成立，关键是分工清楚。下面两张清单，一张给父母，一张给孩子自己。</span>
+    </p>
+
+    <div class="roles-grid">
+      <div class="role-col parents">
+        <h3>
+          <span class="lang-en">For Parents</span>
+          <span class="lang-zh">父母 · 操作清单</span>
+        </h3>
+        <ul>
+          <li><div>
+            <strong><span class="lang-en">Protect the weekly reading class</span><span class="lang-zh">保护每周阅读课时间</span></strong>
+            <span class="body"><span class="lang-en">Don't schedule over it. Make it the same hour every week. Consistency beats intensity.</span><span class="lang-zh">不要安排其他活动撞这个时间。每周固定钟点上课，稳定比强度更重要。</span></span>
+          </div></li>
+          <li><div>
+            <strong><span class="lang-en">Keep the daily habit at 15–30 minutes</span><span class="lang-zh">每日习惯控制在 15–30 分钟</span></strong>
+            <span class="body"><span class="lang-en">Resist the urge to add more right away. Burnout in May 2026 means a worse score in October 2027.</span><span class="lang-zh">忍住"再加一点"的冲动。2026 年 5 月就累垮，意味着 2027 年 10 月分数更差。</span></span>
+          </div></li>
+          <li><div>
+            <strong><span class="lang-en">Open the SSAT account by August 1, 2026</span><span class="lang-zh">2026 年 8 月 1 日前注册 SSAT 账号</span></strong>
+            <span class="body"><span class="lang-en">Practice the registration flow with the 2026–27 calendar before the real one matters.</span><span class="lang-zh">先用 2026–27 年度日历熟悉报名流程，到正考时不慌。</span></span>
+          </div></li>
+          <li><div>
+            <strong><span class="lang-en">Track scores in one place</span><span class="lang-zh">分数统一记录在一个地方</span></strong>
+            <span class="body"><span class="lang-en">Every mock: section scaled, raw, percentile (when available), and a one-line "felt like" note from the student.</span><span class="lang-zh">每次模考记录：单科标准分、原始分、百分位（如有），以及孩子的一句"考完感觉"。</span></span>
+          </div></li>
+          <li><div>
+            <strong><span class="lang-en">Mark Aug 1, 2027 in red</span><span class="lang-zh">红笔标出 2027 年 8 月 1 日</span></strong>
+            <span class="body"><span class="lang-en">Register both October and December dates the day they open. Don't wait a week.</span><span class="lang-zh">10 月和 12 月两个考试日要在开放报名当天就锁住，不要拖。</span></span>
+          </div></li>
+          <li><div>
+            <strong><span class="lang-en">Talk about the why, not just the what</span><span class="lang-zh">谈"为什么"，而不只是"什么"</span></strong>
+            <span class="body"><span class="lang-en">School lists, school visits, school stories. The test is a step toward something specific — make that something visible.</span><span class="lang-zh">学校名单、参观、校友故事——考试是为了一个具体的方向，让这个方向"看得见"。</span></span>
+          </div></li>
+        </ul>
+      </div>
+
+      <div class="role-col students">
+        <h3>
+          <span class="lang-en">For Jasmine + Zoe</span>
+          <span class="lang-zh">茉茉 + Zoe · 你们的清单</span>
+        </h3>
+        <ul>
+          <li><div>
+            <strong><span class="lang-en">Read for fun, every day</span><span class="lang-zh">每天读自己喜欢的书</span></strong>
+            <span class="body"><span class="lang-en">Twenty minutes of a book you love beats twenty minutes of a passage you don't. Both make you better at reading.</span><span class="lang-zh">读自己喜欢的书 20 分钟，远胜过被迫读 20 分钟练习题——但都会让你阅读变强。</span></span>
+          </div></li>
+          <li><div>
+            <strong><span class="lang-en">Keep an error log you actually look at</span><span class="lang-zh">认真维护一本错题本</span></strong>
+            <span class="body"><span class="lang-en">For every wrong answer: what kind of wrong was it — knowledge, careless, time, or trap? Re-read the log weekly.</span><span class="lang-zh">每道错题写明"错在哪一种"——知识、粗心、时间、陷阱。每周翻一遍。</span></span>
+          </div></li>
+          <li><div>
+            <strong><span class="lang-en">Speak the vocabulary aloud</span><span class="lang-zh">把单词大声念出来</span></strong>
+            <span class="body"><span class="lang-en">Words you've only seen on a page are easier to forget. Words you've said in a sentence are easier to keep.</span><span class="lang-zh">只看不读的单词容易忘——念出来、用一句话造个句，就记得更牢。</span></span>
+          </div></li>
+          <li><div>
+            <strong><span class="lang-en">Don't grade your own mocks until the next day</span><span class="lang-zh">自己做的模考第二天再对答案</span></strong>
+            <span class="body"><span class="lang-en">Distance lets you see your own mistakes more honestly. And calmer.</span><span class="lang-zh">隔一天再对答案，看自己错的时候更冷静、更诚实。</span></span>
+          </div></li>
+          <li><div>
+            <strong><span class="lang-en">Skip questions you don't know</span><span class="lang-zh">完全不会的题就跳过</span></strong>
+            <span class="body"><span class="lang-en">Wrong answers cost 0.25 each. Blanks cost zero. Only guess when you can rule out at least one option.</span><span class="lang-zh">答错扣 0.25，空着不扣。只在能排除至少一个选项时才猜。</span></span>
+          </div></li>
+          <li><div>
+            <strong><span class="lang-en">Take Sundays off</span><span class="lang-zh">周日完全休息</span></strong>
+            <span class="body"><span class="lang-en">Sleep, friends, anything that isn't prep. You'll come back sharper Monday. Trust this.</span><span class="lang-zh">睡觉、约朋友、不做题——周一你会更清醒，相信这个。</span></span>
+          </div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ XI · RESOURCES ============ -->
+<section id="resources">
+  <div class="wrap">
+    <span class="running-num">XI</span>
+    <div class="chapter">
+      <span class="roman">XI</span>
+      <span>
+        <span class="lang-en">Resources</span>
+        <span class="lang-zh">资料 · 链接</span>
+      </span>
+      <span class="rule"></span>
+    </div>
+    <h2>
+      <span class="lang-en">Where to look <em>next.</em></span>
+      <span class="lang-zh">下一步<em>去哪里查。</em></span>
+    </h2>
+
+    <div class="resources-grid">
+      <div class="res-card">
+        <h4><span class="lang-en">Official (EMA)</span><span class="lang-zh">官方（EMA）</span></h4>
+        <ul>
+          <li><a href="https://www.ssat.org" target="_blank" rel="noopener">ssat.org</a> <span class="note"><span class="lang-en">Account, registration, test dates.</span><span class="lang-zh">账户、报名、考试日期。</span></span></li>
+          <li><a href="https://www.ssat.org/about/school-level/upper-level-ssat" target="_blank" rel="noopener">Upper Level SSAT</a> <span class="note"><span class="lang-en">Official structure & content overview.</span><span class="lang-zh">官方结构与内容介绍。</span></span></li>
+          <li><a href="https://www.ssat.org/about/scoring/ssat-score-report" target="_blank" rel="noopener">SSAT Score Report</a> <span class="note"><span class="lang-en">How scores are read.</span><span class="lang-zh">如何看分数报告。</span></span></li>
+          <li><a href="https://www.ssat.org/testing/ssat-options-pricing" target="_blank" rel="noopener">Options &amp; pricing</a> <span class="note"><span class="lang-en">All four test formats.</span><span class="lang-zh">四种考试形式与费用。</span></span></li>
+          <li><a href="https://www.ssat.org/testing/paper/test-day-essentials" target="_blank" rel="noopener">Test-day essentials</a> <span class="note"><span class="lang-en">What to bring and what's banned.</span><span class="lang-zh">考试当天带什么、不能带什么。</span></span></li>
+        </ul>
+      </div>
+      <div class="res-card">
+        <h4><span class="lang-en">Practice &amp; prep</span><span class="lang-zh">练习与备考</span></h4>
+        <ul>
+          <li><a href="https://www.ssat.org" target="_blank" rel="noopener">Official Guide to the SSAT</a> <span class="note"><span class="lang-en">EMA's book — real retired forms.</span><span class="lang-zh">EMA 官方备考书，含真题。</span></span></li>
+          <li><a href="https://www.ssat.org" target="_blank" rel="noopener">Official SSAT Practice online</a> <span class="note"><span class="lang-en">EMA's adaptive practice platform.</span><span class="lang-zh">EMA 自适应在线练习。</span></span></li>
+          <li><a href="https://testinnovators.com" target="_blank" rel="noopener">Test Innovators</a> <span class="note"><span class="lang-en">Practice tests with analytics.</span><span class="lang-zh">带成绩分析的模考。</span></span></li>
+          <li><a href="https://ivyglobal.com" target="_blank" rel="noopener">Ivy Global</a> <span class="note"><span class="lang-en">Strong vocabulary materials.</span><span class="lang-zh">词汇资料较强。</span></span></li>
+          <li><span class="lang-en">Mr. Zhang's classes — primary instructor.</span><span class="lang-zh">乐听张老师课程 — 主导师。</span></li>
+        </ul>
+      </div>
+      <div class="res-card">
+        <h4><span class="lang-en">Family files</span><span class="lang-zh">家庭文件夹</span></h4>
+        <ul>
+          <li><span class="lang-en">Mock Exam 1 — Jasmine (Graded, 1891)</span><span class="lang-zh">第一次模考 — 茉茉（已批，1891）</span></li>
+          <li><span class="lang-en">Mock Exam 1 — Zoe (Graded, 1715)</span><span class="lang-zh">第一次模考 — Zoe（已批，1715）</span></li>
+          <li><span class="lang-en">Mock Exam 1 — answer key &amp; explanations (xlsx)</span><span class="lang-zh">第一次模考 — 答案与解析（xlsx）</span></li>
+          <li><span class="lang-en">Mr. Zhang's strategy notes — May 2026</span><span class="lang-zh">张老师策略笔记 — 2026 年 5 月</span></li>
+          <li><span class="lang-en">Stored at: iCloud · 家庭生活 · 课外学习 · SSAT · 乐听张老师</span><span class="lang-zh">存放位置：iCloud · 家庭生活 · 课外学习 · SSAT · 乐听张老师</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="motto">
+        <span class="lang-en"><em>Read first. Word by word. Day by day.</em></span>
+        <span class="lang-zh"><em>先读书。一字一句。<br>一天一天。</em></span>
+      </div>
+      <div class="colophon">
+        <span class="lang-en">Set in Fraunces &amp; Newsreader. Composed for the Chen + Tang families. Numbers verified against ssat.org &amp; the 2025–26 SSAT Candidate Handbook. Last revised May 24, 2026.</span>
+        <span class="lang-zh">字体 Fraunces 与 Newsreader。为 Chen 与 Tang 两家而作。数据核对自 ssat.org 与 2025–26 SSAT 考生手册。最近修订 2026 年 5 月 24 日。</span>
+      </div>
+      <div class="seal">
+        <span class="ornament">⁂</span>
+        <span class="lang-en">prep ledger · No. I</span>
+        <span class="lang-zh">备考手账 · 卷一</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ----- Language toggle -----
+  function applyLang(lang) {
+    const code = lang === 'en' ? 'en' : 'zh-Hans';
+    document.documentElement.lang = code;
+    document.querySelectorAll('[data-lang-btn]').forEach(b => {
+      b.classList.toggle('active', b.dataset.langBtn === lang);
+    });
+    try { localStorage.setItem('ssat-lang', lang); } catch(e) {}
+  }
+  document.querySelectorAll('[data-lang-btn]').forEach(b => {
+    b.addEventListener('click', () => applyLang(b.dataset.langBtn));
+  });
+  (function initLang() {
+    let saved = null;
+    try { saved = localStorage.getItem('ssat-lang'); } catch(e) {}
+    applyLang(saved || 'zh');
+  })();
+
+  // ----- Countdown -----
+  // Target window: first Saturday window of October 2027 (tentative — official 2027–28 dates publish Aug 1, 2027)
+  const TARGET = new Date('2027-10-09T00:00:00');
+  function updateCountdown() {
+    const now = new Date();
+    const diffMs = TARGET - now;
+    const days = Math.max(0, Math.ceil(diffMs / (1000 * 60 * 60 * 24)));
+    const weeks = Math.floor(days / 7);
+    const dEl = document.getElementById('days-to-target');
+    const wEl = document.getElementById('weeks-to-target');
+    if (dEl) dEl.textContent = days.toLocaleString();
+    if (wEl) wEl.textContent = weeks.toLocaleString();
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 60 * 1000);
+
+  // ----- Reveal on scroll -----
+  const revealEls = document.querySelectorAll('section h2, .stand-grid, .target-grid, .phases, .week-table, .rhythm-aside, .subjects, .calendar, .test-grid, .formats-grid, .roles-grid, .resources-grid, .teacher-quote');
+  revealEls.forEach(el => el.classList.add('reveal-on-scroll'));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+  revealEls.forEach(el => io.observe(el));
+
+  // ----- Bar widths animate after reveal -----
+  document.querySelectorAll('.score-row .bar').forEach(bar => {
+    const target = bar.style.getPropertyValue('--pct');
+    bar.style.setProperty('--pct', '0%');
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          requestAnimationFrame(() => bar.style.setProperty('--pct', target));
+          cardObserver.unobserve(bar);
+        }
+      });
+    }, { threshold: 0.3 });
+    cardObserver.observe(bar);
+  });
+</script>
+
+</body>
+</html>
