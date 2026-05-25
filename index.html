@@ -483,6 +483,22 @@ em { font-style: italic; }
   letter-spacing: -.03em;
   font-variant-numeric: lining-nums tabular-nums;
 }
+.student-card .total .total-pct {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--slate);
+  font-variation-settings: "opsz" 18, "SOFT" 55, "wght" 440;
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.student-card .total .total-pct .sup {
+  font-size: .62em;
+  vertical-align: .65em;
+  margin-left: 1px;
+}
 .student-card .total .scale {
   display: block;
   margin-top: 6px;
@@ -494,8 +510,8 @@ em { font-style: italic; }
 
 .score-row {
   display: grid;
-  grid-template-columns: 80px 1fr 56px 64px;
-  gap: 14px;
+  grid-template-columns: 68px 1fr 58px 64px;
+  gap: 12px;
   align-items: center;
   padding: 12px 0;
   border-bottom: 1px solid var(--rule-soft);
@@ -509,33 +525,78 @@ em { font-style: italic; }
   color: var(--ink);
 }
 .score-row .bar {
+  position: relative;
   height: 6px;
   background: var(--paper-deep);
-  position: relative;
-  overflow: hidden;
   border-radius: 1px;
+  overflow: visible;
 }
-.score-row .bar::before {
-  content: "";
-  position: absolute; inset: 0;
-  width: var(--pct, 0%);
+.score-row .bar .fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 0;
   background: var(--accent);
+  border-radius: 1px;
   transition: width 1.4s cubic-bezier(.2,.7,.2,1);
 }
-.score-row .scaled {
+.score-row .bar.visible .fill {
+  width: var(--pct, 0%);
+}
+.score-row .bar .tick {
+  position: absolute;
+  top: -3px; bottom: -3px;
+  width: 1px;
+  background: var(--ink);
+  opacity: .35;
+}
+.score-row .bar .tick[data-band="85"] { background: var(--ink); opacity: .55; }
+.score-row .scaled-block {
+  text-align: right;
+  display: flex; flex-direction: column; align-items: flex-end;
+  line-height: 1;
+  gap: 3px;
+}
+.score-row .scaled-block .scaled {
   font-family: var(--mono);
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--ink);
   font-weight: 500;
-  text-align: right;
   font-variant-numeric: tabular-nums;
 }
-.score-row .raw {
+.score-row .scaled-block .raw {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 10.5px;
   color: var(--slate-soft);
-  text-align: right;
   font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+.score-row .pct-block {
+  text-align: right;
+  border-left: 1px solid var(--rule-soft);
+  padding-left: 10px;
+  display: flex; flex-direction: column; align-items: flex-end;
+  gap: 4px;
+}
+.score-row .pct-block .pct {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink);
+  font-variation-settings: "opsz" 18, "SOFT" 55, "wght" 480;
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.score-row .pct-block .pct .sup {
+  font-size: .58em;
+  vertical-align: .65em;
+  margin-left: 1px;
+  font-style: italic;
+  font-variation-settings: "opsz" 14, "SOFT" 55, "wght" 460;
+}
+.score-row .pct-block .pct-label {
+  font: 600 8.5px/1 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--slate-soft);
 }
 
 .student-notes {
@@ -578,6 +639,90 @@ em { font-style: italic; }
   position: absolute; left: 0; top: -1px;
   color: var(--crimson);
   font-family: var(--serif);
+}
+
+/* scale + percentile reference callout */
+.scale-note {
+  margin: clamp(28px, 3.5vw, 44px) 0 0;
+  padding: clamp(24px, 3vw, 32px) clamp(24px, 3vw, 36px);
+  background: var(--paper-warm);
+  border-top: 2px solid var(--ink);
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 44px);
+  align-items: start;
+}
+.scale-note .head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 14px;
+  gap: 12px;
+}
+.scale-note .head .smallcaps:last-child {
+  font-style: italic;
+  font-family: var(--serif);
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--slate);
+  font-size: 13px;
+  font-weight: 400;
+  font-variation-settings: "opsz" 16, "SOFT" 50, "wght" 400;
+}
+.scale-note p {
+  font-size: 14.5px;
+  line-height: 1.62;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.scale-note p + p { margin-top: 10px; }
+.scale-note p.footnote {
+  margin-top: 14px;
+  font-size: 12.5px;
+  font-style: italic;
+  color: var(--slate);
+  font-variation-settings: "opsz" 14, "SOFT" 50, "wght" 400;
+}
+.bands-block { min-width: 0; }
+.bands-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.bands-table thead th {
+  font: 600 9.5px/1 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--slate);
+  padding: 8px 0 10px;
+  text-align: right;
+  border-bottom: 1px solid var(--ink);
+}
+.bands-table thead th:first-child { text-align: left; }
+.bands-table tbody th {
+  font: 600 11px/1 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--ink);
+  text-align: left;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.bands-table tbody td {
+  padding: 10px 0;
+  text-align: right;
+  border-bottom: 1px solid var(--rule-soft);
+  color: var(--ink-soft);
+}
+.bands-table tbody tr:last-child th,
+.bands-table tbody tr:last-child td { border-bottom: 0; }
+.bands-table td.match {
+  color: var(--crimson);
+  font-weight: 600;
+}
+.bands-table td.match-z {
+  color: var(--marigold);
+  font-weight: 600;
 }
 
 .teacher-quote {
@@ -1401,17 +1546,34 @@ footer .seal .ornament {
   .margin-num { display: none; }
 }
 
+@media (max-width: 768px) {
+  .scale-note {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
 @media (max-width: 480px) {
   .countdown .value { font-size: 36px; }
   h1 { font-size: clamp(44px, 13.5vw, 64px); line-height: .95; }
   h2 { font-size: clamp(32px, 8vw, 42px); }
   .student-card .total .num { font-size: 32px; }
   .target-col .figure { font-size: 56px; }
-  .score-row { grid-template-columns: 60px 1fr 48px 56px; gap: 10px; }
+  .score-row {
+    grid-template-columns: 56px 1fr 50px 56px;
+    gap: 8px;
+  }
+  .score-row .scaled-block .scaled { font-size: 13px; }
+  .score-row .scaled-block .raw { font-size: 10px; }
+  .score-row .pct-block { padding-left: 8px; }
+  .score-row .pct-block .pct { font-size: 14px; }
+  .score-row .subj { font-size: 10px; letter-spacing: .12em; }
   .week-row { grid-template-columns: 42px 1fr 52px; gap: 8px; }
   .week-row .day { font-size: 15px; }
   .week-row .activity { font-size: 14px; }
   .rhythm-aside li { grid-template-columns: 60px 1fr; gap: 12px; }
+  .bands-table { font-size: 12px; }
+  .bands-table thead th, .bands-table tbody th, .bands-table tbody td { padding: 8px 0; }
 }
 
 /* ═══════════════════════════════════ */
@@ -1615,6 +1777,7 @@ button:focus-visible { outline-offset: 2px; }
           </div>
           <div class="total">
             <span class="num">1891</span>
+            <span class="total-pct">~70–78<span class="sup">th</span> %ile</span>
             <span class="scale">
               <span class="lang-en">Middle Level · 1320–2130</span>
               <span class="lang-zh">中级 · 满分 2130</span>
@@ -1624,21 +1787,51 @@ button:focus-visible { outline-offset: 2px; }
 
         <div class="score-row">
           <div class="subj"><span class="lang-en">Math</span><span class="lang-zh">数学</span></div>
-          <div class="bar" style="--pct: 81.5%"></div>
-          <div class="scaled">660</div>
-          <div class="raw">43/50</div>
+          <div class="bar" style="--pct: 81.5%">
+            <div class="fill"></div>
+            <span class="tick" style="left:56.7%"></span>
+            <span class="tick" style="left:81.5%" data-band="85"></span>
+          </div>
+          <div class="scaled-block">
+            <span class="scaled">660</span>
+            <span class="raw">43/50</span>
+          </div>
+          <div class="pct-block">
+            <span class="pct">80–88<span class="sup">th</span></span>
+            <span class="pct-label">%ile</span>
+          </div>
         </div>
         <div class="score-row">
           <div class="subj"><span class="lang-en">Verbal</span><span class="lang-zh">词汇</span></div>
-          <div class="bar" style="--pct: 72.2%"></div>
-          <div class="scaled">635</div>
-          <div class="raw">38/60</div>
+          <div class="bar" style="--pct: 72.2%">
+            <div class="fill"></div>
+            <span class="tick" style="left:64.4%"></span>
+            <span class="tick" style="left:87.0%" data-band="85"></span>
+          </div>
+          <div class="scaled-block">
+            <span class="scaled">635</span>
+            <span class="raw">38/60</span>
+          </div>
+          <div class="pct-block">
+            <span class="pct">60–68<span class="sup">th</span></span>
+            <span class="pct-label">%ile</span>
+          </div>
         </div>
         <div class="score-row">
           <div class="subj"><span class="lang-en">Reading</span><span class="lang-zh">阅读</span></div>
-          <div class="bar" style="--pct: 57.8%"></div>
-          <div class="scaled">596</div>
-          <div class="raw">25/40</div>
+          <div class="bar" style="--pct: 57.8%">
+            <div class="fill"></div>
+            <span class="tick" style="left:56.7%"></span>
+            <span class="tick" style="left:79.6%" data-band="85"></span>
+          </div>
+          <div class="scaled-block">
+            <span class="scaled">596</span>
+            <span class="raw">25/40</span>
+          </div>
+          <div class="pct-block">
+            <span class="pct">55–62<span class="sup">th</span></span>
+            <span class="pct-label">%ile</span>
+          </div>
         </div>
 
         <div class="student-notes">
@@ -1672,6 +1865,7 @@ button:focus-visible { outline-offset: 2px; }
           </div>
           <div class="total">
             <span class="num">1715</span>
+            <span class="total-pct">~40–48<span class="sup">th</span> %ile</span>
             <span class="scale">
               <span class="lang-en">Middle Level · 1320–2130</span>
               <span class="lang-zh">中级 · 满分 2130</span>
@@ -1681,21 +1875,51 @@ button:focus-visible { outline-offset: 2px; }
 
         <div class="score-row">
           <div class="subj"><span class="lang-en">Math</span><span class="lang-zh">数学</span></div>
-          <div class="bar" style="--pct: 58.1%"></div>
-          <div class="scaled">597</div>
-          <div class="raw">33/50</div>
+          <div class="bar" style="--pct: 58.1%">
+            <div class="fill"></div>
+            <span class="tick" style="left:56.7%"></span>
+            <span class="tick" style="left:81.5%" data-band="85"></span>
+          </div>
+          <div class="scaled-block">
+            <span class="scaled">597</span>
+            <span class="raw">33/50</span>
+          </div>
+          <div class="pct-block">
+            <span class="pct">50–55<span class="sup">th</span></span>
+            <span class="pct-label">%ile</span>
+          </div>
         </div>
         <div class="score-row">
           <div class="subj"><span class="lang-en">Verbal</span><span class="lang-zh">词汇</span></div>
-          <div class="bar" style="--pct: 37.0%"></div>
-          <div class="scaled">540</div>
-          <div class="raw">22/60</div>
+          <div class="bar" style="--pct: 37.0%">
+            <div class="fill"></div>
+            <span class="tick" style="left:64.4%"></span>
+            <span class="tick" style="left:87.0%" data-band="85"></span>
+          </div>
+          <div class="scaled-block">
+            <span class="scaled">540</span>
+            <span class="raw">22/60</span>
+          </div>
+          <div class="pct-block">
+            <span class="pct">20–25<span class="sup">th</span></span>
+            <span class="pct-label">%ile</span>
+          </div>
         </div>
         <div class="score-row">
           <div class="subj"><span class="lang-en">Reading</span><span class="lang-zh">阅读</span></div>
-          <div class="bar" style="--pct: 51.1%"></div>
-          <div class="scaled">578</div>
-          <div class="raw">23/40</div>
+          <div class="bar" style="--pct: 51.1%">
+            <div class="fill"></div>
+            <span class="tick" style="left:56.7%"></span>
+            <span class="tick" style="left:79.6%" data-band="85"></span>
+          </div>
+          <div class="scaled-block">
+            <span class="scaled">578</span>
+            <span class="raw">23/40</span>
+          </div>
+          <div class="pct-block">
+            <span class="pct">40–48<span class="sup">th</span></span>
+            <span class="pct-label">%ile</span>
+          </div>
         </div>
 
         <div class="student-notes">
@@ -1717,6 +1941,68 @@ button:focus-visible { outline-offset: 2px; }
           </div>
         </div>
       </article>
+    </div>
+
+    <div class="scale-note">
+      <div>
+        <div class="head">
+          <span class="smallcaps"><span class="lang-en">A note on scale &amp; percentile</span><span class="lang-zh">关于量程与百分位</span></span>
+          <span class="smallcaps"><span class="lang-en">estimates · not official</span><span class="lang-zh">估算 · 非官方</span></span>
+        </div>
+        <p>
+          <span class="lang-en">These are <strong>Middle Level</strong> scaled scores (1320–2130 max). The target exam is <strong>Upper Level</strong> (1500–2400 max) — different scale, harder content. The two cannot be converted directly; EMA equates them through percentiles, not arithmetic.</span>
+          <span class="lang-zh">这是 <strong>Middle Level（中级）</strong>的标准分（满分 2130）。目标考试是 <strong>Upper Level（高级）</strong>（满分 2400）——量程不同、难度更高，两者无法直接换算；EMA 通过百分位而非算术对齐两套考试。</span>
+        </p>
+        <p>
+          <span class="lang-en">Tick marks on each bar mark the <strong>50<sup>th</sup></strong> (median) and <strong>85<sup>th</sup></strong> (working target) percentile for grade-6 test-takers on the Middle Level — a quick visual of where each girl sits relative to the band she's aiming for.</span>
+          <span class="lang-zh">每个进度条上的刻度线分别标记六年级中级考生的 <strong>第 50</strong>（中位数）和 <strong>第 85</strong>（工作目标）百分位——可以一眼看到孩子目前的位置与目标的距离。</span>
+        </p>
+        <p class="footnote">
+          <span class="lang-en"><strong>Percentile estimates</strong> are triangulated from Ivy Global, Applerouth, and PrepMaven. EMA no longer reports gender-split percentiles, so all figures are against the <strong>grade-6 norm group</strong> as a whole.</span>
+          <span class="lang-zh"><strong>百分位为估算值</strong>，综合自 Ivy Global、Applerouth、PrepMaven 等公开资料。EMA 已不再分性别报告百分位，本页所有百分位均对应<strong>六年级整体群体</strong>。</span>
+        </p>
+      </div>
+
+      <div class="bands-block">
+        <div class="head">
+          <span class="smallcaps"><span class="lang-en">Grade-6 reference bands</span><span class="lang-zh">六年级参考分数线</span></span>
+          <span class="smallcaps"><span class="lang-en">middle level · scaled</span><span class="lang-zh">中级 · 标准分</span></span>
+        </div>
+        <table class="bands-table" aria-label="Grade 6 Middle Level percentile reference">
+          <thead>
+            <tr>
+              <th></th>
+              <th>50<sup>th</sup></th>
+              <th>75<sup>th</sup></th>
+              <th>85<sup>th</sup></th>
+              <th>90<sup>th</sup></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><span class="lang-en">Math</span><span class="lang-zh">数学</span></th>
+              <td>593</td>
+              <td>640</td>
+              <td class="match">660</td>
+              <td>675</td>
+            </tr>
+            <tr>
+              <th><span class="lang-en">Verbal</span><span class="lang-zh">词汇</span></th>
+              <td>614</td>
+              <td>655</td>
+              <td>675</td>
+              <td>685</td>
+            </tr>
+            <tr>
+              <th><span class="lang-en">Reading</span><span class="lang-zh">阅读</span></th>
+              <td>593</td>
+              <td>635</td>
+              <td>655</td>
+              <td>670</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <blockquote class="teacher-quote">
@@ -2851,12 +3137,10 @@ button:focus-visible { outline-offset: 2px; }
 
   // ───── score bars animate when card scrolls in ─────
   document.querySelectorAll('.score-row .bar').forEach(bar => {
-    const target = bar.style.getPropertyValue('--pct');
-    bar.style.setProperty('--pct', '0%');
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          requestAnimationFrame(() => bar.style.setProperty('--pct', target));
+          requestAnimationFrame(() => bar.classList.add('visible'));
           obs.unobserve(bar);
         }
       });
